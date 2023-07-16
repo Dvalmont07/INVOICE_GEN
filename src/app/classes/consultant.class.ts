@@ -1,20 +1,40 @@
 export class Consultant {
-    private _name: string = "";
-    public get Name(): string {
-        return this._name;
+    private _firstName: string = "";
+    public get FirstName(): string {
+        return this._firstName;
     }
-    public set Name(value: string) {
-        this._name = value;
+    public set FirstName(value: string) {
+        this._firstName = value;
     }
 
-    private _pixKey: string = "";    
+    private _lastName: string = "";
+    public get LastName(): string {
+        return this._lastName;
+    }
+    public set LastName(value: string) {
+        this._lastName = value;
+    }
+
+    public get FullName(): string {
+        return `${this._firstName} ${this._lastName}`;
+    }
+
+    private _companyName: string = "";
+    public get CompanyName(): string {
+        return this._companyName;
+    }
+    public set CompanyName(value: string) {
+        this._companyName = value;
+    }
+
+    private _pixKey: string = "";
     public get PixKey(): string {
         return this._pixKey;
     }
     public set PixKey(value: string) {
         this._pixKey = value;
     }
-    
+
     private _bankName: string = "";
     public get BankName(): string {
         return this._bankName;
@@ -22,8 +42,16 @@ export class Consultant {
     public set BankName(value: string) {
         this._bankName = value;
     }
-    
-  
+
+    private _email: string = "";
+    public get Email(): string {
+        return this._email;
+    }
+    public set Email(value: string) {
+        this._email = value;
+    }
+
+
 
 
 

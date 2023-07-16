@@ -1,12 +1,12 @@
 export class Service {
 
 
-    private _name: string = "";
-    public get Name(): string {
-        return this._name;
+    private _description: string = "";
+    public get Description(): string {
+        return this._description;
     }
-    public set Name(value: string) {
-        this._name = value;
+    public set Description(value: string) {
+        this._description = value;
     }
 
     private _quantity: number = 1;
@@ -29,8 +29,8 @@ export class Service {
         return this._quantity * this._price;
     }
 
-    constructor(name: string, quantity: number, price: number) {
-        this._name = name;
+    constructor(description: string, quantity: number, price: number) {
+        this._description = description;
         this._quantity = quantity;
         this._price = price;
     }

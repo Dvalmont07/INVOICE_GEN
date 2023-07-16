@@ -1,14 +1,14 @@
 import { Client } from "./client.class";
 import { Consultant } from "./consultant.class";
-import { Service } from "./services.class";
+import { Service } from "./service.class";
 
 export class Invoice {
-    private _invoiceNumber: number = 0;
-    public get InvoiceNumber(): number {
-        return this._invoiceNumber;
+    private _number: number = 0;
+    public get Number(): number {
+        return this._number;
     }
-    public set InvoiceNumber(value: number) {
-        this._invoiceNumber = value;
+    public set Number(value: number) {
+        this._number = value;
     }
 
     private _client: Client = new Client();

@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import { Invoice } from 'src/app/classes/invoice.class';
 
 
+
 @Component({
   selector: 'app-invoice-preview',
   templateUrl: './invoice-preview.component.html',

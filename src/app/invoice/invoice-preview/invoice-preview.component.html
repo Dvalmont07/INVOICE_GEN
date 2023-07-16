@@ -1,13 +1,49 @@
 <main id="context">
+  <section>
+    <div>Consultor: {{invoice.Consultant.CompanyName}}</div>
+    <div>{{invoice.Consultant.Email}}</div>
+  </section>
   <header>
     <h1>Invoice</h1>
   </header>
-  <hr>
   <article>
     <div>Valores referentes ao mês de <strong>{{invoice.ReferenceMonth}}</strong> de 2003</div>
-   
-    <div>Empresa: {{invoice.Client.Name}}</div>
+    <div>Número: {{invoice.Number}}</div>
+    <div>Vencimento{{invoice.DueDate}}</div>
 
-    <button (click)="generateInvoice()">Generate Invoice</button>
+    <div>Empresa:{{invoice.Client.Name}}</div>
+    <div>Responsável:{{invoice.Client.CompanyRepresentativeName}}</div>
+    <div>{{invoice.Client.Email}}</div>
+
+    <table border="1" *ngIf="invoice.Services.length > 0">
+      <thead>
+        <th>Item</th>
+        <th>Descrição</th>
+        <th>Quantidade</th>
+        <th>Valor</th>
+        <th>Total</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of invoice.Services; let ind = index">
+          <td>{{ind + 1}}</td>
+          <td>{{service.Description}}</td>
+          <td>{{service.Quantity}}</td>
+          <td>{{service.Price}}</td>
+          <td>{{service.Total}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div>
+      <span>Total:{{invoice.Total}}</span>
+    </div>
+
+    <div>Conta</div>
+    <div>{{invoice.Consultant.FullName}}</div>
+    <div>Banco: {{invoice.Consultant.BankName}}</div>
+    <div>Pix: {{invoice.Consultant.PixKey}}</div>
   </article>
+  <section>
+    <button (click)="generateInvoice()">Generate Invoice</button>
+  </section>
 </main>
