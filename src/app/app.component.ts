@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Invoice } from './classes/invoice.class';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'INVOICE_GEN';
+  invoice: Invoice = new Invoice();
 }
