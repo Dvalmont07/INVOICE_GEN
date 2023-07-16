@@ -1,0 +1,13 @@
+<main id="context">
+  <header>
+    <h1>Invoice</h1>
+  </header>
+  <hr>
+  <article>
+    <div>Valores referentes ao mês de <strong>{{invoice.ReferenceMonth}}</strong> de 2003</div>
+   
+    <div>Empresa: {{invoice.Client.Name}}</div>
+
+    <button (click)="generateInvoice()">Generate Invoice</button>
+  </article>
+</main>
