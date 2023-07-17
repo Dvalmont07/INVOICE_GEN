@@ -1,49 +1,69 @@
-<main id="context">
-  <section>
-    <div>Consultor: {{invoice.Consultant.CompanyName}}</div>
-    <div>{{invoice.Consultant.Email}}</div>
-  </section>
-  <header>
-    <h1>Invoice</h1>
-  </header>
-  <article>
-    <div>Valores referentes ao mês de <strong>{{invoice.ReferenceMonth}}</strong> de 2003</div>
-    <div>Número: {{invoice.Number}}</div>
-    <div>Vencimento{{invoice.DueDate}}</div>
+<main id="context" class="d-flex flex-column align-items-center" >
+  <article id="preview" class="d-flex flex-column p-5 m-5 " style="height: 100%; width: 1300px;">
 
-    <div>Empresa:{{invoice.Client.Name}}</div>
-    <div>Responsável:{{invoice.Client.CompanyRepresentativeName}}</div>
-    <div>{{invoice.Client.Email}}</div>
+    <header class="row">
+      <div class="col-md-9 d-flex align-items-center titulo" style="font-size:5rem">NOTA</div>
+      <div class="col-md-3 d-flex flex-column align-items-end justify-content-center" style="background-color: #353535;color: white;font-size: 2rem;">
+        <div>{{invoice.Consultant.CompanyName}}</div>
+      </div>
 
-    <table border="1" *ngIf="invoice.Services.length > 0">
-      <thead>
-        <th>Item</th>
-        <th>Descrição</th>
-        <th>Quantidade</th>
-        <th>Valor</th>
-        <th>Total</th>
-      </thead>
-      <tbody>
-        <tr *ngFor="let service of invoice.Services; let ind = index">
-          <td>{{ind + 1}}</td>
-          <td>{{service.Description}}</td>
-          <td>{{service.Quantity}}</td>
-          <td>{{service.Price}}</td>
-          <td>{{service.Total}}</td>
-        </tr>
-      </tbody>
-    </table>
+      <hr class="p-1 mt-5">
+    </header>
 
-    <div>
-      <span>Total:{{invoice.Total}}</span>
-    </div>
+    <div class="px-5">
+      <div class="flex-grow-1 mt-5">       
+        <div class="pb-4">Valores referentes ao mês de <strong>{{invoice.ReferenceMonth}}</strong> de 2023</div>
 
-    <div>Conta</div>
-    <div>{{invoice.Consultant.FullName}}</div>
-    <div>Banco: {{invoice.Consultant.BankName}}</div>
-    <div>Pix: {{invoice.Consultant.PixKey}}</div>
+        <div class="d-flex flex-column align-items-end ">
+          <div><span class="">Número:</span> {{invoice.Number}}</div>
+          <div>Vencimento:
+            {{invoice.DueDate.getDate()}}/{{invoice.DueDate.getMonth()}}/{{invoice.DueDate.getFullYear()}}
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <div class="flex-grow-1">
+            <div style="font-size: 2em;">{{invoice.Client.Name}}</div>
+            <div>{{invoice.Client.CompanyRepresentativeName}} - {{invoice.Client.Email}}</div>
+          </div>
+
+        </div>
+        <hr>
+        <table class="mt-5 table " *ngIf="invoice.Services.length > 0">
+          <thead class="">
+            <th>#</th>
+            <th>Descrição</th>
+            <th>Qutd.</th>
+            <th>Valor</th>
+            <th>Total</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let service of invoice.Services; let ind = index">
+              <td>{{ind + 1}}</td>
+              <td>{{service.Description}}</td>
+              <td>{{service.Quantity}}</td>
+              <td>{{service.Price}}</td>
+              <td>{{service.Total}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="d-flex mt-5 justify-content-end" style="font-size: 4rem;">
+          <span>Total: {{invoice.Total}}</span>
+        </div>
+      </div>
+      <div class="mt-5">
+        <section>
+          <div style="font-size: 2em;">Conta</div>
+          <div>{{invoice.Consultant.FullName}}</div>
+          <div>Banco: {{invoice.Consultant.BankName}}</div>
+          <div>Pix: {{invoice.Consultant.PixKey}}</div>
+        </section>
+      </div>
+    </div>   
   </article>
   <section>
-    <button (click)="generateInvoice()">Generate Invoice</button>
+    <div class="btn-info mt-5 p-3" style="cursor:pointer;text-align: center;" (click)="generateInvoice()">Generate
+      Invoice</div>
   </section>
 </main>
