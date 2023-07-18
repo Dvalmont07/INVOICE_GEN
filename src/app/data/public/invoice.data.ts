@@ -6,7 +6,7 @@ import { CLIENT } from "./client.data";
 export const INVOICE: Invoice = new Invoice();
 
 INVOICE.Number = 50001;
-INVOICE.DueDate = new Date("07-10-2023");
+INVOICE.DueDate = new Date("07/10/2023");
 INVOICE.Consultant = PCONSULTANT;
 INVOICE.Client = CLIENT;
 INVOICE.Services = SERVICES;

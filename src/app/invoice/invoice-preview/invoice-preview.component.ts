@@ -14,16 +14,23 @@ export class InvoicePreviewComponent implements OnInit {
 
   constructor() { }
 
+  formatedDate = Intl.DateTimeFormat("pt-BR");
+
   @Input() invoice: Invoice = new Invoice();
 
   ngOnInit() {
+
   }
 
-  public generateInvoice(){
+  public dateTransform(date: Date) {
+    return this.formatedDate.format(date);
+  }
+
+  public generateInvoice() {
     let preview = document.querySelector("#preview") as HTMLElement;
 
-    html2canvas(preview).then(function(canvas) {
-      
+    html2canvas(preview).then(function (canvas) {
+
       const contentDataURL = canvas.toDataURL('image/png')
       let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF 
       const positionX = 0;
@@ -32,11 +39,11 @@ export class InvoicePreviewComponent implements OnInit {
       //let pageHeight = 297;
       const imgHeight = canvas.height * imgWidth / canvas.width;
       //let heightLeft = imgHeight;
-      
-      pdf.addImage(contentDataURL, 'PNG', positionX, positionY , imgWidth, imgHeight);
+
+      pdf.addImage(contentDataURL, 'PNG', positionX, positionY, imgWidth, imgHeight);
 
       pdf.save('MYPdf.pdf'); // Generated PDF   
-  });
+    });
   }
 
 }

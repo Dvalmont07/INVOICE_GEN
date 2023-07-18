@@ -35,6 +35,10 @@ export class Invoice {
         this._referenceMonth = value;
     }
 
+    public get ReferenceFullMonth(): string {
+        return new Date(0, this._referenceMonth - 1).toLocaleString('pt-BR', { month: 'long' });
+    }
+
     private _dueDate: Date = new Date();
     public get DueDate(): Date {
         return this._dueDate;
