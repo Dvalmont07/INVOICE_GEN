@@ -1,0 +1,52 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    #preview {
+        display: flex;
+        flex-direction: column;
+        width: 95vw;
+        padding: 3em;
+        background-image: URL('./../../../assets/image/water-mark.png');
+        background-repeat: no-repeat;
+        background-position-x: right;
+        width: 912px;
+        
+
+        header {
+            display: flex;
+            h1 {
+                flex-grow: 1;
+            }
+        }
+
+        #invoice-data {
+            text-align: end;
+        }
+
+        table{
+            tbody{
+                font-size: 0.8em;
+            }
+        }
+
+        .total-value {
+            font-size: 1.5em;
+            text-align: end;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        display: block;
+        #preview {
+            display: block;
+            width: 100vw;
+            header {
+                display: block;
+                
+            }
+        }
+    }
+}

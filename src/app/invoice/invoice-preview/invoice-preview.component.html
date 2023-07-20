@@ -1,35 +1,32 @@
-<main id="context" class="d-flex flex-column align-items-center">
-  <article id="preview" class="d-flex flex-column p-5 m-5 " style="height: 100%; width: 1300px;">
-
-    <header class="row">
-      <div class="col-md-9 d-flex align-items-center titulo" style="font-size:4.5rem">Prestação de Serviços</div>
-      <div class="col-md-3 d-flex flex-column align-items-end justify-content-center"
-        style="background-color: #424242;color: white;font-size: 2rem;">
-        <div>{{invoice.Consultant.CompanyName}}</div>
-      </div>
-      <div class="d-flex flex-column align-items-end mt-5 ">
-        <div><strong>Número: #</strong>{{invoice.Number}}</div>
-        <div>
-          <strong>Vencimento:</strong>
-          {{dateTransform(invoice.DueDate)}}
-        </div>
-      </div>
-      <hr class="p-1 mt-5">
+<main>
+  <article id="preview">
+    <header>
+      <h1>Prestação de Serviços</h1>
+      <div class="d-flex align-items-center">{{invoice.Consultant.CompanyName}}</div>
     </header>
 
-    <div class="px-5">
-      <div class="flex-grow-1 mt-5">
-        <div class="pb-4">Valores referentes ao mês de <strong>{{(invoice.ReferenceFullMonth)}}</strong> de 2023</div>
+    <section id="invoice-data" class="mt-5">
+      <div><strong>Número: #</strong>{{invoice.Number}}</div>
+      <div>
+        <strong>Vencimento:</strong>
+        {{dateTransform(invoice.DueDate)}}
+      </div>
+    </section>
+    <hr class="divisor mt-5">
 
-        <div class="d-flex">
-          <div class="flex-grow-1">
-            <div style="font-size: 2.5em;">{{invoice.Client.Name}}</div>
+    <div class="mt-5">
+      <div class="">
+        <div class="">Valores referentes ao mês de <strong>{{(invoice.ReferenceFullMonth)}}</strong> de 2023</div>
+
+        <div class="mt-5">
+          <div class="">
+            <h2>{{invoice.Client.Name}}</h2>
             <div><strong>Responsável:</strong> {{invoice.Client.CompanyRepresentativeName}} </div>
           </div>
 
         </div>
-        <hr>
-        <table class="mt-5 table " *ngIf="invoice.Services.length > 0">
+        <hr class="mt-5">
+        <table class="table mt-5" *ngIf="invoice.Services.length > 0">
           <thead class="">
             <th>#</th>
             <th>Descrição</th>
@@ -48,16 +45,16 @@
           </tbody>
         </table>
 
-        <div class="d-flex p-3 justify-content-end" style="font-size: 4rem; margin-top: 10rem;">
+        <div class="total-value mt-5">
           <span><strong>Total:</strong> {{invoice.Total | currency}}</span>
         </div>
       </div>
-
+      <hr class="mt-5">
 
       <section class="mt-5">
-        <hr>
-        <div style="font-size: 2em;">Conta</div>
-        <div>{{invoice.Consultant.FullName}}</div>
+
+        <h3>Conta</h3>
+        <strong>{{invoice.Consultant.FullName}}</strong>
         <div><strong>Banco:</strong> {{invoice.Consultant.BankName}}</div>
         <div><strong>Pix:</strong> {{invoice.Consultant.PixKey}}</div>
       </section>
@@ -65,7 +62,8 @@
     </div>
   </article>
   <section>
-    <div class="btn-info my-5 p-3" style="cursor:pointer;" (click)="generateInvoice()">Generate
+    <div class="btn-info my-5 p-3" style="cursor:pointer; width: 20em; margin:auto; text-align: center;"
+      (click)="generateInvoice()">Generate
       Invoice</div>
   </section>
 </main>
