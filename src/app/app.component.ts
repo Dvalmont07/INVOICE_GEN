@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Invoice } from './classes/invoice.class';
-import { CONSULTANT } from './data/private/consultant.data';
-import { SERVICES } from './data/public/services.data';
-import { INVOICE } from './data/public/invoice.data';
+import { INVOICE } from './data/private/invoice.data';
 
 @Component({
   selector: 'app-root',

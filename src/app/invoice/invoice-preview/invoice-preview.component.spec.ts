@@ -6,7 +6,7 @@ import { Invoice } from 'src/app/classes/invoice.class';
 import { Client } from 'src/app/classes/client.class';
 import { Consultant } from 'src/app/classes/consultant.class';
 import { Service } from 'src/app/classes/service.class';
-import { SERVICES } from 'src/app/data/public/services.data';
+import { SERVICES } from 'src/app/data/public/p-services.data';
 
 describe('InvoicePreviewComponent', () => {
   let component: InvoicePreviewComponent;

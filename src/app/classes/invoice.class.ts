@@ -35,6 +35,14 @@ export class Invoice {
         this._referenceMonth = value;
     }
 
+    private _referenceYear: number = 0;
+    public get ReferenceYear(): number {
+        return this._referenceYear;
+    }
+    public set ReferenceYear(value: number) {
+        this._referenceYear = value;
+    }
+
     public get ReferenceFullMonth(): string {
         return new Date(0, this._referenceMonth - 1).toLocaleString('pt-BR', { month: 'long' });
     }

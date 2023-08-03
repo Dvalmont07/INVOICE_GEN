@@ -51,8 +51,12 @@ export class Consultant {
         this._email = value;
     }
 
-
-
-
+    private _signature: string = "";
+    public get Signature(): string {
+        return this._signature;
+    }
+    public set Signature(value: string) {
+        this._signature = value;
+    }
 
 }

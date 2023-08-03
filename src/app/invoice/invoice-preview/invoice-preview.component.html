@@ -4,8 +4,7 @@
       <h1>Prestação de Serviços</h1>
       <div class="d-flex align-items-center">{{invoice.Consultant.CompanyName}}</div>
     </header>
-
-    <section id="invoice-data" class="mt-5">
+    <section id="preview-invoice-data" class="mt-5">
       <div><strong>Número: #</strong>{{invoice.Number}}</div>
       <div>
         <strong>Vencimento:</strong>
@@ -14,18 +13,22 @@
     </section>
     <hr class="divisor mt-5">
 
-    <div class="mt-5">
+    <div id="preview-invoice-values" class="mt-5">
       <div class="">
-        <div class="">Valores referentes ao mês de <strong>{{(invoice.ReferenceFullMonth)}}</strong> de 2023</div>
+        <div class="">Valores referentes ao mês de <strong>{{(invoice.ReferenceFullMonth)}}</strong> de
+          {{(invoice.ReferenceYear)}}
+        </div>
 
         <div class="mt-5">
           <div class="">
             <h2>{{invoice.Client.Name}}</h2>
             <div><strong>Responsável:</strong> {{invoice.Client.CompanyRepresentativeName}} </div>
+            <div *ngIf="invoice.Client.Email">{{invoice.Client.Email}} </div>
           </div>
-
         </div>
+
         <hr class="mt-5">
+
         <table class="table mt-5" *ngIf="invoice.Services.length > 0">
           <thead class="">
             <th>#</th>
@@ -50,16 +53,31 @@
         </div>
       </div>
       <hr class="mt-5">
+    </div>
+
+    <footer>
 
       <section class="mt-5">
-
         <h3>Conta</h3>
         <strong>{{invoice.Consultant.FullName}}</strong>
         <div><strong>Banco:</strong> {{invoice.Consultant.BankName}}</div>
         <div><strong>Pix:</strong> {{invoice.Consultant.PixKey}}</div>
       </section>
+      <section id="signature-sec" class="mt-5 ">
 
-    </div>
+        <div class="d-flex align-items-end">
+          <div class="flex-grow-1">
+            <h4>Obrigado</h4>
+          </div>
+          <div class="d-flex flex-column  ">
+            <img style="width: 24.5rem" src="{{invoice.Consultant.Signature ?
+              invoice.Consultant.Signature:'/assets/image/default-signature.png'}}" />
+            <hr style="margin-top: -6rem;" />
+            <div style="margin-top: -1rem; font-size: 1rem;" class="text-center">Consultor</div>
+          </div>
+        </div>
+      </section>
+    </footer>
   </article>
   <section>
     <div class="btn-info my-5 p-3" style="cursor:pointer; width: 20em; margin:auto; text-align: center;"

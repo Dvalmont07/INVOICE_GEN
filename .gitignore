@@ -37,6 +37,7 @@ yarn-error.log
 testem.log
 /typings
 src/app/data/private
+src/assets/image/private
 
 # System files
 .DS_Store
