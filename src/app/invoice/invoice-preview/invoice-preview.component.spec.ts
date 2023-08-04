@@ -5,8 +5,8 @@ import { InvoicePreviewComponent } from './invoice-preview.component';
 import { Invoice } from 'src/app/classes/invoice.class';
 import { Client } from 'src/app/classes/client.class';
 import { Consultant } from 'src/app/classes/consultant.class';
-import { Service } from 'src/app/classes/service.class';
-import { SERVICES } from 'src/app/data/public/p-services.data';
+import { Service } from 'src/app/classes/invoice-items.class';
+import { SERVICES } from 'src/app/data/public/p-invoice-items.data';
 
 describe('InvoicePreviewComponent', () => {
   let component: InvoicePreviewComponent;

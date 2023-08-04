@@ -1,4 +1,4 @@
-import { Service } from "src/app/classes/service.class";
+import { Service } from "src/app/classes/invoice-items.class";
 
 export const SERVICES:Service[] = [];
 SERVICES.push(new Service("Mensalidade Referente ao mês de junho de 2023", 3, 100));

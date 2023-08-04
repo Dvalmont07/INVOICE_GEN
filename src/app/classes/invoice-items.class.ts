@@ -1,4 +1,4 @@
-export class Service {
+export class InvoiceItems {
 
 
     private _description: string = "";

@@ -1,6 +1,6 @@
 import { Client } from "./client.class";
 import { Consultant } from "./consultant.class";
-import { Service } from "./service.class";
+import { InvoiceItems } from "./invoice-items.class";
 
 export class Invoice {
     private _number: number = 0;
@@ -55,11 +55,11 @@ export class Invoice {
         this._dueDate = value;
     }
 
-    private _services: Service[] = [];
-    public get Services(): Service[] {
+    private _services: InvoiceItems[] = [];
+    public get Services(): InvoiceItems[] {
         return this._services;
     }
-    public set Services(value: Service[]) {
+    public set Services(value: InvoiceItems[]) {
         this._services = value;
     }
 
