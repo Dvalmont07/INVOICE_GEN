@@ -1,6 +1,6 @@
 <main>
   <article id="preview">
-    <header>
+    <!--  <header>
       <h1>Prestação de Serviços</h1>
       <div class="d-flex align-items-center">{{invoice.Consultant.CompanyName}}</div>
     </header>
@@ -10,7 +10,7 @@
         <strong>Vencimento:</strong>
         {{dateTransform(invoice.DueDate)}}
       </div>
-    </section>
+    </section> -->
     <hr class="divisor mt-5">
 
     <div id="preview-invoice-values" class="mt-5">
@@ -19,17 +19,17 @@
           {{(invoice.ReferenceYear)}}
         </div>
 
-        <div class="mt-5">
+        <!-- <div class="mt-5">
           <div class="">
             <h2>{{invoice.Client.Name}}</h2>
             <div><strong>Responsável:</strong> {{invoice.Client.CompanyRepresentativeName}} </div>
             <div *ngIf="invoice.Client.Email">{{invoice.Client.Email}} </div>
           </div>
-        </div>
+        </div> -->
 
         <hr class="mt-5">
 
-        <table class="table mt-5" *ngIf="invoice.Services.length > 0">
+        <!-- <table class="table mt-5" *ngIf="invoice.Services.length > 0">
           <thead class="">
             <th>#</th>
             <th>Descrição</th>
@@ -46,7 +46,7 @@
               <td>{{service.Total | currency}}</td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
 
         <div class="total-value mt-5">
           <span><strong>Total:</strong> {{invoice.Total | currency}}</span>
@@ -57,13 +57,13 @@
 
     <footer>
 
-      <section class="mt-5">
+      <!-- <section class="mt-5">
         <h3>Conta</h3>
         <strong>{{invoice.Consultant.FullName}}</strong>
         <div><strong>Banco:</strong> {{invoice.Consultant.BankName}}</div>
         <div><strong>Pix:</strong> {{invoice.Consultant.PixKey}}</div>
-      </section>
-      <section id="signature-sec" class="mt-5 ">
+      </section> -->
+      <!-- <section id="signature-sec" class="mt-5 ">
 
         <div class="d-flex align-items-end">
           <div class="flex-grow-1">
@@ -76,7 +76,7 @@
             <div style="margin-top: -1rem; font-size: 1rem;" class="text-center">Consultor</div>
           </div>
         </div>
-      </section>
+      </section> -->
     </footer>
   </article>
   <section>

@@ -1,0 +1,72 @@
+{
+    "FirstName": "Danilo J",
+    "LastName": "Matos",
+    "Email": "danilo@teste.test",
+    "BankName": "Test Bank",
+    "PixKey": "11986578954",
+    "CompanyName": "Danilo Matos Inc.",
+    "Clients": [
+        {
+            "Id": 1,
+            "CompanyRepresentativeName": "Fulanão da Silva",
+            "Name": "Teste Inc",
+            "Email": "teste@inc.vom",
+            "invoices": [
+                {
+                    "Id": 50001,
+                    "ClientId": 1,
+                    "DueDate": "07/10/2023",
+                    "invoiceItems": [
+                        {
+                            "Id": 1,
+                            "InvoiceId": 1,
+                            "Description": "Percentual referente aos 20% sobre os RS 1.000,00 creditados em junho de 2003",
+                            "Quantity": 2,
+                            "price": 200
+                        },
+                        {
+                            "Id": 2,
+                            "InvoiceId": 1,
+                            "Description": "Percentual referente aos 20% sobre os RS 1.000,00 creditados em junho de 2003",
+                            "Quantity": 2,
+                            "price": 200
+                        }
+                    ],
+                    "ReferenceMonth": 6,
+                    "ReferenceYear": 2003
+                },
+                {
+                    "Id": 50002,
+                    "DueDate": "08/10/2023",
+                    "invoiceItems": [],
+                    "ReferenceMonth": 6,
+                    "ReferenceYear": 2003
+                }
+            ]
+        },
+        {
+            "Id": 2,
+            "CompanyRepresentativeName": "Lua Crua",
+            "Name": "Party Time",
+            "Email": "tao@inc.vom",
+            "invoices": [
+                {
+                    "Id": 50003,
+                    "ClientId": 2,
+                    "DueDate": "09/10/2023",
+                    "invoiceItems": [],
+                    "ReferenceMonth": 6,
+                    "ReferenceYear": 2003
+                },
+                {
+                    "Id": 50004,
+                    "ClientId": 2,
+                    "DueDate": "10/10/2023",
+                    "invoiceItems": [],
+                    "ReferenceMonth": 6,
+                    "ReferenceYear": 2003
+                }
+            ]
+        }
+    ]
+}

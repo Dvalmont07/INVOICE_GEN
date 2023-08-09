@@ -1,5 +1,19 @@
 export class InvoiceItems {
 
+    private _id: number = 0;
+    public get Id(): number {
+        return this._id;
+    }
+    public set Id(value: number) {
+        this._id = value;
+    }
+    private _invoiceId: number = 0;
+    public get InvoiceId(): number {
+        return this._invoiceId;
+    }
+    public set InvoiceId(value: number) {
+        this._invoiceId = value;
+    }
 
     private _description: string = "";
     public get Description(): string {

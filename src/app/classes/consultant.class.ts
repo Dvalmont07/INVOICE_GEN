@@ -1,4 +1,21 @@
+import { Client } from "./client.class";
+
 export class Consultant {
+    private _id: number = 0;
+    public get Id(): number {
+        return this._id;
+    }
+    public set Id(value: number) {
+        this._id = value;
+    }
+
+    private _clients: Client[] = [];
+    public get Clients(): Client[] {
+        return this._clients;
+    }
+    public set Clients(value: Client[]) {
+        this._clients = value;
+    }
     private _firstName: string = "";
     public get FirstName(): string {
         return this._firstName;

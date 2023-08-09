@@ -3,29 +3,42 @@ import { Consultant } from "./consultant.class";
 import { InvoiceItems } from "./invoice-items.class";
 
 export class Invoice {
-    private _number: number = 0;
-    public get Number(): number {
-        return this._number;
+    private _id: number = 0;
+    public get Id(): number {
+        return this._id;
     }
-    public set Number(value: number) {
-        this._number = value;
-    }
-
-    private _client: Client = new Client();
-    public get Client(): Client {
-        return this._client;
-    }
-    public set Client(value: Client) {
-        this._client = value;
+    public set Id(value: number) {
+        this._id = value;
     }
 
-    private _consultant: Consultant = new Consultant();
-    public get Consultant(): Consultant {
-        return this._consultant;
+    private _clientId: number = 0;
+    public get ClientId(): number {
+        return this._clientId;
     }
-    public set Consultant(value: Consultant) {
-        this._consultant = value;
+    public set ClientId(value: number) {
+        this._clientId = value;
     }
+
+    // public get Client(): Client {
+    //     return this._client;
+    // }
+    // public set Client(value: Client) {
+    //     this._client = value;
+    // }
+
+    private _consultantId: number = 0;
+    public get ConsultantId(): number {
+        return this._consultantId;
+    }
+    public set ConsultantId(value: number) {
+        this._consultantId = value;
+    }
+    // public get Consultant(): Consultant {
+    //     return this._consultant;
+    // }
+    // public set Consultant(value: Consultant) {
+    //     this._consultant = value;
+    // }
 
     private _referenceMonth: number = 0;
     public get ReferenceMonth(): number {
@@ -55,21 +68,20 @@ export class Invoice {
         this._dueDate = value;
     }
 
-    private _services: InvoiceItems[] = [];
-    public get Services(): InvoiceItems[] {
-        return this._services;
+    private _invoiceItems: InvoiceItems[] = [];
+    public get InvoiceItems(): InvoiceItems[] {
+        return this._invoiceItems;
     }
-    public set Services(value: InvoiceItems[]) {
-        this._services = value;
+    public set InvoiceItems(value: InvoiceItems[]) {
+        this._invoiceItems = value;
     }
 
     public get Total(): number {
         let total = 0;
-        this._services.forEach(service => {
+        this._invoiceItems.forEach(service => {
             total += service.Total;
         });
         return total;
     }
-
 
 }
