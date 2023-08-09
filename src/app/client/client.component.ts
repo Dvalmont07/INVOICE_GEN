@@ -9,18 +9,21 @@ import { ClientService } from 'src/services/client/client.service';
 })
 export class ClientComponent implements OnInit {
 
+  public client: any;
+  private _params: any;
   constructor(
     private _clientService: ClientService,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute
+  ) {
+    //TODO: generate hash to URLs
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      console.log(params);
+      this._params = params;
     });
   }
-  public client: any;
+
   ngOnInit() {
-    if (location.search) {
-      let param = new URLSearchParams(location.search);
-      this.getClientById(Number(param?.get("id")));
+    if (this._params) {
+      this.getClientById(Number(this._params["id"]));
     } else {
       this.client = null;
     }

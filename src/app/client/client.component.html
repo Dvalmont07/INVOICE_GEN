@@ -9,7 +9,7 @@
     <hr>
     <h2>Invoices</h2>
     <section *ngFor="let invoice of client.Invoices">
-      <a href="/invoice">{{invoice.Id}}</a>
+      <a href="/invoice?id={{invoice.Id}}">{{invoice.Id}}</a>
     </section>
   </ng-container>
 </main>

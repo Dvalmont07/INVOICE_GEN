@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientComponent } from './client/client.component';
 import { ConsultantComponent } from './consultant/consultant.component';
+import { InvoiceComponent } from './components/invoice/invoice.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,12 @@ const routes: Routes = [
     component: ClientComponent,
     data: { title: "Client" },
   },
-  
+  {
+    path: "invoice",
+    component: InvoiceComponent,
+    data: { title: "Invoice" },
+  },
+
 ];
 
 @NgModule({

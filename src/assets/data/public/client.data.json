@@ -4,18 +4,18 @@
         "CompanyRepresentativeName": "Fulanão da Silva",
         "Name": "Teste Inc",
         "Email": "teste@inc.vom",
-        "invoices": [
+        "Invoices": [
             {
-                "Number": 50001,
+                "Id": 50001,
                 "DueDate": "07/10/2023",
-                "Services": [],
+                "Items": [],
                 "ReferenceMonth": 6,
                 "ReferenceYear": 2003
             },
             {
-                "Number": 50002,
+                "Id": 50002,
                 "DueDate": "08/10/2023",
-                "Services": [],
+                "Items": [],
                 "ReferenceMonth": 6,
                 "ReferenceYear": 2003
             }
@@ -26,18 +26,18 @@
         "CompanyRepresentativeName": "Lua Crua",
         "Name": "Party Time",
         "Email": "tao@inc.vom",
-        "invoices": [
+        "Invoices": [
             {
-                "Number": 50003,
+                "Id": 50003,
                 "DueDate": "09/10/2023",
-                "Services": [],
+                "Items": [],
                 "ReferenceMonth": 6,
                 "ReferenceYear": 2003
             },
             {
-                "Number": 50004,
+                "Id": 50004,
                 "DueDate": "10/10/2023",
-                "Services": [],
+                "Items": [],
                 "ReferenceMonth": 6,
                 "ReferenceYear": 2003
             }
