@@ -34,7 +34,7 @@ export class InvoicePreviewComponent implements OnInit {
 
     // preview.style.width = "210mm";
     // preview.style.height = "297mm";
-    html2canvas(preview).then(function (canvas) {
+    html2canvas(preview).then((canvas) => {
 
       const contentDataURL = canvas.toDataURL('image/png')
       let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF 
@@ -53,8 +53,13 @@ export class InvoicePreviewComponent implements OnInit {
       // const footerY = imgHight - footerHeight - 5; // Adjust the Y position of the footer image as needed
       // pdf.addImage(footerImgData, 'PNG', footerX, footerY, footerWidth, footerHeight);
 
-      pdf.save('MYPdf.pdf'); // Generated PDF   
+      pdf.save(this.getPDFTitle()); // Generated PDF   
     });
+  }
+
+  private getPDFTitle(): string {
+    let date = new Date();
+    return `${this.invoice.Client.Name} - Nota ${this.invoice.Number} - ${this.invoice.ReferenceYear}${date.getMonth()+1}.pdf`;
   }
 
 }
