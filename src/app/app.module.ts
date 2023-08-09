@@ -10,8 +10,7 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ConsultantComponent } from './consultant/consultant.component';
 import { ClientComponent } from './client/client.component';
-import { RouterModule } from '@angular/router';
-import appRoutes from './routerConfig';
+// import appRoutes from './routerConfig_old';
 
 
 registerLocaleData(ptBr);
@@ -27,7 +26,7 @@ registerLocaleData(ptBr);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes),
+    
     
 
 

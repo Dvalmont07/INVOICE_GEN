@@ -10,6 +10,6 @@ INVOICE.Id = 50001;
 INVOICE.DueDate = new Date("07/10/2023");
 //INVOICE.Consultant = CONSULTANT;
 //INVOICE.Client = CLIENT;
-INVOICE.InvoiceItems = SERVICES;
+//INVOICE.InvoiceItems = SERVICES;
 INVOICE.ReferenceMonth = 6;
 INVOICE.ReferenceYear = 2003;
