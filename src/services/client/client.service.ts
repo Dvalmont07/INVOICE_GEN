@@ -15,8 +15,7 @@ export class ClientService {
     return this._http.get<Client[]>(this._dataUrl);
   }
   public getById(id: number) {
-    let client: Client;
-    return this.getAll().subscribe(data => client = data.filter(c => c.Id == id)[0]);
+    
   }
 
 }

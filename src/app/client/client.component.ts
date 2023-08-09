@@ -16,13 +16,21 @@ export class ClientComponent implements OnInit {
       console.log(params);
     });
   }
-
+  public client: any;
   ngOnInit() {
-
+    if (location.search) {
+      let param = new URLSearchParams(location.search);
+      this.getClientById(Number(param?.get("id")));
+    } else {
+      this.client = null;
+    }
   }
 
-  private getClientById() {
-    this._clientService.getById(1);
+  private getClientById(id: number) {
+    this._clientService.getAll().subscribe(clients => {
+      this.client = clients
+        .filter(client => { return client.Id === id })[0]
+    });
   }
 
 }

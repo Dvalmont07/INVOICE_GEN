@@ -1,3 +1,17 @@
-<p>
-  client works!
-</p>
+<main class="p-5">
+  <ng-container *ngIf="client; else listaVazia">
+    <header>
+      <h1>{{client.Name}}</h1>
+
+    </header>
+    <hr>
+    <h2>Invoices</h2>
+    <section *ngFor="let invoice of client.Invoices">
+      <a href="/invoice">{{invoice.Id}}</a>
+    </section>
+  </ng-container>
+</main>
+
+<ng-template #listaVazia>
+  Sua requisição obteve resultados
+</ng-template>

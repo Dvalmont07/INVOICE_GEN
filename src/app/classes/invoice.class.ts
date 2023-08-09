@@ -1,5 +1,3 @@
-import { Client } from "./client.class";
-import { Consultant } from "./consultant.class";
 import { InvoiceItems } from "./invoice-items.class";
 
 export class Invoice {

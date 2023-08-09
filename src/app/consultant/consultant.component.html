@@ -1,11 +1,12 @@
-<main>
+<main class="p-5">
   <header>
     <h1>{{consultant.CompanyName}}</h1>
     <div>{{consultant.FullName}}</div>
+    <div>{{consultant.Email}}</div>
   </header>
   <hr>
   <h2>Clients</h2>
   <section *ngFor="let client of consultant.Clients">
-    <a href="/client/{{client.Id}}">{{client.Name}}</a>
+    <a href="/client?id={{client.Id}}">{{client.Name}}</a>
   </section>
 </main>
