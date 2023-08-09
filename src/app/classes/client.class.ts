@@ -2,6 +2,12 @@ import { Invoice } from "./invoice.class";
 
 export class Client {
     private _id: number = 0;
+    private _consultantId: number = 0;
+    private _invoices: Invoice[] = [];
+    private _name: string = "";
+    private _email: string = "";
+    private _companyRepresentativeName: string = "";   
+   
     public get Id(): number {
         return this._id;
     }
@@ -9,7 +15,6 @@ export class Client {
         this._id = value;
     }
 
-    private _consultantId: number = 0;
     public get ConsultantId(): number {
         return this._consultantId;
     }
@@ -17,7 +22,6 @@ export class Client {
         this._consultantId = value;
     }
 
-    private _invoices: Invoice[] = [];
     public get Invoices(): Invoice[] {
         return this._invoices;
     }
@@ -25,7 +29,6 @@ export class Client {
         this._invoices = value;
     }
   
-    private _name: string = "";
     public get Name(): string {
         return this._name;
     }
@@ -33,14 +36,13 @@ export class Client {
         this._name = value;
     }
 
-    private _email: string = "";
     public get Email(): string {
         return this._email;
     }
     public set Email(value: string) {
         this._email = value;
     }
-    private _companyRepresentativeName: string = "";
+
     public get CompanyRepresentativeName(): string {
         return this._companyRepresentativeName;
     }

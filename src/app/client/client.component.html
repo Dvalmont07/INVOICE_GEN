@@ -2,6 +2,8 @@
   <ng-container *ngIf="client; else listaVazia">
     <header>
       <h1>{{client.Name}}</h1>
+      <div><strong>Representante: </strong>{{client.CompanyRepresentativeName}}</div>
+      <div><strong>Email: </strong>{{client.Email}}</div>
 
     </header>
     <hr>
