@@ -32,7 +32,7 @@ export class ClientComponent implements OnInit {
   private getClientById(id: number) {
     this._clientService.getAll().subscribe(clients => {
       this.client = clients
-        .filter(client => { return client.Id === id })[0]
+        .filter(client => { return client.Id === id })[0];
     });
   }
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ConsultantService } from 'src/services/consultant/consultant.service';
-import { Consultant } from '../classes/consultant.class';
+import { Consultant } from '../../classes/consultant.class';
 
 @Component({
   selector: 'app-consultant',

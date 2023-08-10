@@ -8,8 +8,8 @@ import { FormsModule } from '@angular/forms';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ConsultantComponent } from './consultant/consultant.component';
-import { ClientComponent } from './client/client.component';
+import { ConsultantComponent } from './components/consultant/consultant.component';
+import { ClientComponent } from './components/client/client.component';
 // import appRoutes from './routerConfig_old';
 
 
