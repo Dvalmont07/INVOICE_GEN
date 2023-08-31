@@ -1,4 +1,4 @@
-<main class="p-5">
+<main class="p-5" >
   <header>
     <h1>{{consultant.CompanyName}}</h1>
     <div>{{consultant.FullName}}</div>
@@ -7,6 +7,10 @@
   <hr>
   <h2>Clients</h2>
   <section *ngFor="let client of consultant.Clients">
-    <a href="/client?id={{client.Id}}">{{client.Name}}</a>
+    <span class="cursor-pointer" (click)="openClient(client.Id)">{{client.Name}}</span>    
+  </section>
+
+  <section id="client-section" *ngIf="clientId > 0">
+    <app-client [clientId]="clientId"></app-client>
   </section>
 </main>

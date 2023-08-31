@@ -8,8 +8,9 @@ import { Client } from 'src/app/classes/client.class';
 })
 export class ClientService {
 
-  constructor(private _http: HttpClient) { }
   private _dataUrl = '/assets/data/public/client.data.json';
+  
+  constructor(private _http: HttpClient) { }
 
   public getAll(): Observable<Client[]> {
     return this._http.get<Client[]>(this._dataUrl);
