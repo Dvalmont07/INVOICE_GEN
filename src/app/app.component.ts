@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Invoice } from './classes/invoice.class';
 // import { INVOICE } from './data/public/p-invoice.data';
-import { INVOICE } from './data/private/invoice.data';
+import { INVOICE } from './data/private-jflimpeza/invoice.data';
 
 @Component({
   selector: 'app-root',

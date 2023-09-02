@@ -1,7 +1,8 @@
 import { Invoice } from "src/app/classes/invoice.class";
-import { SERVICES } from "../private/invoice-items.data";
-import { CLIENT } from "../private/client.data";
-import { CONSULTANT } from "../private/consultant.data";
+
+import { SERVICES } from "../private-artbrilho/invoice-items.data";
+import { CLIENT } from "../private-artbrilho/client.data";
+import { CONSULTANT } from "../private-artbrilho/consultant.data";
 
 // import { Invoice } from "src/app/classes/invoice.class";
 // import { SERVICES } from "./p-services.data";

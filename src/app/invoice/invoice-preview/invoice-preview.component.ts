@@ -2,9 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { Invoice } from 'src/app/classes/invoice.class';
-// import * as _ from 'lodash';
-
-
 
 @Component({
   selector: 'app-invoice-preview',
