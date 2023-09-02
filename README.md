@@ -7,7 +7,7 @@ This project aims to offer an easy-to-use system to generate invoices into a PDF
 ### Version 1.0.0 - Ok
 
 1. Publish the MVP
-   - with mock up data
+   - with mock-up data
 
 ### Version 1.1.0
 1. Create Services
@@ -18,10 +18,10 @@ This project aims to offer an easy-to-use system to generate invoices into a PDF
    - Data validation
 
 ### Version 1.1.0
-1. Create log system
+1. Create a log system
 
 ### Version 1.2.0
-1. Apply security best pratices
+1. Apply security best practices
    1. [check] (https://angular.io/guide/security)
 
 ### Version 2.0.0

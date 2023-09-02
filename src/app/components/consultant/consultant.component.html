@@ -11,6 +11,6 @@
   </section>
 
   <section id="client-section" *ngIf="clientId > 0">
-    <app-client [clientId]="clientId"></app-client>
+    <app-client [consultantCompanyName]="consultant.CompanyName" [clientId]="clientId"></app-client>
   </section>
 </main>

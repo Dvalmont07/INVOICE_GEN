@@ -15,6 +15,7 @@ export class ClientComponent implements OnInit {
   public invoiceId: number = 0;
 
   @Input() clientId: number = 0;
+  @Input() consultantCompanyName: string = "";
 
   @ViewChild(InvoiceComponent) invoiceComponent!: InvoiceComponent;
 
@@ -42,7 +43,7 @@ export class ClientComponent implements OnInit {
   public openInvoice(id: number) {
     if (id > 0) {
       this.invoiceId = id;
-      
+
       setTimeout(() => {
         let aaa = document.querySelector("#invoice-section") as HTMLElement;
 

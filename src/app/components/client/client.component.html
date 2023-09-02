@@ -1,4 +1,4 @@
-<main >
+<main>
   <ng-container *ngIf="client; else listaVazia">
     <header>
       <h2>{{client.Name}}</h2>
@@ -10,12 +10,13 @@
     <h2>Invoices</h2>
     <section *ngFor="let invoice of client.Invoices">
       <span (click)="openInvoice(invoice.Id)" class="cursor-pointer">{{invoice.Id}}</span>
-          </section>
+    </section>
   </ng-container>
 
-  <section *ngIf="invoiceId > 0"  id="invoice-section" class="mt-5">
+  <section *ngIf="invoiceId > 0" id="invoice-section" class="mt-5">
     <span class="cursor-pointer" (click)="backToTheTop()">Voltar ao topo</span>
-    <section ><app-invoice [invoiceId]="invoiceId"></app-invoice></section>
+    <section><app-invoice [consultantCompanyName]="consultantCompanyName" [client]="client"
+        [invoiceId]="invoiceId"></app-invoice></section>
   </section>
 </main>
 

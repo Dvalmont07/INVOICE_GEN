@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Client } from 'src/app/classes/client.class';
 import { Invoice } from 'src/app/classes/invoice.class';
 import { InvoiceService } from 'src/services/invoice/invoice.service';
 
@@ -14,6 +15,8 @@ export class InvoiceComponent implements OnInit {
   private _formatedDate = Intl.DateTimeFormat("pt-BR");
 
   @Input() invoiceId: number = 0;
+  @Input() consultantCompanyName: string = "";
+  @Input() client: Client = new Client();
 
   constructor(
     private _invoiceService: InvoiceService,
