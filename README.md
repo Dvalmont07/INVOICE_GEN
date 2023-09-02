@@ -22,7 +22,7 @@ This project aims to offer an easy-to-use system to generate invoices into a PDF
 
 ### Version 1.2.0
 1. Apply security best pratices
-   1. [Check] (https://angular.io/guide/security)
+   1. [check] (https://angular.io/guide/security)
 
 ### Version 2.0.0
 1. Create views with forms to Invoice, Consultant...
