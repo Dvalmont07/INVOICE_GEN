@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConsultantService } from 'src/services/consultant/consultant.service';
 import { Consultant } from '../../classes/consultant.class';
 import { ClientComponent } from '../client/client.component';
+import { InvoiceComponent } from '../invoice/invoice.component';
 
 @Component({
   selector: 'app-consultant',
@@ -13,14 +13,14 @@ export class ConsultantComponent implements OnInit {
 
   public consultant: Consultant = new Consultant();
   public clientId: number = 0;
-  constructor(private _consultantService: ConsultantService) { }
+  constructor(
+    private _consultantService: ConsultantService,
+  ) { }
 
   @ViewChild(ClientComponent) clientComponent!: ClientComponent;
 
-
   ngOnInit() {
     this.getData();
-
   }
 
   private getData() {
@@ -32,14 +32,14 @@ export class ConsultantComponent implements OnInit {
 
     this._consultantService.update(this.consultant)
   }
-
+  private currentClientId = 0;
   public openClient(id: number) {
     if (id > 0) {
-      this.clientId = id;    
+      this.clientId = id;
 
       setTimeout(() => {
-        let aaa = document.querySelector("#client-section") as HTMLElement;
-        aaa.scrollIntoView({
+        let clientSection = document.querySelector("#client-section") as HTMLElement;
+        clientSection.scrollIntoView({
           behavior: "smooth",
           block: "start",
           inline: "nearest"
@@ -47,11 +47,13 @@ export class ConsultantComponent implements OnInit {
 
         if (this.clientComponent) {
           this.clientComponent.refresBlock();
-        }
 
+          if (this.clientComponent.invoiceComponent && this.currentClientId != id) {
+            this.currentClientId = id;
+            this.clientComponent.invoiceComponent.clearBlock();
+          }
+        }
       }, 30);
     }
   }
-
-
 }

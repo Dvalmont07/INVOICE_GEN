@@ -18,7 +18,6 @@ export class ClientComponent implements OnInit {
   @Input() consultantCompanyName: string = "";
 
   @ViewChild(InvoiceComponent) invoiceComponent!: InvoiceComponent;
-
   public constructor(
     private _clientService: ClientService,
   ) {
@@ -45,9 +44,9 @@ export class ClientComponent implements OnInit {
       this.invoiceId = id;
 
       setTimeout(() => {
-        let aaa = document.querySelector("#invoice-section") as HTMLElement;
+        let invoiceSection = document.querySelector("#invoice-section") as HTMLElement;
 
-        aaa.scrollIntoView({
+        invoiceSection.scrollIntoView({
           behavior: "smooth",
           block: "start",
           inline: "nearest"
@@ -62,15 +61,13 @@ export class ClientComponent implements OnInit {
   }
 
   public backToTheTop() {
-    this.invoiceId = 0;
     setTimeout(() => {
-      let aaa = document.querySelector("#top-page") as HTMLElement;
-      aaa.scrollIntoView({
+      let topPage = document.querySelector("#top-page") as HTMLElement;
+      topPage.scrollIntoView({
         behavior: "smooth",
         block: "start",
         inline: "nearest"
       });
-      this.refresBlock();
     }, 30);
   }
 

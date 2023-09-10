@@ -1,8 +1,8 @@
-import { Invoice } from "src/app/classes/invoice.class";
-import { SERVICES } from "../private/invoice-items.data";
+//import { Invoice } from "src/app/classes/invoice.class";
+//import { SERVICES } from "../private/invoice-items.data";
 
-// import { Invoice } from "src/app/classes/invoice.class";
-// import { SERVICES } from "./p-services.data";
+ import { Invoice } from "src/app/classes/invoice.class";
+ import { SERVICES } from "./p-invoice-items.data";
 
 export const INVOICE: Invoice = new Invoice();
 

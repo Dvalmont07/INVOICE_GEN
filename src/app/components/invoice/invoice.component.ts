@@ -47,4 +47,8 @@ export class InvoiceComponent implements OnInit {
   public refreshBlock() {
     this.getInvoiceById(this.invoiceId);
   }
+
+  public clearBlock() {
+    this.invoice = new Invoice();
+  }
 }

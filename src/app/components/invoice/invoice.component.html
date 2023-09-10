@@ -1,4 +1,4 @@
-<main>
+<main id="invoice_preview" *ngIf="invoice.Id > 0">
   <article id="preview">
     <header>
       <h1>Prestação de Serviços</h1>
@@ -8,7 +8,7 @@
       <div><strong>Número: #</strong>{{invoice.Id}}</div>
       <div>
         <strong>Vencimento:</strong>
-        {{dateTransform(invoice.DueDate)}}
+        {{(invoice.DueDate)}}
       </div>
     </section>
     <hr class="divisor mt-5">
