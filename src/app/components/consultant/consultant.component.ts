@@ -39,6 +39,9 @@ export class ConsultantComponent implements OnInit {
 
       setTimeout(() => {
         let clientSection = document.querySelector("#client-section") as HTMLElement;
+
+        applyMyBlurBehavior();
+        
         clientSection.scrollIntoView({
           behavior: "smooth",
           block: "start",
@@ -53,7 +56,14 @@ export class ConsultantComponent implements OnInit {
             this.clientComponent.invoiceComponent.clearBlock();
           }
         }
-      }, 30);
+
+        function applyMyBlurBehavior() {
+          clientSection.classList.add('my-blur');
+          setTimeout(() => {
+            clientSection.classList.remove('my-blur');
+          }, 1000);
+        }
+      }, 1000);
     }
   }
 }

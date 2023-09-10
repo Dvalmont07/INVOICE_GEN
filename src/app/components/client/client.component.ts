@@ -40,22 +40,23 @@ export class ClientComponent implements OnInit {
     }
   }
   public openInvoice(id: number) {
+
     if (id > 0) {
       this.invoiceId = id;
 
       setTimeout(() => {
         let invoiceSection = document.querySelector("#invoice-section") as HTMLElement;
+        if (invoiceSection) {
+          invoiceSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest"
+          });
 
-        invoiceSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "nearest"
-        });
-
-        if (this.invoiceComponent) {
-          this.invoiceComponent.refreshBlock();
+          if (this.invoiceComponent) {
+            this.invoiceComponent.refreshBlock();
+          }
         }
-
       }, 30);
     }
   }
