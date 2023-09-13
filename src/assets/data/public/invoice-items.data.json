@@ -1,16 +1,23 @@
 [
     {
         "Id": 1,
-        "InvoiceId": 0,
+        "InvoiceId": 50001,
         "Description": "Percentual referente aos 20% sobre os RS 1.000,00 creditados em junho de 2003",
         "Quantity": 2,
-        "price":200
+        "Price":200        
     },
     {
-        "Id": 1,
-        "InvoiceId": 0,
-        "Description": "Percentual referente aos 20% sobre os RS 1.000,00 creditados em junho de 2003",
+        "Id": 2,
+        "InvoiceId": 50001,
+        "Description": "Mensalidade Referente ao mês de junho de 2023",
         "Quantity": 2,
-        "price":200
+        "Price":500
+    },
+    {
+        "Id": 2,
+        "InvoiceId": 50002,
+        "Description": "Percentual referente aos 20% sobre os RS 3.000,00 creditados em junho de 2003",
+        "Quantity": 1,
+        "Price":3000
     }
 ]

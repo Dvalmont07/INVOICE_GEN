@@ -29,7 +29,7 @@
 
         <hr class="mt-5">
 
-        <!-- <table class="table mt-5" *ngIf="invoice.Services.length > 0">
+        <table class="table mt-5" *ngIf="invoice.InvoiceItems.length > 0">
           <thead class="">
             <th>#</th>
             <th>Descrição</th>
@@ -38,19 +38,19 @@
             <th>Total</th>
           </thead>
           <tbody>
-            <tr *ngFor="let service of invoice.Services; let ind = index">
+            <tr *ngFor="let invoiceItem of invoice.InvoiceItems; let ind = index">
               <td>{{ind + 1}}.</td>
-              <td>{{service.Description}}</td>
-              <td>{{service.Quantity}}</td>
-              <td>{{service.Price | currency}}</td>
-              <td>{{service.Total | currency}}</td>
+              <td>{{invoiceItem.Description}}</td>
+              <td>{{invoiceItem.Quantity}}</td>
+              <td>{{invoiceItem.Price | currency}}</td>
+              <td>{{invoiceItem.Total | currency}}</td>
             </tr>
           </tbody>
-        </table> -->
+        </table>
 
-        <!-- <div class="total-value mt-5">
+        <div class="total-value mt-5">
           <span><strong>Total:</strong> {{invoice.Total | currency}}</span>
-        </div> -->
+        </div>
       </div>
       <hr class="mt-5">
     </div>
