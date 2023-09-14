@@ -36,33 +36,38 @@ export class InvoiceComponent implements OnInit {
   public getInvoiceById(id: number) {
 
     this._invoiceService.getAll()
-      .subscribe(invoices => {
-        Object.assign(
-          this.invoice,
-          invoices
-            .filter(invoice => {
-              return invoice.Id === id;
-            })[0]
-        );
-
-        this._invoiceItemsService.getAll().subscribe(invoiceItems => {
+      .subscribe(
+        invoices => {
           Object.assign(
-            this.invoice.InvoiceItems,
-            invoiceItems
+            this.invoice,
+            invoices
               .filter(
-                item => {
-                  return item.InvoiceId === id;
-                })
-              .map(
-                invoiceIntemToMap => invoiceIntemToMap = new InvoiceItems(
-                  invoiceIntemToMap.Description,
-                  invoiceIntemToMap.Quantity,
-                  invoiceIntemToMap.Price
-                )
-              )
-          )
+                invoice => {
+                  return invoice.Id === id;
+                })[0]
+          );
+          this.fillInvoiceWithItems(id);
         });
-      });
+  }
+
+  private fillInvoiceWithItems(id: number) {
+    this._invoiceItemsService.getAll().subscribe(invoiceItems => {
+      Object.assign(
+        this.invoice.InvoiceItems,
+        invoiceItems
+          .filter(
+            item => {
+              return item.InvoiceId === id;
+            })
+          .map(
+            invoiceIntemToMap => invoiceIntemToMap = new InvoiceItems(
+              invoiceIntemToMap.Description,
+              invoiceIntemToMap.Quantity,
+              invoiceIntemToMap.Price
+            )
+          )
+      )
+    });
   }
 
   public dateTransform(date: Date) {
