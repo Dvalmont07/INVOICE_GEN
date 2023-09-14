@@ -46,26 +46,22 @@ export class InvoiceComponent implements OnInit {
         );
 
         this._invoiceItemsService.getAll().subscribe(invoiceItems => {
-          let iv : InvoiceItems[] = [];
-          
-          iv.push(
-            new InvoiceItems("Percentual referente aos 20% sobre os RS 1.000,00 creditados em junho de 2003",1,10),
-            new InvoiceItems("NAda 2",1,10),
-            new InvoiceItems("NAda 3",3,10)
-            );
-            iv[0].Id = 1;
-            iv[0].InvoiceId = 50001;
-            iv[0].Price = 200;
-            iv[0].Quantity = 2;
-          this.invoice.InvoiceItems =[...iv];
           Object.assign(
             this.invoice.InvoiceItems,
-            invoiceItems.filter(item => {
-              return item.InvoiceId === id;
-            })
+            invoiceItems
+              .filter(
+                item => {
+                  return item.InvoiceId === id;
+                })
+              .map(
+                invoiceIntemToMap => invoiceIntemToMap = new InvoiceItems(
+                  invoiceIntemToMap.Description,
+                  invoiceIntemToMap.Quantity,
+                  invoiceIntemToMap.Price
+                )
+              )
           )
         });
-
       });
   }
 
