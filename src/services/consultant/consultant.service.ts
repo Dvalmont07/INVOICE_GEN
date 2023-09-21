@@ -13,6 +13,7 @@ export class ConsultantService {
   private _dataUrl = '/assets/data/public/consultant.data.json';
 
   public getData() {
+    //TODO get clients from a proper query
     return this._http.get<Consultant>(this._dataUrl);
   }
   public update(consultant: Consultant) {

@@ -3,6 +3,7 @@ import { ConsultantService } from 'src/services/consultant/consultant.service';
 import { Consultant } from '../../classes/consultant.class';
 import { ClientComponent } from '../client/client.component';
 import { InvoiceComponent } from '../invoice/invoice.component';
+import { Client } from 'src/app/classes/client.class';
 
 @Component({
   selector: 'app-consultant',
@@ -13,6 +14,8 @@ export class ConsultantComponent implements OnInit {
 
   public consultant: Consultant = new Consultant();
   public clientId: number = 0;
+
+  private currentClientId = 0;
   constructor(
     private _consultantService: ConsultantService,
   ) { }
@@ -25,14 +28,21 @@ export class ConsultantComponent implements OnInit {
 
   private getData() {
     this._consultantService.getData()
-      .subscribe(data => this.consultant = data);
+      .subscribe(
+        data => {
+          this.consultant = data;
+          const client = new Client();
+          client.Id = 0;
+          client.Name = "Selecione";
+          this.consultant.Clients.unshift(client);
+        });
   }
 
   private updateData() {
 
     this._consultantService.update(this.consultant)
   }
-  private currentClientId = 0;
+
   public openClient(id: number) {
     if (id > 0) {
       this.clientId = id;
@@ -40,8 +50,8 @@ export class ConsultantComponent implements OnInit {
       setTimeout(() => {
         let clientSection = document.querySelector("#client-section") as HTMLElement;
 
-        applyMyBlurBehavior();
-        
+        //applyMyBlurBehavior();
+
         clientSection.scrollIntoView({
           behavior: "smooth",
           block: "start",
@@ -64,6 +74,8 @@ export class ConsultantComponent implements OnInit {
           }, 1000);
         }
       }, 1000);
+    } else {
+      // this.clientComponent.invoiceComponent.clearBlock();
     }
   }
 }
