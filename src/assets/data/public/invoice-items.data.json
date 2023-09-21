@@ -4,28 +4,56 @@
         "InvoiceId": 50001,
         "Description": "Percentual referente aos 20% sobre os RS 1.000,00 creditados em junho de 2003",
         "Quantity": 3,
-        "Price":207       
+        "Price": 207
     },
     {
         "Id": 2,
         "InvoiceId": 50001,
         "Description": "Mensalidade Referente ao mês de junho de 2023",
         "Quantity": 4,
-        "Price":507
+        "Price": 507
     },
     {
         "Id": 2,
         "InvoiceId": 50002,
         "Description": "Percentual referente aos 20% sobre os RS 3.000,00 creditados em junho de 2003",
         "Quantity": 1,
-        "Price":3007
-    }
-    ,
+        "Price": 3007
+    },
     {
         "Id": 3,
         "InvoiceId": 50002,
         "Description": "Percentual referente aos 17% sobre os RS 7.000,00 creditados em junho de 2004",
         "Quantity": 2,
-        "Price":3007
+        "Price": 3007
+    },
+    {
+        "Id": 4,
+        "InvoiceId": 50003,
+        "Description": "Percentual referente aos 18% sobre os RS 5.000,00 creditados em junho de 2004",
+        "Quantity": 1,
+        "Price": 900
+    },
+    {
+        "Id": 5,
+        "InvoiceId": 50003,
+        "Description": "Percentual referente aos 10% sobre os RS 5.000,00 creditados em junho de 2004",
+        "Quantity": 1,
+        "Price": 500
+    },
+    {
+        "Id": 6,
+        "InvoiceId": 50004,
+        "Description": "Percentual referente aos 20% sobre os RS 5.000,00 creditados em junho de 2004",
+        "Quantity": 1,
+        "Price": 1000
+    }
+    ,
+    {
+        "Id": 7,
+        "InvoiceId": 50004,
+        "Description": "Percentual referente aos 1% sobre os RS 5.000,00 creditados em junho de 2004",
+        "Quantity": 1,
+        "Price": 50
     }
 ]
