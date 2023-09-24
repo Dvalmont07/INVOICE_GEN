@@ -44,9 +44,8 @@ export class ConsultantComponent implements OnInit {
   }
 
   public openClient(id: number) {
-    if (id > 0) {
-      this.clientId = id;
-
+    this.clientId = id;
+    if (id > 0) {  
       setTimeout(() => {
         let clientSection = document.querySelector("#client-section") as HTMLElement;
 
@@ -73,7 +72,7 @@ export class ConsultantComponent implements OnInit {
             clientSection.classList.remove('my-blur');
           }, 1000);
         }
-      }, 1000);
+      }, 100);
     } else {
       // this.clientComponent.invoiceComponent.clearBlock();
     }
