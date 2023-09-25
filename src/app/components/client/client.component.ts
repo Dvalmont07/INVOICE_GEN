@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Client } from 'src/app/classes/client.class';
 import { ClientService } from 'src/services/client/client.service';
 import { InvoiceComponent } from '../invoice/invoice.component';
+import { Consultant } from 'src/app/classes/consultant.class';
 
 @Component({
   selector: 'app-client',
@@ -15,7 +16,7 @@ export class ClientComponent implements OnInit {
   public invoiceId: number = 0;
 
   @Input() clientId: number = 0;
-  @Input() consultantCompanyName: string = "";
+  @Input() consultant: Consultant = new Consultant();
 
   @ViewChild(InvoiceComponent) invoiceComponent!: InvoiceComponent;
   public constructor(

@@ -1,8 +1,8 @@
-<main id="invoice_preview" *ngIf="invoice.Id > 0">
-  <article id="preview">
+<main id="invoice_preview" *ngIf="invoice.Id > 0" style="margin-top: 20px; padding-top: 60px;background-color: aliceblue;">
+  <article id="preview" style=" background-color: white;">
     <header>
-      <h1>Prestação de Serviços</h1>
-      <div class="d-flex align-items-center">{{consultantCompanyName}}</div>
+      <h1 style="text-align: start;">Prestação de Serviços</h1>
+      <div class="d-flex align-items-center">{{consultant.CompanyName}}</div>
     </header>
     <section id="preview-invoice-data" class="mt-5">
       <div><strong>Número: #</strong>{{invoice.Id}}</div>
@@ -57,26 +57,26 @@
 
     <footer>
 
-      <!-- <section class="mt-5">
+      <section class="mt-5">
         <h3>Conta</h3>
-        <strong>{{invoice.Consultant.FullName}}</strong>
-        <div><strong>Banco:</strong> {{invoice.Consultant.BankName}}</div>
-        <div><strong>Pix:</strong> {{invoice.Consultant.PixKey}}</div>
-      </section> -->
-      <!-- <section id="signature-sec" class="mt-5 ">
+        <strong>{{consultant.CompanyName}}</strong>
+        <div><strong>Banco:</strong> {{consultant.BankName}}</div>
+        <div><strong>Pix:</strong> {{consultant.PixKey}}</div>
+      </section>
+      <section id="signature-sec" class="mt-5 ">
 
         <div class="d-flex align-items-end">
           <div class="flex-grow-1">
             <h4>Obrigado</h4>
           </div>
           <div class="d-flex flex-column  ">
-            <img style="width: 24.5rem" src="{{invoice.Consultant.Signature ?
-              invoice.Consultant.Signature:'/assets/image/default-signature.png'}}" />
+            <img style="width: 24.5rem" src="{{consultant.Signature ?
+              consultant.Signature:'/assets/image/default-signature.png'}}" />
             <hr style="margin-top: -6rem;" />
             <div style="margin-top: -1rem; font-size: 1rem;" class="text-center">Consultor</div>
           </div>
         </div>
-      </section> -->
+      </section>
     </footer>
   </article>
   <section>

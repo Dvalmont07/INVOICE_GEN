@@ -10,6 +10,6 @@
     <option *ngFor="let client of consultant.Clients" (click)="openClient(client.Id)">{{client.Name}}</option>
   </select>
   <section id="client-section" *ngIf="clientId > 0">
-    <app-client [consultantCompanyName]="consultant.CompanyName" [clientId]="clientId"></app-client>
+    <app-client [consultant]="consultant" [clientId]="clientId"></app-client>
   </section>
 </main>

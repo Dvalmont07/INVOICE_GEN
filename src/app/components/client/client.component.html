@@ -17,9 +17,9 @@
     </select>
   </ng-container>
 
-  <section *ngIf="invoiceId > 0" id="invoice-section" class="mt-5">
+  <section *ngIf="invoiceId > 0" id="invoice-section" class="mt-5 mb-5">
     <span class="cursor-pointer" (click)="backToTheTop()">Voltar ao topo</span>
-    <section><app-invoice [consultantCompanyName]="consultantCompanyName" [client]="client"
+    <section><app-invoice [consultant]="consultant" [client]="client"
         [invoiceId]="invoiceId"></app-invoice></section>
   </section>
 </main>
