@@ -73,6 +73,17 @@ export class ClientComponent implements OnInit {
     }, 30);
   }
 
+  public backToInvoicesMenu() {
+    setTimeout(() => {
+      let topPage = document.querySelector("#invoices-menu") as HTMLElement;
+      topPage.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest"
+      });
+    }, 30);
+  }
+
   public refresBlock() {
     this.getClientById();
   }

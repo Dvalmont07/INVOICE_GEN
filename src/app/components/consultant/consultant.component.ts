@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConsultantService } from 'src/services/consultant/consultant.service';
 import { Consultant } from '../../classes/consultant.class';
 import { ClientComponent } from '../client/client.component';
-import { InvoiceComponent } from '../invoice/invoice.component';
-import { Client } from 'src/app/classes/client.class';
 
 @Component({
   selector: 'app-consultant',
@@ -31,10 +29,10 @@ export class ConsultantComponent implements OnInit {
       .subscribe(
         data => {
           this.consultant = data;
-          const client = new Client();
-          client.Id = 0;
-          client.Name = "Selecione";
-          this.consultant.Clients.unshift(client);
+          // const client = new Client();
+          // client.Id = 0;
+          // client.Name = "Selecione";
+          // this.consultant.Clients.unshift(client);
         });
   }
 

@@ -15,8 +15,8 @@ This project aims to offer an easy-to-use system to generate invoices into a PDF
    - ~~Change mock data into JSON~~
    - ~~Create service files to Invoice, Consultant...~~
    - Create 'CRUD'
-   - Use a browser database
-      - Create a node.js API
+      - Use a browser database (localforage or similar)
+   - Create a node.js API
    - Data validation
 
 ### Version 1.2.0

@@ -5,11 +5,16 @@
     <div>{{consultant.Email}}</div>
   </header>
   <hr>
-  <h2>Clients</h2>
-  <select>
+  <article  style="height: 100vh;border: 1px solid #ccc;">
+    <h2>Clients</h2>
+    <section *ngFor="let client of consultant.Clients">
+      <span class="cursor-pointer" (click)="openClient(client.Id)">{{client.Name}}</span>
+    </section>
+    <!-- <select>
     <option *ngFor="let client of consultant.Clients" (click)="openClient(client.Id)">{{client.Name}}</option>
-  </select>
-  <section id="client-section" *ngIf="clientId > 0">
+  </select> -->
+  </article>
+  <section id="client-section" *ngIf="clientId > 0"  style="height: 100vh;border: 1px solid red;">
     <app-client [consultant]="consultant" [clientId]="clientId"></app-client>
   </section>
 </main>
