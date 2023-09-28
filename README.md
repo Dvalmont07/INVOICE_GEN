@@ -4,10 +4,10 @@ This project aims to offer an easy-to-use system to generate invoices into a PDF
 
 ## Objectives
 
-### Version 1.0.0 - Ok
+### Version 1.0.0
 
 1. Publish the MVP
-   - with mock-up data
+   - ~~with mock-up data~~
 
 ### Version 1.1.0
 
@@ -16,6 +16,7 @@ This project aims to offer an easy-to-use system to generate invoices into a PDF
    - ~~Create service files to Invoice, Consultant...~~
    - Create 'CRUD'
       - Use a browser database (localforage or similar)
+   - Integrate with Swagger (OpenAPI)
    - Create a node.js API
    - Data validation
 
