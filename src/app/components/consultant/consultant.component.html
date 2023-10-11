@@ -5,7 +5,7 @@
     <div>{{consultant.Email}}</div>
   </header>
   <hr>
-  <article  style="height: 100vh;border: 1px solid #ccc;">
+  <article #listClients style="height: 100vh;border: 1px solid #ccc;">
     <h2>Clients</h2>
     <section *ngFor="let client of consultant.Clients">
       <span class="cursor-pointer" (click)="openClient(client.Id)">{{client.Name}}</span>

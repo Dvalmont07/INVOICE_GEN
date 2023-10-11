@@ -3,6 +3,7 @@ import { ConsultantService } from 'src/services/consultant/consultant.service';
 import { Consultant } from '../../classes/consultant.class';
 import { ClientComponent } from '../client/client.component';
 
+
 @Component({
   selector: 'app-consultant',
   templateUrl: './consultant.component.html',
@@ -17,6 +18,7 @@ export class ConsultantComponent implements OnInit {
   constructor(
     private _consultantService: ConsultantService,
   ) { }
+  
 
   @ViewChild(ClientComponent) clientComponent!: ClientComponent;
 
