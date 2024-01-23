@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConsultantService } from 'src/services/consultant/consultant.service';
 import { Consultant } from '../../classes/consultant.class';
 import { ClientComponent } from '../client/client.component';
+import { Client } from 'src/app/classes/client.class';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class ConsultantComponent implements OnInit {
   constructor(
     private _consultantService: ConsultantService,
   ) { }
-  
+
+
 
   @ViewChild(ClientComponent) clientComponent!: ClientComponent;
 
@@ -31,10 +33,10 @@ export class ConsultantComponent implements OnInit {
       .subscribe(
         data => {
           this.consultant = data;
-          // const client = new Client();
-          // client.Id = 0;
-          // client.Name = "Selecione";
-          // this.consultant.Clients.unshift(client);
+          const client = new Client();
+          client.Id = 0;
+          client.Name = "Selecione";
+          this.consultant.Clients.unshift(client);
         });
   }
 
@@ -43,9 +45,9 @@ export class ConsultantComponent implements OnInit {
     this._consultantService.update(this.consultant)
   }
 
-  public openClient(id: number) {
-    this.clientId = id;
-    if (id > 0) {  
+  public openClient() {
+    this.clientId = Number(this.clientId);
+    if (this.clientId > 0) {
       setTimeout(() => {
         let clientSection = document.querySelector("#client-section") as HTMLElement;
 
@@ -60,8 +62,8 @@ export class ConsultantComponent implements OnInit {
         if (this.clientComponent) {
           this.clientComponent.refresBlock();
 
-          if (this.clientComponent.invoiceComponent && this.currentClientId != id) {
-            this.currentClientId = id;
+          if (this.clientComponent.invoiceComponent && this.currentClientId != this.clientId) {
+            this.currentClientId = this.clientId;
             this.clientComponent.invoiceComponent.clearBlock();
           }
         }

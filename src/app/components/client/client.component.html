@@ -13,9 +13,6 @@
         <span (click)="openInvoice(invoice.Id)" class="cursor-pointer">{{invoice.Id}}</span>
       </div>
     </section>
-    <!-- <select>
-      <option *ngFor="let invoice of client.Invoices" (onChange)="openInvoice(invoice.Id)">{{invoice.Id}}</option>
-    </select> -->
   </ng-container>
 
   <section *ngIf="invoiceId > 0" id="invoice-section" class="mt-5 mb-5" style="height: 100vh;border: 1px solid #ccc;">
