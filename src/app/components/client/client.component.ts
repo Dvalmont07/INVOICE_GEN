@@ -40,11 +40,9 @@ export class ClientComponent implements OnInit {
       });
     }
   }
-  public openInvoice(id: number) {
-
-    if (id > 0) {
-      this.invoiceId = id;
-
+  public openInvoice() {
+    this.invoiceId = Number(this.invoiceId);
+    if (this.invoiceId > 0) {
       setTimeout(() => {
         let invoiceSection = document.querySelector("#invoice-section") as HTMLElement;
         if (invoiceSection) {

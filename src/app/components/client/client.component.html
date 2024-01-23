@@ -9,13 +9,13 @@
     <hr>
     <section id="invoices-menu">
       <h2>Invoices</h2>
-      <div *ngFor="let invoice of client.Invoices">
-        <span (click)="openInvoice(invoice.Id)" class="cursor-pointer">{{invoice.Id}}</span>
-      </div>
+      <select [(ngModel)]="invoiceId" (change)="openInvoice()">
+        <option *ngFor="let invoice of client.Invoices" [selected]="invoiceId" [value]="invoice.Id" >{{invoice.Id}}</option>
+      </select>
     </section>
   </ng-container>
 
-  <section *ngIf="invoiceId > 0" id="invoice-section" class="mt-5 mb-5" style="height: 100vh;border: 1px solid #ccc;">
+  <section id="invoice-section" class="mt-5 mb-5" style="height: 100vh;border: 1px solid #ccc;">
     <span class="cursor-pointer" (click)="backToTheTop()">Voltar ao topo</span>
     <span class="mr-1 ml-5">|</span>
     <span class="cursor-pointer" (click)="backToInvoicesMenu()">Voltar ao Menu de Invoices</span>
