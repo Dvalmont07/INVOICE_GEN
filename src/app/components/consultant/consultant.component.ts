@@ -33,11 +33,15 @@ export class ConsultantComponent implements OnInit {
       .subscribe(
         data => {
           this.consultant = data;
-          const client = new Client();
-          client.Id = 0;
-          client.Name = "Selecione";
-          this.consultant.Clients.unshift(client);
+          this.getDefaultData();
         });
+  }
+
+  private getDefaultData() {
+    const client = new Client();
+    client.Id = 0;
+    client.Name = "Selecione";
+    this.consultant.Clients.unshift(client);
   }
 
   private updateData() {
