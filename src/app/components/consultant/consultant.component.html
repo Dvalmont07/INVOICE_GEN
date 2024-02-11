@@ -1,0 +1,17 @@
+<main class="p-5">
+  <header>
+    <h1>{{consultant.CompanyName}}</h1>
+    <div>{{consultant.FullName}}</div>
+    <div>{{consultant.Email}}</div>
+  </header>
+  <hr>
+  <article #listClients style="height: 100vh;border: 1px solid #ccc;">
+    <h2>Clientes</h2>
+        <select [(ngModel)]="clientId" (change)="openClient()">
+      <option *ngFor="let client of consultant.Clients" [value]="client.Id">{{client.Name}}</option>
+    </select>
+  </article>
+  <section id="client-section" *ngIf="clientId > 0" style="height: 100vh;border: 1px solid red;">
+    <app-client [consultant]="consultant" [clientId]="clientId" ></app-client>
+  </section>
+</main>
