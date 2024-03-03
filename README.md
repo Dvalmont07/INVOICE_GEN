@@ -1,11 +1,39 @@
-# INVOICEGEN
+# Project Name
 
-This project aims to give a easy to use system to generate invoice into a PDF document
+INVOICEGEN
+
+---
+
+## Description
+
+- This project aims to give a easy to use system to generate invoice into a PDF document
+
+## Table of Contents
+
+- [Project Name](#project-name)
+
+## Status
+
+- Developing
 
 ## Objectives
-1. ~~Publish the MVP (with mock up data)~~ 
-1. Refactore code
-1. Introduce Services
-    - Change mock data into JSON
-1. Improve PDF generation
 
+[x] Publish the MVP (with mock up data)
+[ ] Refactore code
+[ ] Introduce Services
+    - Change mock data into JSON
+[ ] Improve PDF generation
+
+## Features
+
+[x] Generate Invoice
+
+## Build Project
+
+## Run Tests
+
+## Rpprs codes
+
+## Technologies
+
+- Javascript
