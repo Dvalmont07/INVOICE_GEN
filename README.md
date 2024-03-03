@@ -11,9 +11,15 @@ INVOICEGEN
 ## Table of Contents
 
 - [Project Name](#project-name)
+- [Description](#description)
+- [Table of Contents](#table-of-contents)
 - [Status](#status)
 - [Objectives](#objectives)
 - [Features](#features)
+- [Run Project](#run-project)
+- [Run Test](#run-tests)
+- [Erros codes](#erros-codes)
+- [Technologies](#technologies)
 
 ## Status
 
@@ -24,20 +30,22 @@ INVOICEGEN
 - [x] Publish the MVP (with mock up data)
 - [ ] Refactore code
 - [ ] Introduce Services
-  - Change mock data into JSON
+  - [ ] Change mock data into JSON
 - [ ] Improve PDF generation
 
 ## Features
 
-[x] Generate Invoice
+- [x] Generate Invoice
 
-## Build Project
+## Run Project
+
+- ng serve
 
 ## Run Tests
 
-## Erros codes
+- ng test
 
-## Erros codesx
+## Erros codes
 
 ## Technologies
 
