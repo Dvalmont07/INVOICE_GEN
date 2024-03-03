@@ -11,6 +11,9 @@ INVOICEGEN
 ## Table of Contents
 
 - [Project Name](#project-name)
+- [Status](#status)
+- [Objectives](#objectives)
+- [Features](#features)
 
 ## Status
 
@@ -18,11 +21,11 @@ INVOICEGEN
 
 ## Objectives
 
-[x] Publish the MVP (with mock up data)
-[ ] Refactore code
-[ ] Introduce Services
-    - Change mock data into JSON
-[ ] Improve PDF generation
+- [x] Publish the MVP (with mock up data)
+- [ ] Refactore code
+- [ ] Introduce Services
+  - Change mock data into JSON
+- [ ] Improve PDF generation
 
 ## Features
 
@@ -32,8 +35,12 @@ INVOICEGEN
 
 ## Run Tests
 
-## Rpprs codes
+## Erros codes
+
+## Erros codesx
 
 ## Technologies
 
 - Javascript
+- CSS
+- HTML
