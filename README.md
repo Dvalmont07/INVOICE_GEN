@@ -6,7 +6,7 @@ INVOICEGEN
 
 ## Description
 
-- This project aims to give a easy to use system to generate invoice into a PDF document
+- This project aims to give an easy-to-use system to generate invoices into a PDF document
 
 ## Table of Contents
 
@@ -27,8 +27,8 @@ INVOICEGEN
 
 ## Objectives
 
-- [x] Publish the MVP (with mock up data)
-- [ ] Refactore code
+- [x] Publish the MVP (with mock-up data)
+- [ ] Refactor code
 - [ ] Introduce Services
   - [ ] Change mock data into JSON
 - [ ] Improve PDF generation
@@ -45,10 +45,13 @@ INVOICEGEN
 
 - ng test
 
-## Erros codes
+## Error codes
+
+- 001
 
 ## Technologies
 
 - Javascript
+- TypeScript
 - CSS
 - HTML
