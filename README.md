@@ -18,7 +18,7 @@ INVOICEGEN
 - [Features](#features)
 - [Run Project](#run-project)
 - [Run Test](#run-tests)
-- [Erros codes](#erros-codes)
+- [Error codes](#error-codes)
 - [Technologies](#technologies)
 
 ## Status
