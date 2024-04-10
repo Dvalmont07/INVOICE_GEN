@@ -23,6 +23,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+              "allowedCommonJsDependencies": [
+              "lodash"
+            ],
             "outputPath": "dist/invoice-gen",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -75,10 +78,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "INVOICE_GEN:build:production"
+              "buildTarget": "INVOICE_GEN:build:production"
             },
             "development": {
-              "browserTarget": "INVOICE_GEN:build:development"
+              "buildTarget": "INVOICE_GEN:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +89,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "INVOICE_GEN:build"
+            "buildTarget": "INVOICE_GEN:build"
           }
         },
         "test": {
@@ -109,6 +112,6 @@
         }
       }
     }
-  },
-  "defaultProject": "INVOICE_GEN"
+  }
+  
 }
