@@ -1,0 +1,8 @@
+version: '2.27.0'
+
+services:
+  invoice-gen-img:
+    image: invoice-gen-img
+    build: .
+    ports:
+      - 8081:80

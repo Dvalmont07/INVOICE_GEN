@@ -23,9 +23,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-              "allowedCommonJsDependencies": [
+            "allowedCommonJsDependencies": [
               "lodash"
             ],
+            
             "outputPath": "dist/invoice-gen",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -39,7 +40,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "optimization": true
           },
           "configurations": {
             "production": {
@@ -76,12 +78,25 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "web-ui:build",
+            "proxyConfig": "./proxy.conf.js"
+          },
           "configurations": {
             "production": {
-              "buildTarget": "INVOICE_GEN:build:production"
+              "buildTarget": "INVOICE_GEN:build:production",
+              "headers": {
+                "dva-header-prod": "dva-content-prod",
+                "X-Powered-By": "delete"
+              }
             },
             "development": {
-              "buildTarget": "INVOICE_GEN:build:development"
+              "buildTarget": "INVOICE_GEN:build:development",
+              "proxyConfig": "./proxy.conf.js",
+              "headers": {
+                "dva-header-dev": "dva-content-dev",
+                "X-Powered-By": "delete"
+              }
             }
           },
           "defaultConfiguration": "development"
@@ -107,11 +122,12 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+             
+            ]
           }
         }
       }
     }
   }
-  
 }
