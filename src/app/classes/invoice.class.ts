@@ -4,72 +4,71 @@ import { InvoiceItems } from "./invoice-items.class";
 
 export class Invoice {
     private _number: number = 0;
-    public get Number(): number {
+    private _client: Client = new Client();
+    private _consultant: Consultant = new Consultant();
+    private _referenceMonth: number = 0;
+    private _referenceYear: number = 0;
+    private _dueDate: Date = new Date();
+    private _services: InvoiceItems[] = [];
+
+    public get number(): number {
         return this._number;
     }
-    public set Number(value: number) {
+    public set number(value: number) {
         this._number = value;
     }
 
-    private _client: Client = new Client();
-    public get Client(): Client {
+    public get client(): Client {
         return this._client;
     }
-    public set Client(value: Client) {
+    public set client(value: Client) {
         this._client = value;
     }
 
-    private _consultant: Consultant = new Consultant();
-    public get Consultant(): Consultant {
+    public get consultant(): Consultant {
         return this._consultant;
     }
-    public set Consultant(value: Consultant) {
+    public set consultant(value: Consultant) {
         this._consultant = value;
     }
 
-    private _referenceMonth: number = 0;
-    public get ReferenceMonth(): number {
+    public get referenceMonth(): number {
         return this._referenceMonth;
     }
-    public set ReferenceMonth(value: number) {
+    public set referenceMonth(value: number) {
         this._referenceMonth = value;
     }
 
-    private _referenceYear: number = 0;
-    public get ReferenceYear(): number {
+    public get referenceYear(): number {
         return this._referenceYear;
     }
-    public set ReferenceYear(value: number) {
+    public set referenceYear(value: number) {
         this._referenceYear = value;
     }
 
-    public get ReferenceFullMonth(): string {
+    public get referenceFullMonth(): string {
         return new Date(0, this._referenceMonth - 1).toLocaleString('pt-BR', { month: 'long' });
     }
 
-    private _dueDate: Date = new Date();
-    public get DueDate(): Date {
+    public get dueDate(): Date {
         return this._dueDate;
     }
-    public set DueDate(value: Date) {
+    public set dueDate(value: Date) {
         this._dueDate = value;
     }
 
-    private _services: InvoiceItems[] = [];
-    public get Services(): InvoiceItems[] {
+    public get services(): InvoiceItems[] {
         return this._services;
     }
-    public set Services(value: InvoiceItems[]) {
+    public set services(value: InvoiceItems[]) {
         this._services = value;
     }
 
-    public get Total(): number {
+    public get total(): number {
         let total = 0;
         this._services.forEach(service => {
-            total += service.Total;
+            total += service.total; // Use camelCase here as well
         });
         return total;
     }
-
-
 }

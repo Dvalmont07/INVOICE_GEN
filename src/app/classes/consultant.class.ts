@@ -1,62 +1,61 @@
 export class Consultant {
     private _firstName: string = "";
-    public get FirstName(): string {
+    public get firstName(): string {
         return this._firstName;
     }
-    public set FirstName(value: string) {
+    public set firstName(value: string) {
         this._firstName = value;
     }
 
     private _lastName: string = "";
-    public get LastName(): string {
+    public get lastName(): string {
         return this._lastName;
     }
-    public set LastName(value: string) {
+    public set lastName(value: string) {
         this._lastName = value;
     }
 
-    public get FullName(): string {
+    public get fullName(): string {
         return `${this._firstName} ${this._lastName}`;
     }
 
     private _companyName: string = "";
-    public get CompanyName(): string {
+    public get companyName(): string {
         return this._companyName;
     }
-    public set CompanyName(value: string) {
+    public set companyName(value: string) {
         this._companyName = value;
     }
 
     private _pixKey: string = "";
-    public get PixKey(): string {
+    public get pixKey(): string {
         return this._pixKey;
     }
-    public set PixKey(value: string) {
+    public set pixKey(value: string) {
         this._pixKey = value;
     }
 
     private _bankName: string = "";
-    public get BankName(): string {
+    public get bankName(): string {
         return this._bankName;
     }
-    public set BankName(value: string) {
+    public set bankName(value: string) {
         this._bankName = value;
     }
 
     private _email: string = "";
-    public get Email(): string {
+    public get email(): string {
         return this._email;
     }
-    public set Email(value: string) {
+    public set email(value: string) {
         this._email = value;
     }
 
     private _signature: string = "";
-    public get Signature(): string {
+    public get signature(): string {
         return this._signature;
     }
-    public set Signature(value: string) {
+    public set signature(value: string) {
         this._signature = value;
     }
-
 }

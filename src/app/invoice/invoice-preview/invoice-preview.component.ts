@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { Invoice } from 'src/app/classes/invoice.class';
@@ -8,7 +8,7 @@ import { Invoice } from 'src/app/classes/invoice.class';
   templateUrl: './invoice-preview.component.html',
   styleUrls: ['./invoice-preview.component.scss']
 })
-export class InvoicePreviewComponent implements OnInit {
+export class InvoicePreviewComponent {
 
   constructor() { }
 
@@ -16,9 +16,6 @@ export class InvoicePreviewComponent implements OnInit {
 
   @Input() invoice: Invoice = new Invoice();
 
-  ngOnInit() {
-
-  }
 
   public dateTransform(date: Date) {
     return this.formatedDate.format(date);
@@ -56,7 +53,7 @@ export class InvoicePreviewComponent implements OnInit {
 
   private getPDFTitle(): string {
     let date = new Date();
-    return `${this.invoice.Client.Name} - Nota ${this.invoice.Number} - ${this.invoice.ReferenceYear}${date.getMonth()+1}.pdf`;
+    return `${this.invoice.client.name} - Nota ${this.invoice.number} - ${this.invoice.referenceYear}${date.getMonth() + 1}.pdf`;
   }
 
 }

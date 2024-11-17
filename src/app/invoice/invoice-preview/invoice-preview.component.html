@@ -2,34 +2,34 @@
   <article id="preview">
     <header>
       <h1>Prestação de Serviços</h1>
-      <div class="d-flex align-items-center">{{invoice.Consultant.CompanyName}}</div>
+      <div class="d-flex align-items-center">{{invoice.consultant.companyName}}</div>
     </header>
     <section id="preview-invoice-data" class="mt-5">
-      <div><strong>Número: #</strong>{{invoice.Number}}</div>
+      <div><strong>Número: #</strong>{{invoice.number}}</div>
       <div>
         <strong>Vencimento:</strong>
-        {{dateTransform(invoice.DueDate)}}
+        {{dateTransform(invoice.dueDate)}}
       </div>
     </section>
     <hr class="divisor mt-5">
 
     <div id="preview-invoice-values" class="mt-5">
       <div class="">
-        <div class="">Valores referentes ao mês de <strong>{{(invoice.ReferenceFullMonth)}}</strong> de
-          {{(invoice.ReferenceYear)}}
+        <div class="">Valores referentes ao mês de <strong>{{(invoice.referenceFullMonth)}}</strong> de
+          {{(invoice.referenceYear)}}
         </div>
 
         <div class="mt-5">
           <div class="">
-            <h2>{{invoice.Client.Name}}</h2>
-            <div><strong>Responsável:</strong> {{invoice.Client.CompanyRepresentativeName}} </div>
-            <div *ngIf="invoice.Client.Email">{{invoice.Client.Email}} </div>
+            <h2>{{invoice.client.name}}</h2>
+            <div><strong>Responsável:</strong> {{invoice.client.companyRepresentativeName}} </div>
+            <div *ngIf="invoice.client.email">{{invoice.client.email}} </div>
           </div>
         </div>
 
         <hr class="mt-5">
 
-        <table class="table mt-5" *ngIf="invoice.Services.length > 0">
+        <table class="table mt-5" *ngIf="invoice.services.length > 0">
           <thead class="">
             <th>#</th>
             <th>Descrição</th>
@@ -38,18 +38,18 @@
             <th>Total</th>
           </thead>
           <tbody>
-            <tr *ngFor="let service of invoice.Services; let ind = index">
+            <tr *ngFor="let service of invoice.services; let ind = index">
               <td>{{ind + 1}}.</td>
-              <td>{{service.Description}}</td>
-              <td>{{service.Quantity}}</td>
-              <td>{{service.Price | currency}}</td>
-              <td>{{service.Total | currency}}</td>
+              <td>{{service.description}}</td>
+              <td>{{service.quantity}}</td>
+              <td>{{service.price | currency}}</td>
+              <td>{{service.total | currency}}</td>
             </tr>
           </tbody>
         </table>
 
         <div class="total-value mt-5">
-          <span><strong>Total:</strong> {{invoice.Total | currency}}</span>
+          <span><strong>Total:</strong> {{invoice.total | currency}}</span>
         </div>
       </div>
       <hr class="mt-5">
@@ -59,9 +59,9 @@
 
       <section class="mt-5">
         <h3>Conta</h3>
-        <strong>{{invoice.Consultant.FullName}}</strong>
-        <div><strong>Banco:</strong> {{invoice.Consultant.BankName}}</div>
-        <div><strong>Pix:</strong> {{invoice.Consultant.PixKey}}</div>
+        <strong>{{invoice.consultant.fullName}}</strong>
+        <div><strong>Banco:</strong> {{invoice.consultant.bankName}}</div>
+        <div><strong>Pix:</strong> {{invoice.consultant.pixKey}}</div>
       </section>
       <section id="signature-sec" class="mt-5 ">
 
@@ -70,8 +70,8 @@
             <h4>Obrigado</h4>
           </div>
           <div class="d-flex flex-column  ">
-            <img style="width: 24.5rem" src="{{invoice.Consultant.Signature ?
-              invoice.Consultant.Signature:'/assets/image/default-signature.png'}}" />
+            <img style="width: 24.5rem" alt="signature"
+              src="{{invoice.consultant.signature ? invoice.consultant.signature:'/assets/image/default-signature.png'}}" />
             <hr style="margin-top: -6rem;" />
             <div style="margin-top: -1rem; font-size: 1rem;" class="text-center">Consultor</div>
           </div>
@@ -81,7 +81,7 @@
   </article>
   <section>
     <div class="btn-info my-5 p-3" style="cursor:pointer; width: 20em; margin:auto; text-align: center;"
-      (click)="generateInvoice()">Generate
+      (click|onKeyPress|onKeyDown|onKeyUp)="generateInvoice()">Generate
       Invoice</div>
   </section>
 </main>

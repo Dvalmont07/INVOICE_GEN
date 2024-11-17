@@ -1,24 +1,42 @@
 export class Client {
     private _name: string = "";
-    public get Name(): string {
+    private _email: string = "";
+    private _companyRepresentativeName: string = "";
+    private _montlyFee: number = 0;
+    private _commission: number = 0;
+
+    public get name(): string {
         return this._name;
     }
-    public set Name(value: string) {
+    public set name(value: string) {
         this._name = value;
     }
 
-    private _email: string = "";
-    public get Email(): string {
+    public get email(): string {
         return this._email;
     }
-    public set Email(value: string) {
+    public set email(value: string) {
         this._email = value;
     }
-    private _companyRepresentativeName: string = "";
-    public get CompanyRepresentativeName(): string {
+
+    public get companyRepresentativeName(): string {
         return this._companyRepresentativeName;
     }
-    public set CompanyRepresentativeName(value: string) {
+    public set companyRepresentativeName(value: string) {
         this._companyRepresentativeName = value;
+    }
+
+    public get monthlyFee(): number {
+        return this._montlyFee;
+    }
+    public set monthlyFee(value: number) {
+        this._montlyFee = value;
+    }
+
+    public get commission(): number {
+        return this._commission;
+    }
+    public set commission(value: number) {
+        this._commission = value;
     }
 }
