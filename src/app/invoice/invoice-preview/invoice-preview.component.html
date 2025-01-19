@@ -40,7 +40,12 @@
           <tbody>
             <tr *ngFor="let service of invoice.services; let ind = index">
               <td>{{ind + 1}}.</td>
-              <td>{{service.description}}</td>
+              <td>
+                {{service.description}}
+                @if(service.observation){
+                <br /><span class="observartion">* {{service.observation}}</span>
+                }
+              </td>
               <td>{{service.quantity}}</td>
               <td>{{service.price | currency}}</td>
               <td>{{service.total | currency}}</td>
@@ -81,7 +86,7 @@
   </article>
   <section>
     <div class="btn-info my-5 p-3" style="cursor:pointer; width: 20em; margin:auto; text-align: center;"
-      (click|onKeyPress|onKeyDown|onKeyUp)="generateInvoice()">Generate
+      (click)="generateInvoice()">Generate
       Invoice</div>
   </section>
 </main>

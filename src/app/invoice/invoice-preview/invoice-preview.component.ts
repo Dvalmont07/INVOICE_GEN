@@ -25,9 +25,6 @@ export class InvoicePreviewComponent {
     let preview = document.querySelector("#preview") as HTMLElement;
     //TODO: split into many pages if big
 
-
-    // preview.style.width = "210mm";
-    // preview.style.height = "297mm";
     html2canvas(preview).then((canvas) => {
 
       const contentDataURL = canvas.toDataURL('image/png')
@@ -37,16 +34,7 @@ export class InvoicePreviewComponent {
       const imgWidth = pdf.internal.pageSize.getWidth();
       const imgHight = pdf.internal.pageSize.getHeight();
 
-      pdf.addImage(contentDataURL, 'PNG', positionX, positionY, imgWidth, imgHight);
-
-
-      // const footerImgData = './../../../assets/image/test.png';
-      // const footerWidth = 4.8; // Adjust the width of the footer image as needed
-      // const footerHeight = 4.8; // Adjust the height of the footer image as needed
-      // const footerX = (imgWidth - footerWidth - 5); // Adjust the X position of the footer image as needed
-      // const footerY = imgHight - footerHeight - 5; // Adjust the Y position of the footer image as needed
-      // pdf.addImage(footerImgData, 'PNG', footerX, footerY, footerWidth, footerHeight);
-
+      pdf.addImage(contentDataURL, 'PNG', positionX, positionY, imgWidth, imgHight);     
       pdf.save(this.getPDFTitle()); // Generated PDF   
     });
   }

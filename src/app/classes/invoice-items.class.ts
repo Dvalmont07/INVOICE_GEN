@@ -1,8 +1,16 @@
 
 export class InvoiceItems {
-
-
     private _description: string = "";
+    private _quantity: number = 1;
+    private _price: number = 0;
+    private _observation: string = "";
+
+    public get observation(): string {
+        return this._observation;
+    }
+    public set observation(value: string) {
+        this._observation = value;
+    }
     public get description(): string {
         return this._description;
     }
@@ -10,7 +18,6 @@ export class InvoiceItems {
         this._description = value;
     }
 
-    private _quantity: number = 1;
     public get quantity(): number {
         return this._quantity;
     }
@@ -18,7 +25,6 @@ export class InvoiceItems {
         this._quantity = value;
     }
 
-    private _price: number = 0;
     public get price(): number {
         return this._price;
     }
@@ -30,9 +36,10 @@ export class InvoiceItems {
         return this._quantity * this._price;
     }
 
-    constructor(description: string, quantity: number, price: number) {
+    constructor(description: string, quantity: number, price: number, observation: string = "") {
         this._description = description;
         this._quantity = quantity;
         this._price = price;
+        this._observation = observation;
     }
 }

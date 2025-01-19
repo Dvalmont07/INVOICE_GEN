@@ -3,7 +3,7 @@ import { InvoiceItems } from "./invoice-items.class";
 
 export class InvoiceItemsConfig {
 
-    private _params: InvoiceItemsConfigParams = new InvoiceItemsConfigParams();
+    private readonly _params: InvoiceItemsConfigParams = new InvoiceItemsConfigParams();
 
     constructor(params: InvoiceItemsConfigParams) {
         this._params = params;
@@ -15,15 +15,14 @@ export class InvoiceItemsConfig {
     public get totalCommission(): number {
         return (this._params.creditedAmount * this._params.commission) / 100;
     }
-    public get refYear(): string {
-        return new Date()
-            .getFullYear()
-            .toString();
+    public get formattedCreditedAmount(): string {
+        return this._params.creditedAmount.toLocaleString('pt-BR', {currency: 'BRL', minimumFractionDigits: 2 });
     }
+
     public get services(): InvoiceItems[] {
         const services: InvoiceItems[] = [];
-        services.push(new InvoiceItems(`Mensalidade referente ao mês de ${this.formattedDate} de ${this.refYear}`, 1, this._params.montlyFee));
-        services.push(new InvoiceItems(`Percentual referente aos ${this._params.commission}% sobre os RS R$ ${this._params.creditedAmount},00 creditados em ${this._params.refMonth} de ${this.refYear}`, 1, this.totalCommission));
+        services.push(new InvoiceItems(`Mensalidade referente ao mês de ${this.formattedDate} de ${this._params.refYear}`, 1, this._params.montlyFee,"Ajuste anual da mensalide: 4,83% (+R$ 15,16), referentea à inflação acumulada de 2024 (IPCA)"));
+        services.push(new InvoiceItems(`Percentual referente aos ${this._params.commission}% sobre os R$ ${this.formattedCreditedAmount} creditados em ${this.formattedDate} de ${this._params.refYear}`, 1, this.totalCommission));
 
         if (this._params.lastMontyPendencies > 0) {
             services.push(new InvoiceItems(`Valor em aberto mês de anterior`, 1, this._params.lastMontyPendencies));
