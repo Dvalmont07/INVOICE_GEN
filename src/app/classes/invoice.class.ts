@@ -10,15 +10,14 @@ export class Invoice {
     private _referenceYear: number = 0;
     private _dueDate: Date = new Date();
     private _services: InvoiceItems[] = [];
-    private _customCurrentDay: number = 0;
-    
-    public get customCurrentDay(): number {
-        return this._customCurrentDay;
-    }
-    public set customCurrentDay(value: number) {
-        this._customCurrentDay = value;
-    }
+    private _customDay: number = 0;
 
+    public get customDay(): number {
+        return this._customDay;
+    }
+    public set customDay(value: number) {
+        this._customDay = value;
+    }
     public get number(): number {
         return this._number;
     }

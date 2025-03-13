@@ -34,14 +34,12 @@ export class InvoicePreviewComponent {
       const imgWidth = pdf.internal.pageSize.getWidth();
       const imgHight = pdf.internal.pageSize.getHeight();
 
-      pdf.addImage(contentDataURL, 'PNG', positionX, positionY, imgWidth, imgHight);     
+      pdf.addImage(contentDataURL, 'PNG', positionX, positionY, imgWidth, imgHight);
       pdf.save(this.getPDFTitle()); // Generated PDF   
     });
   }
 
   private getPDFTitle(): string {
-    let date = new Date();
-    return `${this.invoice.client.name} - Nota ${this.invoice.number} - ${this.invoice.referenceYear}${date.getMonth() + 1}.pdf`;
+    return `${this.invoice.client.name} - Nota ${this.invoice.number} - ${this.invoice.dueDate.getFullYear()}${(this.invoice.dueDate.getMonth() + 1).toString().padStart(2, '0')}.pdf`;
   }
-
 }

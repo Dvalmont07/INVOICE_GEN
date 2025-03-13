@@ -6,7 +6,21 @@ export class InvoiceItemsConfigParams {
     private _creditedAmount: number = 0;
     private _lastMontyPendencies: number = 0;
     private _creditCardFees: number = 0;
+    private _annualMonthlyFeeAdjustment: number = 0;
+    private _previousMontlyFee: number = 0;   
+    public get previousMontlyFee(): number {
+        return this._previousMontlyFee;
+    }
+    public set previousMontlyFee(value: number) {
+        this._previousMontlyFee = value;
+    }
 
+    public get annualmonthlyFeeAdjustment(): number {
+        return this._annualMonthlyFeeAdjustment;
+    }
+    public set annualMonthlyFeeAdjustment(value: number) {
+        this._annualMonthlyFeeAdjustment = value;
+    }
     public get refMonth(): number {
         return this._refMonth;
     }
