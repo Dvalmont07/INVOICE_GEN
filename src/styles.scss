@@ -1,5 +1,5 @@
 body {
-    font-family: roboto,nunito, lato, arial;
+    font-family: roboto,nunito, lato, arial,sans-serif;
     font-size: 20px;
     color: #434141;
 
@@ -8,9 +8,7 @@ body {
 h1 {
     font-size: 2.5em;
 }
-h2 {
-    font-size: 2em;
-}
+
 h2 {
     font-size: 1.75em;
 }
@@ -19,7 +17,7 @@ h1,
 h2,
 h3,
 .titulo {
-    font-family:  impact,"arial black";
+    font-family:  impact ,"arial black", sans-serif;
 }
 
 .divisor {

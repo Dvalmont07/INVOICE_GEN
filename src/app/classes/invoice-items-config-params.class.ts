@@ -8,6 +8,15 @@ export class InvoiceItemsConfigParams {
     private _creditCardFees: number = 0;
     private _annualMonthlyFeeAdjustment: number = 0;
     private _previousMontlyFee: number = 0;   
+    private _deduction: number = 0;
+   
+    public get deduction(): number {
+        return this._deduction;
+    }
+    public set deduction(value: number) {
+        this._deduction = value;
+    }
+
     public get previousMontlyFee(): number {
         return this._previousMontlyFee;
     }

@@ -48,6 +48,9 @@ export class InvoiceItemsConfig {
         if (this._params.creditCardFees > 0) {
             services.push(new InvoiceItems(`Soma referente ao(s) valor(es) adicionado(s) em cartão de crédito`, 1, this._params.creditCardFees));
         }
+        if (this._params.deduction > 0) {
+            services.push(new InvoiceItems(`Valor abatido`, 1, -(this._params.deduction)));
+        }
         return services;
     }
 }
