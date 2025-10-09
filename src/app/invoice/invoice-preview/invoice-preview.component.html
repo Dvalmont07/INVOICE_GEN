@@ -38,7 +38,7 @@
             <th>Total</th>
           </thead>
           <tbody>
-            <tr *ngFor="let service of invoice.services; let ind = index">
+            <tr *ngFor="let service of invoice.services; let ind = index"  [class.deduction-item]="service.total < 0">
               <td>{{ind + 1}}.</td>
               <td>
                 {{service.description}}
