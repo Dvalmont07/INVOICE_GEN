@@ -15,7 +15,7 @@ export class InvoicePreviewComponent {
   formatedDate = Intl.DateTimeFormat("pt-BR");
 
   @Input() invoice: Invoice = new Invoice();
-
+  public NON_VALID_INDEX = -1;
 
   public dateTransform(date: Date) {
     return this.formatedDate.format(date);

@@ -1,15 +1,29 @@
 export class InvoiceItemsConfigParams {
     private _refMonth: number = 0;
     private _refYear: number = 0;
+    private _customRefYear: number = 0;
+    private _customRefMonth: number = 0;
     private _montlyFee: number = 0;
     private _commission: number = 0;
     private _creditedAmount: number = 0;
     private _lastMontyPendencies: number = 0;
     private _creditCardFees: number = 0;
     private _annualMonthlyFeeAdjustment: number = 0;
-    private _previousMontlyFee: number = 0;   
+    private _previousMontlyFee: number = 0;
     private _deduction: number = 0;
-   
+
+    public get customRefMonth(): number {
+        return this._customRefMonth;
+    }
+    public set customRefMonth(value: number) {
+        this._customRefMonth = value;
+    }
+    public get customRefYear(): number {
+        return this._customRefYear;
+    }
+    public set customRefYear(value: number) {
+        this._customRefYear = value;
+    }
     public get deduction(): number {
         return this._deduction;
     }
@@ -76,5 +90,11 @@ export class InvoiceItemsConfigParams {
     }
     public set creditCardFees(value: number) {
         this._creditCardFees = value;
+    }
+
+    getLastMonthDate() {
+        var date = new Date();
+        date.setMonth(date.getMonth() - 1);
+        return date;
     }
 }

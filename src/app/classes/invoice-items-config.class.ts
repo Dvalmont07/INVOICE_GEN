@@ -9,8 +9,20 @@ export class InvoiceItemsConfig {
         this._params = params;
     }
 
-    public get formattedDate(): string {
-        return new Date(0, this._params.refMonth - 1).toLocaleString('pt-BR', { month: 'long' });
+    public get longMonth(): string {
+        const NON_VALID_INDEX = -1;
+        return new Date(
+            0,
+            this._params.customRefMonth === NON_VALID_INDEX ?
+                this._params.refMonth :
+                this._params.customRefMonth)
+            .toLocaleString('pt-BR', { month: 'long' });
+    }
+    get refYear() {
+        const NON_VALID_INDEX = -1;
+        return this._params.customRefYear === NON_VALID_INDEX ?
+            this._params.refYear :
+            this._params.customRefYear;
     }
     public get totalCommission(): number {
         return (this._params.creditedAmount * this._params.commission) / 100;
@@ -38,8 +50,8 @@ export class InvoiceItemsConfig {
 
     public get services(): InvoiceItems[] {
         const services: InvoiceItems[] = [];
-        services.push(new InvoiceItems(`Mensalidade referente ao mês de ${this.formattedDate} de ${this._params.refYear}`, 1, this._params.montlyFee, this.annualAdjustment));
-        services.push(new InvoiceItems(`Percentual referente aos ${this._params.commission}% sobre os R$ ${this.formattedCreditedAmount} creditados em ${this.formattedDate} de ${this._params.refYear}`, 1, this.totalCommission));
+        services.push(new InvoiceItems(`Mensalidade referente ao mês de ${this.longMonth} de ${this.refYear}`, 1, this._params.montlyFee, this.annualAdjustment));
+        services.push(new InvoiceItems(`Percentual referente aos ${this._params.commission}% sobre os R$ ${this.formattedCreditedAmount} creditados em ${this.longMonth} de ${this.refYear}`, 1, this.totalCommission));
 
         if (this._params.lastMontyPendencies > 0) {
             services.push(new InvoiceItems(`Valor em aberto mês de anterior`, 1, this._params.lastMontyPendencies));

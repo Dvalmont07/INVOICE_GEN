@@ -1,6 +1,10 @@
 import { Client } from "./client.class";
 import { Consultant } from "./consultant.class";
 import { InvoiceItems } from "./invoice-items.class";
+import { Commons } from "../shared/commons";
+
+
+
 
 export class Invoice {
     private _number: number = 0;
@@ -10,7 +14,23 @@ export class Invoice {
     private _referenceYear: number = 0;
     private _dueDate: Date = new Date();
     private _services: InvoiceItems[] = [];
-    private _customDay: number = 0;
+    private _customDay: number = -1;
+    private _customMonth: number = -1;
+    private _customYear: number = -1;
+
+    public get customYear(): number {
+        return this._customYear;
+    }
+    public set customYear(value: number) {
+        this._customYear = value;
+    }
+
+    public get customMonth(): number {
+        return this._customMonth;
+    }
+    public set customMonth(value: number) {
+        this._customMonth = value;
+    }
 
     public get customDay(): number {
         return this._customDay;
@@ -54,7 +74,8 @@ export class Invoice {
     }
 
     public get referenceFullMonth(): string {
-        return new Date(0, this._referenceMonth - 1).toLocaleString('pt-BR', { month: 'long' });
+        return new Date(0, this._referenceMonth )
+            .toLocaleString('pt-BR', { month: 'long' });
     }
 
     public get dueDate(): Date {
@@ -74,7 +95,7 @@ export class Invoice {
     public get total(): number {
         let total = 0;
         this._services.forEach(service => {
-            total += service.total; // Use camelCase here as well
+            total += service.total;
         });
         return total;
     }

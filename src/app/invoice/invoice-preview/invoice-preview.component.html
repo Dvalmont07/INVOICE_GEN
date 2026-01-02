@@ -16,7 +16,7 @@
     <div id="preview-invoice-values" class="mt-5">
       <div class="">
         <div class="">Valores referentes ao mês de <strong>{{(invoice.referenceFullMonth)}}</strong> de
-          {{(invoice.referenceYear)}}
+          {{(invoice.customYear === NON_VALID_INDEX ? invoice.referenceYear : invoice.customYear)}}
         </div>
 
         <div class="mt-5">
@@ -38,7 +38,7 @@
             <th>Total</th>
           </thead>
           <tbody>
-            <tr *ngFor="let service of invoice.services; let ind = index"  [class.deduction-item]="service.total < 0">
+            <tr *ngFor="let service of invoice.services; let ind = index" [class.deduction-item]="service.total < 0">
               <td>{{ind + 1}}.</td>
               <td>
                 {{service.description}}
