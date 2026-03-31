@@ -1,4 +1,4 @@
-class Commons {
+export class Commons {
 
     public static getDueDate(customDay: number) {
         const currentDate = new Date();
@@ -6,5 +6,9 @@ class Commons {
             customDay = new Date().getDate();
         }
         return new Date(`${currentDate.getMonth() + 1}/${customDay}/${currentDate.getFullYear()}`);
+    }
+
+    public static getAdjustmentToZeroIndexation() {
+        return 1;
     }
 }
