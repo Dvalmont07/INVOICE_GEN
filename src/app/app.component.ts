@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseSeederService } from './services/database-seeder.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'INVOICE_GEN';
 
+  constructor(private seeder: DatabaseSeederService) {}
+
   ngOnInit() {
+    this.seeder.seed();
   }
 }
