@@ -1,54 +1,53 @@
 <main>
   <article id="preview">
-    <header>
-      <h1>Prestação de Serviços</h1>
-      <div class="d-flex align-items-center">{{invoice.consultant.companyName}}</div>
-    </header>
-    <section id="preview-invoice-data" class="mt-5">
-      <div><strong>Número: #</strong>{{invoice.number}}</div>
-      <div>
-        <strong>Vencimento:</strong>
-        {{dateTransform(invoice.dueDate)}}
-      </div>
-    </section>
-    <hr class="divisor mt-5">
+    <div class="main-content">
+      <header>
+        <h1>Prestação de Serviços</h1>
+        <div class="company-name">{{invoice.consultant.companyName}}</div>
+      </header>
 
-    <div id="preview-invoice-values" class="mt-5">
-      <div class="">
-        <div class="">Valores referentes ao mês de <strong>{{(invoice.referenceFullMonth)}}</strong> de
-          {{(invoice.referenceYear)}}
+      <section id="preview-invoice-data" class="mt-5">
+        <div><strong>Número: #</strong>{{invoice.number}}</div>
+        <div>
+          <strong>Vencimento:</strong>
+          {{dateTransform(invoice.dueDate)}}
+        </div>
+      </section>
+
+      <div id="preview-invoice-values" class="mt-5">
+        <div class="reference-period">
+          Valores referentes ao mês de <strong>{{(invoice.referenceFullMonth)}}</strong> de
+          <strong>{{(invoice.referenceYear)}}</strong>
         </div>
 
         <div class="mt-5">
-          <div class="">
-            <h2>{{invoice.client.name}}</h2>
-            <div><strong>Responsável:</strong> {{invoice.client.companyRepresentativeName}} </div>
-            <div *ngIf="invoice.client.email">{{invoice.client.email}} </div>
-          </div>
+          <h2>{{invoice.client.name}}</h2>
+          <div class="client-info"><strong>Responsável:</strong> {{invoice.client.companyRepresentativeName}}</div>
+          <div *ngIf="invoice.client.email" class="client-info">{{invoice.client.email}}</div>
         </div>
 
-        <hr class="mt-5">
-
         <table class="table mt-5" *ngIf="invoice.services.length > 0">
-          <thead class="">
-            <th>#</th>
-            <th>Descrição</th>
-            <th>Qutd.</th>
-            <th>Valor</th>
-            <th>Total</th>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Descrição</th>
+              <th class="text-center">Qutd.</th>
+              <th class="text-end">Valor</th>
+              <th class="text-end">Total</th>
+            </tr>
           </thead>
           <tbody>
             <tr *ngFor="let service of invoice.services; let ind = index">
               <td>{{ind + 1}}.</td>
               <td>
-                {{service.description}}
-                @if(service.observation){
-                <br /><span class="observartion">* {{service.observation}}</span>
-                }
+                <div class="service-desc">{{service.description}}</div>
+                <div *ngIf="service.observation" class="observation">
+                  <small>* {{service.observation}}</small>
+                </div>
               </td>
-              <td>{{service.quantity}}</td>
-              <td>{{service.price | currency}}</td>
-              <td>{{service.total | currency}}</td>
+              <td class="text-center">{{service.quantity}}</td>
+              <td class="text-end">{{service.price | currency}}</td>
+              <td class="text-end">{{service.total | currency}}</td>
             </tr>
           </tbody>
         </table>
@@ -57,28 +56,26 @@
           <span><strong>Total:</strong> {{invoice.total | currency}}</span>
         </div>
       </div>
-      <hr class="mt-5">
     </div>
 
     <footer>
-
-      <section class="mt-5">
+      <section class="invoice-details">
         <h3>Conta</h3>
         <strong>{{invoice.consultant.fullName}}</strong>
         <div><strong>Banco:</strong> {{invoice.consultant.bankName}}</div>
         <div><strong>Pix:</strong> {{invoice.consultant.pixKey}}</div>
       </section>
-      <section id="signature-sec" class="mt-5 ">
 
-        <div class="d-flex align-items-end">
-          <div class="flex-grow-1">
+      <section id="signature-sec" class="mt-5">
+        <div class="d-flex align-items-end justify-content-between">
+          <div class="thanks-msg">
             <h4>Obrigado</h4>
           </div>
-          <div class="d-flex flex-column  ">
-            <img style="width: 24.5rem" alt="signature"
-              src="{{invoice.consultant.signature ? invoice.consultant.signature:'/assets/image/default-signature.png'}}" />
-            <hr style="margin-top: -6rem;" />
-            <div style="margin-top: -1rem; font-size: 1rem;" class="text-center">Consultor</div>
+          <div class="signature-box">
+            <img class="signature-img" [alt]="'Assinatura de ' + invoice.consultant.fullName"
+              [src]="invoice.consultant.signature || '/assets/image/default-signature.png'" />
+            <div class="signature-line"></div>
+            <div class="signature-label">Consultor</div>
           </div>
         </div>
       </section>
