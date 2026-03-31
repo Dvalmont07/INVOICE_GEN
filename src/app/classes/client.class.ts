@@ -49,4 +49,28 @@ export class Client {
     public set commission(value: number) {
         this._commission = value;
     }
+
+    public toJSON() {
+        return {
+            name: this._name,
+            email: this._email,
+            companyRepresentativeName: this._companyRepresentativeName,
+            monthlyFee: this._montlyFee,
+            previousMontlyFee: this._previousMontlyFee,
+            commission: this._commission,
+            annualMonthlyFeeAdjustment: this._annualMonthlyFeeAdjustment
+        };
+    }
+
+    public static fromJSON(json: any): Client {
+        const client = new Client();
+        client.name = json.name;
+        client.email = json.email;
+        client.companyRepresentativeName = json.companyRepresentativeName;
+        client.monthlyFee = json.monthlyFee;
+        client.previousMontlyFee = json.previousMontlyFee;
+        client.commission = json.commission;
+        client.annualMonthlyFeeAdjustment = json.annualMonthlyFeeAdjustment;
+        return client;
+    }
 }

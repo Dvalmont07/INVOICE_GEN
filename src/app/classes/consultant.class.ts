@@ -53,4 +53,28 @@ export class Consultant {
     public set signature(value: string) {
         this._signature = value;
     }
+
+    public toJSON() {
+        return {
+            firstName: this._firstName,
+            lastName: this._lastName,
+            companyName: this._companyName,
+            pixKey: this._pixKey,
+            bankName: this._bankName,
+            email: this._email,
+            signature: this._signature
+        };
+    }
+
+    public static fromJSON(json: any): Consultant {
+        const consultant = new Consultant();
+        consultant.firstName = json.firstName;
+        consultant.lastName = json.lastName;
+        consultant.companyName = json.companyName;
+        consultant.pixKey = json.pixKey;
+        consultant.bankName = json.bankName;
+        consultant.email = json.email;
+        consultant.signature = json.signature;
+        return consultant;
+    }
 }

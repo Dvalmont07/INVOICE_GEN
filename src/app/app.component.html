@@ -1,5 +1,14 @@
-<main>
-  <section>
-    <app-invoice-preview [invoice]="invoice"></app-invoice-preview>
-  </section>
-</main>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/invoice">InvoiceGen</a>
+  </div>
+  <ul class="navbar-links">
+    <li><a routerLink="/invoice" routerLinkActive="active">Gerador</a></li>
+    <li><a routerLink="/management/clients" routerLinkActive="active">Clientes</a></li>
+    <li><a routerLink="/management/consultants" routerLinkActive="active">Consultores</a></li>
+  </ul>
+</nav>
+
+<main class="page-container">
+  <router-outlet></router-outlet>
+</main>
