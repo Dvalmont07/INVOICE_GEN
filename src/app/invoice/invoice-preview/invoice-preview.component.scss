@@ -30,15 +30,17 @@ main {
             h1 {
                 flex-grow: 1;
                 font-size: 2.5rem;
-                font-weight: 800;
-                letter-spacing: -0.05em;
+                font-weight: 700;
                 color: #2d3436;
+                line-height: 1.2;
+                letter-spacing: 0.01em;
             }
 
             .company-name {
                 font-size: 1.25rem;
                 font-weight: 600;
                 color: #636e72;
+                letter-spacing: 0.02em;
             }
         }
 
@@ -68,6 +70,7 @@ main {
                 font-size: 1.8rem;
                 font-weight: 700;
                 margin-bottom: 1rem;
+                letter-spacing: 0.01em;
             }
 
             .client-info {
@@ -93,6 +96,7 @@ main {
                     font-size: 0.85rem;
                     color: #2d3436;
                     border-bottom: 1px solid #dfe6e9;
+                    letter-spacing: 0.03em;
                 }
             }
 
@@ -109,6 +113,7 @@ main {
                 .service-desc {
                     font-weight: 600;
                     color: #2d3436;
+                    letter-spacing: 0.01em;
                 }
 
                 .observation {
@@ -126,6 +131,7 @@ main {
             padding-top: 2rem;
             border-top: 2px solid #2d3436;
             color: #2d3436;
+            letter-spacing: 0.01em;
             
             strong {
                 color: #2d3436;
@@ -146,6 +152,7 @@ main {
                     color: #2d3436;
                     margin-bottom: 1.5rem;
                     font-weight: 700;
+                    letter-spacing: 0.02em;
                 }
                 div {
                     font-size: 1.1rem;
