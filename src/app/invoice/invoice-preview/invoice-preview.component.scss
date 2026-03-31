@@ -150,22 +150,32 @@ main {
             flex-direction: column;
 
             .invoice-details {
-                margin-bottom: 4rem;
+                margin-bottom: 6rem;
                 h3 {
                     font-family: Impact, "Arial Narrow Bold", sans-serif;
                     font-size: 2rem;
                     color: #2d3436;
-                    margin-bottom: 2rem;
+                    margin-bottom: 1rem;
                     font-weight: 400;
                 }
+                
+                strong {
+                    display: block;
+                    font-size: 1.1rem;
+                    color: #2d3436;
+                    margin-bottom: 0.5rem;
+                    font-weight: 600;
+                }
+
                 div {
                     font-size: 1.1rem;
-                    margin-bottom: 1rem; // Increased spacing
-                    color: var(--brand-slate);
+                    margin-bottom: 0.5rem;
+                    color: #636e72;
                     strong {
-                        color: var(--brand-charcoal);
-                        width: 140px; // Adjusted width
+                        color: #2d3436;
+                        width: 60px;
                         display: inline-block;
+                        margin-bottom: 0;
                     }
                 }
             }
@@ -173,18 +183,18 @@ main {
             #signature-sec {
                 .thanks-msg {
                     h4 {
-                        font-family: inherit;
-                        font-size: 1.8rem;
-                        color: var(--brand-slate);
+                        font-family: Impact, "Arial Narrow Bold", sans-serif;
+                        font-size: 2.2rem;
+                        color: #2d3436;
                         font-weight: 400;
                     }
                 }
                 .signature-box {
                     text-align: center;
-                    width: 350px;
+                    width: 320px;
 
                     .signature-img {
-                        width: 280px;
+                        width: 250px;
                         height: auto;
                         margin-bottom: -1rem;
                     }
@@ -198,8 +208,9 @@ main {
 
                     .signature-label {
                         font-size: 1rem;
-                        color: var(--brand-slate);
-                        font-weight: 600;
+                        color: #636e72;
+                        font-weight: 400;
+                        font-family: 'Inter', sans-serif;
                     }
                 }
             }

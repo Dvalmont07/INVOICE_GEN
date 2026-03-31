@@ -179,22 +179,29 @@ export class InvoiceGeneratorComponent implements OnInit {
       alert('O campo Número da Fatura é obrigatório!');
       return;
     }
-    
-    // Set reference from params to invoice
-    this.invoice.referenceMonth = this.params.refMonth;
-    this.invoice.referenceYear = this.params.refYear;
-    
-    const config = new InvoiceItemsConfig(this.params);
-    this.invoice.services = config.services;
-    
-    // Auto-update due date to 10th if it's still default or month changed
-    // We only update if the user hasn't manually set a different date or it matches the old reference
-    const currentDue = this.invoice.dueDate;
-    if (currentDue.getDate() === 10 || currentDue.getMonth() !== (this.params.refMonth - 1)) {
-        this.invoice.dueDate = new Date(this.params.refYear, this.params.refMonth - 1, 10);
-    }
 
-    console.log('Invoice items calculated', this.invoice.services);
+    this.invoiceRepo.getAll().subscribe(history => {
+      const exists = history.some(inv => inv.number === this.invoice.number);
+      if (exists) {
+        alert(`O número de fatura #${this.invoice.number} já existe no histórico. Use um número diferente.`);
+        return;
+      }
+
+      // Set reference from params to invoice
+      this.invoice.referenceMonth = this.params.refMonth;
+      this.invoice.referenceYear = this.params.refYear;
+      
+      const config = new InvoiceItemsConfig(this.params);
+      this.invoice.services = config.services;
+      
+      // Auto-update due date to 10th if it's still default or month changed
+      const currentDue = this.invoice.dueDate;
+      if (currentDue.getDate() === 10 || currentDue.getMonth() !== (this.params.refMonth - 1)) {
+          this.invoice.dueDate = new Date(this.params.refYear, this.params.refMonth - 1, 10);
+      }
+
+      console.log('Invoice items calculated', this.invoice.services);
+    });
   }
 
   onDueDateChange(value: string) {
