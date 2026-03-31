@@ -14,6 +14,7 @@ import { ConsultantFormComponent } from './management/consultants/consultant-for
 import { LocalStorageClientRepository } from './services/repositories/local-storage-client.repository';
 import { LocalStorageConsultantRepository } from './services/repositories/local-storage-consultant.repository';
 import { InvoiceGeneratorComponent } from './invoice/invoice-generator/invoice-generator.component';
+import { InvoiceHistoryComponent } from './management/invoices/invoice-history/invoice-history.component';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -21,6 +22,7 @@ registerLocaleData(ptBr);
     AppComponent,
     InvoicePreviewComponent,
     InvoiceGeneratorComponent,
+    InvoiceHistoryComponent,
     ClientListComponent,
     ClientFormComponent,
     ConsultantListComponent,

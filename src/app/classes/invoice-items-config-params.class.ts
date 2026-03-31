@@ -77,4 +77,34 @@ export class InvoiceItemsConfigParams {
     public set creditCardFees(value: number) {
         this._creditCardFees = value;
     }
+
+    public toJSON() {
+        return {
+            refMonth: this._refMonth,
+            refYear: this._refYear,
+            montlyFee: this._montlyFee,
+            commission: this._commission,
+            creditedAmount: this._creditedAmount,
+            lastMontyPendencies: this._lastMontyPendencies,
+            creditCardFees: this._creditCardFees,
+            annualMonthlyFeeAdjustment: this._annualMonthlyFeeAdjustment,
+            previousMontlyFee: this._previousMontlyFee,
+            deduction: this._deduction
+        };
+    }
+
+    public static fromJSON(json: any): InvoiceItemsConfigParams {
+        const params = new InvoiceItemsConfigParams();
+        params.refMonth = json.refMonth;
+        params.refYear = json.refYear;
+        params.montlyFee = json.montlyFee;
+        params.commission = json.commission;
+        params.creditedAmount = json.creditedAmount;
+        params.lastMontyPendencies = json.lastMontyPendencies;
+        params.creditCardFees = json.creditCardFees;
+        params.annualMonthlyFeeAdjustment = json.annualMonthlyFeeAdjustment;
+        params.previousMontlyFee = json.previousMontlyFee;
+        params.deduction = json.deduction;
+        return params;
+    }
 }

@@ -42,4 +42,22 @@ export class InvoiceItems {
         this._price = price;
         this._observation = observation;
     }
-}
+
+    public toJSON() {
+        return {
+            description: this._description,
+            quantity: this._quantity,
+            price: this._price,
+            observation: this._observation
+        };
+    }
+
+    public static fromJSON(json: any): InvoiceItems {
+        return new InvoiceItems(
+            json.description,
+            json.quantity,
+            json.price,
+            json.observation
+        );
+    }
+}
