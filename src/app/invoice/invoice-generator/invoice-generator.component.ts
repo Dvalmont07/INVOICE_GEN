@@ -10,54 +10,69 @@ import { LocalStorageInvoiceRepository } from '../../services/repositories/local
 @Component({
   selector: 'app-invoice-generator',
   template: `
-    <main>
-      <section class="invoice-container">
-        <div class="selection-panel" style="margin-bottom: 2rem; padding: 2rem; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
-          <h3 style="margin-top: 0; color: #1a2a6c; border-bottom: 2px solid #edf2f7; padding-bottom: 1rem; margin-bottom: 1.5rem;">Configuração da Fatura</h3>
+    <main class="management-container" style="max-width: 1300px; padding: 3rem;">
+      <header class="management-header" style="margin-bottom: 3rem;">
+        <h2 style="font-size: 2rem;">Gerador de Fatura</h2>
+      </header>
+
+      <section>
+        <div class="card" style="padding: 2.5rem; margin-bottom: 3rem;">
+          <h3 style="margin-top: 0; border-bottom: 1px solid var(--brand-border); padding-bottom: 1.25rem; margin-bottom: 2.5rem; font-size: 1.25rem;">
+            Configuração da Fatura
+          </h3>
           
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
-            <div class="form-group">
-              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Selecionar Cliente</label>
-              <select (change)="onClientSelect($event)" class="form-control" [value]="invoice.client.name">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Cliente</label>
+              <select [(ngModel)]="invoice.client.name" (change)="onClientSelect($event)" class="form-control">
                 <option value="">Selecione um cliente...</option>
                 <option *ngFor="let client of clients" [value]="client.name">{{ client.name }}</option>
               </select>
             </div>
-            <div class="form-group">
-              <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Selecionar Consultor</label>
-              <select (change)="onConsultantSelect($event)" class="form-control" [value]="invoice.consultant.fullName">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Consultor</label>
+              <select [(ngModel)]="invoice.consultant.fullName" (change)="onConsultantSelect($event)" class="form-control">
                 <option value="">Selecione um consultor...</option>
                 <option *ngFor="let consultant of consultants" [value]="consultant.fullName">{{ consultant.fullName }}</option>
               </select>
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; padding: 1.5rem; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0;">
-            <div class="form-group">
-              <label style="font-size: 0.85rem;">Mês Referência</label>
-              <input type="number" [(ngModel)]="params.refMonth" class="form-control" placeholder="Mês (1-12)">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 2rem; background: #F8FAFC; border-radius: 12px; border: 1px solid var(--brand-border);">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Mês Ref.</label>
+              <input type="number" [(ngModel)]="params.refMonth" (ngModelChange)="calculateInvoice()" class="form-control" placeholder="Mês (1-12)">
             </div>
-            <div class="form-group">
-              <label style="font-size: 0.85rem;">Ano Referência</label>
-              <input type="number" [(ngModel)]="params.refYear" class="form-control">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Ano Ref.</label>
+              <input type="number" [(ngModel)]="params.refYear" (ngModelChange)="calculateInvoice()" class="form-control">
             </div>
-            <div class="form-group">
-              <label style="font-size: 0.85rem;">Valor Creditado (R$)</label>
-              <input type="number" [(ngModel)]="params.creditedAmount" class="form-control">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Vencimento</label>
+              <input type="date" [ngModel]="invoice.dueDate | date:'yyyy-MM-dd'" (ngModelChange)="onDueDateChange($event)" class="form-control">
             </div>
-            <div class="form-group">
-              <label style="font-size: 0.85rem;">Pendências (R$)</label>
-              <input type="number" [(ngModel)]="params.lastMontyPendencies" class="form-control">
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Creditado (R$)</label>
+              <input type="number" [(ngModel)]="params.creditedAmount" (ngModelChange)="calculateInvoice()" class="form-control">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Pendências (R$)</label>
+              <input type="number" [(ngModel)]="params.lastMontyPendencies" (ngModelChange)="calculateInvoice()" class="form-control">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Nº Fatura</label>
+              <input type="number" [(ngModel)]="invoice.number" class="form-control">
             </div>
           </div>
 
-          <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
-            <button (click)="calculateInvoice()" class="btn btn-secondary">Calcular Itens</button>
-            <button (click)="saveToHistory()" class="btn btn-primary">Salvar no Histórico</button>
+          <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem;">
+            <button (click)="calculateInvoice()" class="btn btn-secondary">Recalcular</button>
           </div>
         </div>
 
-        <app-invoice-preview [invoice]="invoice"></app-invoice-preview>
+        <div style="margin-top: 3rem;">
+           <app-invoice-preview [invoice]="invoice" (onGenerated)="updateNextInvoiceNumber()"></app-invoice-preview>
+        </div>
       </section>
     </main>
   `,
@@ -78,11 +93,22 @@ export class InvoiceGeneratorComponent implements OnInit {
     const today = new Date();
     this.params.refMonth = today.getMonth() + 1;
     this.params.refYear = today.getFullYear();
+    
+    // Default due date: 10th of current month
+    this.invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), 10);
   }
 
   ngOnInit() {
     this.clientRepo.getAll().subscribe(data => this.clients = data);
-    this.consultantRepo.getAll().subscribe(data => this.consultants = data);
+    this.consultantRepo.getAll().subscribe(data => {
+      this.consultants = data;
+      // Auto-select first consultant if available
+      if (this.consultants.length > 0 && !this.invoice.consultant.firstName) {
+        this.invoice.consultant = this.consultants[0];
+      }
+    });
+    
+    this.updateNextInvoiceNumber();
 
     this.route.queryParams.subscribe(queryParams => {
       if (queryParams['fromHistory']) {
@@ -103,6 +129,8 @@ export class InvoiceGeneratorComponent implements OnInit {
           this.params.previousMontlyFee = client.previousMontlyFee;
           this.params.commission = client.commission;
           this.params.annualMonthlyFeeAdjustment = client.annualMonthlyFeeAdjustment;
+          
+          this.calculateInvoice(); // Auto-calculate on selection
         }
       });
     }
@@ -130,22 +158,30 @@ export class InvoiceGeneratorComponent implements OnInit {
     const config = new InvoiceItemsConfig(this.params);
     this.invoice.services = config.services;
     
-    // Auto-update due date to 5th of current month
-    const dueDate = new Date();
-    dueDate.setDate(5);
-    this.invoice.dueDate = dueDate;
+    // Auto-update due date to 10th if it's still default or month changed
+    // We only update if the user hasn't manually set a different date or it matches the old reference
+    const currentDue = this.invoice.dueDate;
+    if (currentDue.getDate() === 10 || currentDue.getMonth() !== (this.params.refMonth - 1)) {
+        this.invoice.dueDate = new Date(this.params.refYear, this.params.refMonth - 1, 10);
+    }
 
     console.log('Invoice items calculated', this.invoice.services);
   }
 
-  saveToHistory() {
-    if (this.invoice.services.length === 0) {
-      alert('Calcule os itens antes de salvar!');
-      return;
+  onDueDateChange(value: string) {
+    if (value) {
+      this.invoice.dueDate = new Date(value + 'T00:00:00');
     }
-    this.invoice.id = new Date().getTime().toString();
-    this.invoiceRepo.save(this.invoice).subscribe(() => {
-      alert('Fatura salva no histórico com sucesso!');
+  }
+
+  public updateNextInvoiceNumber() {
+    this.invoiceRepo.getAll().subscribe(history => {
+      if (history.length > 0) {
+        const maxNumber = Math.max(...history.map(inv => inv.number || 0));
+        this.invoice.number = Math.max(maxNumber + 1, 100300);
+      } else {
+        this.invoice.number = 100300;
+      }
     });
   }
 }

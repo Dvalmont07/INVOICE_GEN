@@ -23,17 +23,17 @@ export class InvoiceItemsConfig {
         return (Math.round(this._params.previousMontlyFee * this._params.annualMonthlyFeeAdjustment) / 100).toLocaleString('pt-BR', { currency: 'BRL', minimumFractionDigits: 2 });
     }
     private get lastYear() {
-        return new Date().getFullYear() - 1;
+        return this._params.refYear - 1;
     }
 
     private get annualAdjustment(): string {
         if (this.validateIfIsFebrary()) {
-            return `Ajuste anual da mensalide: ${this._params.annualMonthlyFeeAdjustment}% (+R$ ${this.monthlyFeeAnnualFeeCalculatation}), referentea à inflação acumulada de ${this.lastYear} (IPCA)`;
+            return `Ajuste anual da mensalidade: ${this._params.annualMonthlyFeeAdjustment}% (+R$ ${this.monthlyFeeAnnualFeeCalculatation}), referente à inflação acumulada de ${this.lastYear} (IPCA)`;
         }
         return "";
     }
     private validateIfIsFebrary(): boolean {
-        return new Date().getMonth() === 1;
+        return this._params.refMonth === 2;
     }
 
     public get services(): InvoiceItems[] {

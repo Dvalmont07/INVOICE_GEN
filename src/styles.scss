@@ -1,23 +1,39 @@
+:root {
+  --brand-charcoal: #1A1A1A;
+  --brand-slate: #4A5568;
+  --brand-bg: #F8FAFB;
+  --brand-surface: #FFFFFF;
+  --brand-border: #E2E8F0;
+  --brand-accent: #3182CE;
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
 body {
-    font-family: roboto,nunito, lato, arial,sans-serif;
-    font-size: 20px;
-    color: #434141;
-
-}
-
-h1 {
-    font-size: 2.5em;
-}
-
-h2 {
-    font-size: 1.75em;
+    font-family: var(--font-main);
+    font-size: 16px;
+    background-color: var(--brand-bg);
+    color: var(--brand-charcoal);
+    line-height: 1.6;
+    margin: 0;
 }
 
 h1,
 h2,
 h3,
 .titulo {
-    font-family:  impact ,"arial black", sans-serif;
+    font-family: var(--font-main);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--brand-charcoal);
+}
+
+/* Isolate Impact font only for the Invoice PDF/Preview */
+#preview {
+    h1, h2, h3, .titulo {
+        font-family: impact, "arial black", sans-serif;
+        text-transform: none;
+        letter-spacing: normal;
+    }
 }
 
 .divisor {

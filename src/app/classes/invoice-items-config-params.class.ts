@@ -24,7 +24,7 @@ export class InvoiceItemsConfigParams {
         this._previousMontlyFee = value;
     }
 
-    public get annualmonthlyFeeAdjustment(): number {
+    public get annualMonthlyFeeAdjustment(): number {
         return this._annualMonthlyFeeAdjustment;
     }
     public set annualMonthlyFeeAdjustment(value: number) {

@@ -1,53 +1,55 @@
 .navbar {
-  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-  padding: 1rem 2rem;
+  background-color: var(--brand-surface);
+  border-bottom: 1px solid var(--brand-border);
+  padding: 0.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
 .navbar-brand a {
-  color: white;
-  font-size: 1.5rem;
+  color: var(--brand-charcoal);
+  font-size: 1.25rem;
   font-weight: 800;
   text-decoration: none;
-  letter-spacing: 1px;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
 }
 
 .navbar-links {
   list-style: none;
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
 }
 
 .navbar-links a {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--brand-slate);
   text-decoration: none;
   font-weight: 500;
-  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 6px;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .navbar-links a:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
+  color: var(--brand-charcoal);
+  background: #F1F5F9;
 }
 
 .navbar-links a.active {
-  color: #1a2a6c;
-  background: white;
-  font-weight: 600;
+  color: var(--brand-charcoal);
+  background: #F1F5F9;
+  font-weight: 700;
 }
 
 .page-container {
   padding: 2rem;
-  background-color: #f0f2f5;
+  background-color: var(--brand-bg);
   min-height: calc(100vh - 64px);
 }
