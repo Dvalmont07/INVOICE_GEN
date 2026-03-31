@@ -12,8 +12,9 @@ This skill defines the visual identity for the website interface, inspired by th
 | `--brand-surface` | `#FFFFFF` | Form cards, navigation bar, and main container. |
 | `--brand-border` | `#E2E8F0` | Subtle borders for inputs and sections. |
 | `--brand-accent` | `#3182CE` | Professional blue for primary actions (buttons). |
+| `--brand-success` | `#27AE60` | Green for success states and primary actions. |
 
-## Typography
+## Typography 
 
 - **Google Font**: `Inter` (Sans-serif).
 - **Headings**: `font-weight: 700`, `letter-spacing: -0.025em`.

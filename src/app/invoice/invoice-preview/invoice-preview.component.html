@@ -3,16 +3,15 @@
     <div class="main-content">
       <header>
         <h1>Prestação de Serviços</h1>
-        <div class="company-name">{{invoice.consultant.companyName}}</div>
-      </header>
-
-      <section id="preview-invoice-data" class="mt-5">
-        <div><strong>Número: #</strong>{{invoice.number}}</div>
-        <div>
-          <strong>Vencimento:</strong>
-          {{dateTransform(invoice.dueDate)}}
+        <div id="preview-invoice-data">
+          <div class="consultant-name">{{invoice.consultant.fullName}}</div>
+          <div><strong>Número: #</strong>{{invoice.number}}</div>
+          <div>
+            <strong>Vencimento:</strong>
+            {{dateTransform(invoice.dueDate)}}
+          </div>
         </div>
-      </section>
+      </header>
 
       <div id="preview-invoice-values" class="mt-5">
         <div class="reference-period">
@@ -81,9 +80,9 @@
       </section>
     </footer>
   </article>
-  <section>
-    <div class="btn-info my-5 p-3" style="cursor:pointer; width: 20em; margin:auto; text-align: center;"
-      (click)="generateInvoice()" (keyup)="generateInvoice()">Generate
-      Invoice</div>
+  <section class="d-flex justify-content-center w-100">
+    <button class="btn-generate" (click)="generateInvoice()">
+      Generate Invoice
+    </button>
   </section>
 </main>

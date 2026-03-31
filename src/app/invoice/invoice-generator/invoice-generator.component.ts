@@ -38,7 +38,7 @@ import { LocalStorageInvoiceRepository } from '../../services/repositories/local
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding: 2rem; background: #F8FAFC; border-radius: 12px; border: 1px solid var(--brand-border);">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: 2rem; background: #F8FAFC; border-radius: 12px; border: 1px solid var(--brand-border);">
             <div class="form-group" style="margin-bottom: 0;">
               <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Mês Ref.</label>
               <input type="number" [(ngModel)]="params.refMonth" (ngModelChange)="calculateInvoice()" class="form-control" placeholder="Mês (1-12)">
@@ -58,6 +58,10 @@ import { LocalStorageInvoiceRepository } from '../../services/repositories/local
             <div class="form-group" style="margin-bottom: 0;">
               <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Pendências (R$)</label>
               <input type="number" [(ngModel)]="params.lastMontyPendencies" (ngModelChange)="calculateInvoice()" class="form-control">
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Abatimento (R$)</label>
+              <input type="number" [(ngModel)]="params.deduction" (ngModelChange)="calculateInvoice()" class="form-control">
             </div>
             <div class="form-group" style="margin-bottom: 0;">
               <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Nº Fatura</label>
@@ -147,7 +151,32 @@ export class InvoiceGeneratorComponent implements OnInit {
 
   calculateInvoice() {
     if (!this.invoice.client.name) {
-      alert('Selecione um cliente primeiro!');
+      alert('O campo Cliente é obrigatório!');
+      return;
+    }
+
+    if (!this.invoice.consultant.fullName) {
+      alert('O campo Consultor é obrigatório!');
+      return;
+    }
+
+    if (!this.params.refMonth || !this.params.refYear) {
+      alert('Os campos de Mês e Ano de referência são obrigatórios!');
+      return;
+    }
+
+    if (!this.invoice.dueDate) {
+      alert('O campo Data de Vencimento é obrigatório!');
+      return;
+    }
+
+    if (this.params.creditedAmount === null || this.params.creditedAmount === undefined) {
+      alert('O campo Valor Creditado é obrigatório!');
+      return;
+    }
+
+    if (!this.invoice.number) {
+      alert('O campo Número da Fatura é obrigatório!');
       return;
     }
     
