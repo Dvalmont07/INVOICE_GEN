@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from '../../../classes/client.class';
 import { LocalStorageClientRepository } from '../../../services/repositories/local-storage-client.repository';
 
+interface ClientViewModel extends Client {
+  formattedFee?: string;
+}
+
 @Component({
   selector: 'app-client-list',
   template: `
@@ -29,7 +33,7 @@ import { LocalStorageClientRepository } from '../../../services/repositories/loc
           <tr *ngFor="let client of clients">
             <td>{{ client.name }}</td>
             <td>{{ client.email }}</td>
-            <td>{{ client.monthlyFee | currency:'BRL' }}</td>
+            <td>{{ client.formattedFee }}</td>
             <td>
               <div style="display: flex; gap: 0.5rem;">
                 <a [routerLink]="['/management/clients/edit', client.name]" class="btn btn-secondary">Editar</a>
@@ -44,7 +48,7 @@ import { LocalStorageClientRepository } from '../../../services/repositories/loc
   styleUrls: ['../../management.css']
 })
 export class ClientListComponent implements OnInit {
-  clients: Client[] = [];
+  clients: ClientViewModel[] = [];
 
   constructor(private clientRepo: LocalStorageClientRepository) {}
 
@@ -53,7 +57,13 @@ export class ClientListComponent implements OnInit {
   }
 
   loadClients(): void {
-    this.clientRepo.getAll().subscribe(data => this.clients = data);
+    const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+    this.clientRepo.getAll().subscribe(data => {
+      this.clients = data.map(client => ({
+        ...client,
+        formattedFee: formatter.format(client.monthlyFee || 0)
+      }) as Client & { formattedFee: string });
+    });
   }
 
   deleteClient(name: string): void {

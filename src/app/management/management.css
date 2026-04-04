@@ -140,3 +140,66 @@ h2 {
   display: block;
   opacity: 0.5;
 }
+
+/* Mobile Responsive Overrides */
+@media screen and (max-width: 768px) {
+  .management-container {
+    margin: 1rem auto;
+    padding: 1.5rem;
+  }
+
+  h2 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .action-bar {
+    justify-content: stretch;
+  }
+  
+  .action-bar .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .data-table {
+    display: block;
+  }
+
+  .data-table thead {
+    display: none; /* Hide headers on mobile */
+  }
+
+  .data-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .data-table tr {
+    display: block;
+    border: 1px solid var(--brand-border);
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fff;
+  }
+
+  .data-table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    padding: 0.75rem 0;
+  }
+
+  .data-table td:last-child {
+    border-bottom: none;
+    margin-top: 0.5rem;
+    justify-content: flex-end;
+  }
+
+  /* Simula headers na frente do td usando um texto antes dele se tentarmos forçar, mas 
+     para simplicidade o flex-between já lida bem visualmente. Podemos adicionar data-labels nos componentes no futuro. */
+}

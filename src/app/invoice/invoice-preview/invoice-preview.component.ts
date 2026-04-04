@@ -18,10 +18,15 @@ export class InvoicePreviewComponent {
   constructor(private invoiceRepo: LocalStorageInvoiceRepository) { }
 
   formatedDate = Intl.DateTimeFormat("pt-BR");
+  moneyFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
 
   public dateTransform(date: Date) {
     return this.formatedDate.format(date);
+  }
+
+  public formatMoeda(value: number): string {
+    return this.moneyFormatter.format(value || 0);
   }
 
   public generateInvoice() {

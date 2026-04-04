@@ -45,14 +45,14 @@
                 </div>
               </td>
               <td class="text-center">{{service.quantity}}</td>
-              <td class="text-end">{{service.price | currency}}</td>
-              <td class="text-end">{{service.total | currency}}</td>
+              <td class="text-end">{{formatMoeda(service.price)}}</td>
+              <td class="text-end">{{formatMoeda(service.total)}}</td>
             </tr>
           </tbody>
         </table>
 
         <div class="total-value mt-5">
-          <span><strong>Total:</strong> {{invoice.total | currency}}</span>
+          <span><strong>Total:</strong> {{formatMoeda(invoice.total)}}</span>
         </div>
       </div>
     </div>

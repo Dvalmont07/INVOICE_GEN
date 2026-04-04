@@ -10,18 +10,18 @@ import { LocalStorageInvoiceRepository } from '../../services/repositories/local
 @Component({
   selector: 'app-invoice-generator',
   template: `
-    <main class="management-container" style="max-width: 1300px; padding: 3rem;">
-      <header class="management-header" style="margin-bottom: 3rem;">
-        <h2 style="font-size: 2rem;">Gerador de Fatura</h2>
+    <main class="management-container">
+      <header class="management-header" style="margin-bottom: 2rem;">
+        <h2>Gerador de Fatura</h2>
       </header>
 
       <section>
-        <div class="card" style="padding: 2.5rem; margin-bottom: 3rem;">
-          <h3 style="margin-top: 0; border-bottom: 1px solid var(--brand-border); padding-bottom: 1.25rem; margin-bottom: 2.5rem; font-size: 1.25rem;">
+        <div class="card" style="padding: 1.5rem 0; margin-bottom: 3rem;">
+          <h3 style="margin-top: 0; border-bottom: 1px solid var(--brand-border); padding-bottom: 1.25rem; margin-bottom: 2rem; font-size: 1.25rem;">
             Configuração da Fatura
           </h3>
           
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+          <div class="generator-grid-2">
             <div class="form-group" style="margin-bottom: 0;">
               <label>Cliente</label>
               <select [(ngModel)]="invoice.client.name" (change)="onClientSelect($event)" class="form-control">
@@ -38,38 +38,38 @@ import { LocalStorageInvoiceRepository } from '../../services/repositories/local
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; padding: 2rem; background: #F8FAFC; border-radius: 12px; border: 1px solid var(--brand-border);">
+          <div class="generator-grid-4">
             <div class="form-group" style="margin-bottom: 0;">
-              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Mês Ref.</label>
+              <label class="generator-label">Mês Ref.</label>
               <input type="number" [(ngModel)]="params.refMonth" (ngModelChange)="calculateInvoice()" class="form-control" placeholder="Mês (1-12)">
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Ano Ref.</label>
+              <label class="generator-label">Ano Ref.</label>
               <input type="number" [(ngModel)]="params.refYear" (ngModelChange)="calculateInvoice()" class="form-control">
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Vencimento</label>
-              <input type="date" [ngModel]="invoice.dueDate | date:'yyyy-MM-dd'" (ngModelChange)="onDueDateChange($event)" class="form-control">
+              <label class="generator-label">Vencimento</label>
+              <input type="date" [ngModel]="formattedDueDate" (ngModelChange)="onDueDateChange($event)" class="form-control">
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Creditado (R$)</label>
+              <label class="generator-label">Creditado (R$)</label>
               <input type="number" [(ngModel)]="params.creditedAmount" (ngModelChange)="calculateInvoice()" class="form-control">
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Pendências (R$)</label>
+              <label class="generator-label">Pendências (R$)</label>
               <input type="number" [(ngModel)]="params.lastMontyPendencies" (ngModelChange)="calculateInvoice()" class="form-control">
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Abatimento (R$)</label>
+              <label class="generator-label">Abatimento (R$)</label>
               <input type="number" [(ngModel)]="params.deduction" (ngModelChange)="calculateInvoice()" class="form-control">
             </div>
             <div class="form-group" style="margin-bottom: 0;">
-              <label style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Nº Fatura</label>
+              <label class="generator-label">Nº Fatura</label>
               <input type="number" [(ngModel)]="invoice.number" class="form-control">
             </div>
           </div>
 
-          <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem;">
+          <div class="generator-actions">
             <button (click)="calculateInvoice()" class="btn btn-secondary">Recalcular</button>
           </div>
         </div>
@@ -80,7 +80,7 @@ import { LocalStorageInvoiceRepository } from '../../services/repositories/local
       </section>
     </main>
   `,
-  styleUrls: ['../../app.component.scss', '../../management/management.css']
+  styleUrls: ['../../app.component.scss', '../../management/management.css', './invoice-generator.component.scss']
 })
 export class InvoiceGeneratorComponent implements OnInit {
   invoice: Invoice = new Invoice();
@@ -204,9 +204,17 @@ export class InvoiceGeneratorComponent implements OnInit {
     });
   }
 
-  onDueDateChange(value: string) {
-    if (value) {
+  get formattedDueDate(): string {
+    if (!this.invoice || !this.invoice.dueDate) return '';
+    const d = this.invoice.dueDate;
+    return `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2, '0')}-${d.getDate().toString().padStart(2, '0')}`;
+  }
+
+  onDueDateChange(value: any) {
+    if (value && typeof value === 'string') {
       this.invoice.dueDate = new Date(value + 'T00:00:00');
+    } else if (value && value.target && value.target.value) {
+      this.invoice.dueDate = new Date(value.target.value + 'T00:00:00');
     }
   }
 

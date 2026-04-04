@@ -1,0 +1,248 @@
+- Generating browser application bundles (phase: setup)...
+✔ Browser application bundle generation complete.
+✔ Browser application bundle generation complete.
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.index-of.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reduce.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.array.reverse.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.promise.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.regexp.to-string.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.ends-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.includes.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.match.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.replace.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.split.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.starts-with.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/es.string.trim.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'core-js/modules/web.dom-collections.iterator.js'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'raf'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\node_modules\canvg\lib\index.es.js depends on 'rgbcolor'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+Warning: D:\ESTUDOS ANGULAR\INVOICE_GEN\src\app\invoice\invoice-preview\invoice-preview.component.ts depends on 'html2canvas'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+
+
+./src/app/app.module.ts:16:0-62 - Error: Module not found: Error: Can't resolve '@angular/service-worker' in 'D:\ESTUDOS ANGULAR\INVOICE_GEN\src\app'
+
+Error: src/app/app.component.html:26:3 - error NG8001: 'router-outlet' is not a known element:
+1. If 'router-outlet' is an Angular component, then verify that it is part of this module.
+2. If 'router-outlet' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+26   <router-outlet></router-outlet>
+     ~~~~~~~~~~~~~~~
+
+  src/app/app.component.ts:7:16
+    7   templateUrl: './app.component.html',
+                     ~~~~~~~~~~~~~~~~~~~~~~
+    Error occurs in the template of component AppComponent.
+
+
+Error: src/app/app.module.ts:20:37 - error TS2307: Cannot find module '@angular/service-worker' or its corresponding type declarations.
+
+20 import { ServiceWorkerModule } from '@angular/service-worker';
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app.module.ts:34:12 - error NG1010: Value
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:27:23 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+27               <select [(ngModel)]="invoice.client.name" (change)="onClientSelect($event)" class="form-control">
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:34:23 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'select'.
+
+34               <select [(ngModel)]="invoice.consultant.fullName" (change)="onConsultantSelect($event)" class="form-control">
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:44:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+44               <input type="number" [(ngModel)]="params.refMonth" (ngModelChange)="calculateInvoice()" class="form-control" placeholder="Mês (1-12)">
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:48:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+48               <input type="number" [(ngModel)]="params.refYear" (ngModelChange)="calculateInvoice()" class="form-control">
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:52:34 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+52               <input type="date" [ngModel]="formattedDueDate" (ngModelChange)="onDueDateChange($event)" class="form-control">
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:56:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+56               <input type="number" [(ngModel)]="params.creditedAmount" (ngModelChange)="calculateInvoice()" class="form-control">
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:60:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+60               <input type="number" [(ngModel)]="params.lastMontyPendencies" (ngModelChange)="calculateInvoice()" class="form-control">
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:64:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+64               <input type="number" [(ngModel)]="params.deduction" (ngModelChange)="calculateInvoice()" class="form-control">
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:68:36 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+68               <input type="number" [(ngModel)]="invoice.number" class="form-control">
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:78:12 - error NG8001: 'app-invoice-preview' is not a known element:
+1. If 'app-invoice-preview' is an Angular component, then verify that it is part of this module.
+2. If 'app-invoice-preview' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+
+78            <app-invoice-preview [invoice]="invoice" (onGenerated)="updateNextInvoiceNumber()"></app-invoice-preview>
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/invoice/invoice-generator/invoice-generator.component.ts:78:33 - error NG8002: Can't bind to 'invoice' since it isn't a known property of 'app-invoice-preview'.
+1. If 'app-invoice-preview' is an Angular component and it has 'invoice' input, then verify that it is part of this module.
+2. If 'app-invoice-preview' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.
+3. To allow any property add 'NO_ERRORS_SCHEMA' to the '@NgModule.schemas' of this component.
+
+78            <app-invoice-preview [invoice]="invoice" (onGenerated)="updateNextInvoiceNumber()"></app-invoice-preview>
+                                   ~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/clients/client-form/client-form.component.ts:15:30 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+15           <input type="text" [(ngModel)]="client.name" name="name" class="form-control" placeholder="Ex: JF Limpeza" required>
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/clients/client-form/client-form.component.ts:20:31 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+20           <input type="email" [(ngModel)]="client.email" name="email" class="form-control" placeholder="Ex: contato@empresa.com">
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/clients/client-form/client-form.component.ts:25:30 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+25           <input type="text" [(ngModel)]="client.companyRepresentativeName" name="rep" class="form-control" placeholder="Ex: João da Silva">
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/clients/client-form/client-form.component.ts:31:34 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+31             <input type="number" [(ngModel)]="client.monthlyFee" name="fee" class="form-control">
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/clients/client-form/client-form.component.ts:36:34 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+36             <input type="number" [(ngModel)]="client.previousMontlyFee" name="prevFee" class="form-control">
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/clients/client-form/client-form.component.ts:43:34 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+43             <input type="number" [(ngModel)]="client.commission" name="commission" class="form-control">
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/clients/client-form/client-form.component.ts:48:34 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+48             <input type="number" [(ngModel)]="client.annualMonthlyFeeAdjustment" name="adjustment" class="form-control">
+                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/clients/client-list/client-list.component.ts:35:20 - error NG8002: Can't bind to 'routerLink' since it isn't a known property of 'a'.
+
+35                 <a [routerLink]="['/management/clients/edit', client.name]" class="btn btn-secondary">Editar</a>
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/consultants/consultant-form/consultant-form.component.ts:16:32 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+16             <input type="text" [(ngModel)]="consultant.firstName" name="firstName" class="form-control" required placeholder="Ex: Danilo">
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/consultants/consultant-form/consultant-form.component.ts:20:32 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+20             <input type="text" [(ngModel)]="consultant.lastName" name="lastName" class="form-control" required placeholder="Ex: Matos">
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/consultants/consultant-form/consultant-form.component.ts:26:30 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+26           <input type="text" [(ngModel)]="consultant.companyName" name="companyName" class="form-control" placeholder="Ex: Danilo Consultoria LTDA">
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/consultants/consultant-form/consultant-form.component.ts:32:32 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+32             <input type="text" [(ngModel)]="consultant.pixKey" name="pixKey" class="form-control" placeholder="Ex: seu@email.com">
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/consultants/consultant-form/consultant-form.component.ts:36:32 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+36             <input type="text" [(ngModel)]="consultant.bankName" name="bankName" class="form-control" placeholder="Ex: Nubank">
+                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/consultants/consultant-form/consultant-form.component.ts:42:31 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+42           <input type="email" [(ngModel)]="consultant.email" name="email" class="form-control" placeholder="Ex: danilo@email.com">
+                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/consultants/consultant-form/consultant-form.component.ts:47:30 - error NG8002: Can't bind to 'ngModel' since it isn't a known property of 'input'.
+
+47           <input type="text" [(ngModel)]="consultant.signature" name="signature" class="form-control" placeholder="Ex: Danilo Matos">
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/management/consultants/consultant-list/consultant-list.component.ts:37:20 - error NG8002: Can't bind to 'routerLink' since it isn't a known property of 'a'.
+
+37                 <a [routerLink]="['/management/consultants/edit', consultant.fullName]" class="btn btn-secondary">Editar</a>
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+

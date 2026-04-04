@@ -3,19 +3,28 @@ import { Invoice } from '../../../classes/invoice.class';
 import { LocalStorageInvoiceRepository } from '../../../services/repositories/local-storage-invoice.repository';
 import { Router } from '@angular/router';
 
+// Contrato do ViewModel para a View (View Model Pattern)
+interface InvoiceViewModel {
+  formattedDate: string;
+  clientName: string;
+  referenceText: string;
+  formattedTotal: string;
+  rawInvoice: Invoice;
+}
+
 @Component({
   selector: 'app-invoice-history',
   template: `
     <div class="management-container">
       <h2>Histórico de Faturas</h2>
 
-      <div *ngIf="history.length === 0" class="empty-state">
+      <div *ngIf="viewModels.length === 0" class="empty-state">
         <i>📄</i>
         <p>Nenhuma fatura gerada ainda.</p>
         <a routerLink="/invoice" class="btn btn-primary" style="display: inline-flex; margin-top: 1rem;">Gerar Minha Primeira Fatura</a>
       </div>
 
-      <table *ngIf="history.length > 0" class="data-table">
+      <table *ngIf="viewModels.length > 0" class="data-table">
         <thead>
           <tr>
             <th>Data</th>
@@ -26,15 +35,15 @@ import { Router } from '@angular/router';
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let invoice of history">
-            <td>{{ invoice.id | date:'dd/MM/yyyy HH:mm' }}</td>
-            <td>{{ invoice.client.name }}</td>
-            <td>{{ invoice.referenceFullMonth }} / {{ invoice.referenceYear }}</td>
-            <td>{{ invoice.total | currency:'BRL' }}</td>
+          <tr *ngFor="let item of viewModels">
+            <td>{{ item.formattedDate }}</td>
+            <td>{{ item.clientName }}</td>
+            <td>{{ item.referenceText }}</td>
+            <td>{{ item.formattedTotal }}</td>
             <td>
               <div style="display: flex; gap: 0.5rem;">
-                <button (click)="viewInvoice(invoice)" class="btn btn-secondary">Visualizar</button>
-                <button (click)="deleteInvoice(invoice.id)" class="btn btn-danger">Excluir</button>
+                <button (click)="viewInvoice(item.rawInvoice)" class="btn btn-secondary">Visualizar</button>
+                <button (click)="deleteInvoice(item.rawInvoice.id)" class="btn btn-danger">Excluir</button>
               </div>
             </td>
           </tr>
@@ -45,7 +54,7 @@ import { Router } from '@angular/router';
   styleUrls: ['../../management.css']
 })
 export class InvoiceHistoryComponent implements OnInit {
-  history: Invoice[] = [];
+  viewModels: InvoiceViewModel[] = [];
 
   constructor(
     private invoiceRepo: LocalStorageInvoiceRepository,
@@ -58,8 +67,31 @@ export class InvoiceHistoryComponent implements OnInit {
 
   loadHistory(): void {
     this.invoiceRepo.getAll().subscribe(data => {
-      this.history = data.reverse(); // Show newest first
+      const reversed = data.reverse(); // Show newest first
+      this.viewModels = reversed.map(invoice => this.mapToViewModel(invoice));
     });
+  }
+
+  private mapToViewModel(invoice: Invoice): InvoiceViewModel {
+    // Formatação de Moeda Nativa do JS sem uso de Pipes sujos na View
+    const formatter = new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+
+    // Simulando parse de data limpo
+    const dateObj = new Date(invoice.id);
+    const formattedDate = !isNaN(dateObj.getTime())
+      ? dateObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+      : invoice.id;
+
+    return {
+      formattedDate: formattedDate,
+      clientName: invoice.client?.name || 'Desconhecido',
+      referenceText: `${invoice.referenceFullMonth || ''} / ${invoice.referenceYear || ''}`,
+      formattedTotal: formatter.format(invoice.total || 0),
+      rawInvoice: invoice
+    };
   }
 
   viewInvoice(invoice: Invoice): void {

@@ -2,11 +2,23 @@
   <div class="navbar-brand">
     <a routerLink="/invoice">InvoiceGen</a>
   </div>
-  <ul class="navbar-links">
-    <li><a routerLink="/invoice" routerLinkActive="active">Gerador</a></li>
-    <li><a routerLink="/management/history" routerLinkActive="active">Histórico</a></li>
-    <li><a routerLink="/management/clients" routerLinkActive="active">Clientes</a></li>
-    <li><a routerLink="/management/consultants" routerLinkActive="active">Consultores</a></li>
+  
+  <button class="mobile-toggle" (click)="toggleMobileMenu()">
+    ☰
+  </button>
+
+  <ul class="navbar-links" [class.open]="mobileMenuOpen">
+    <li><a routerLink="/invoice" routerLinkActive="active" (click)="mobileMenuOpen = false">Gerador</a></li>
+    <li><a routerLink="/management/history" routerLinkActive="active" (click)="mobileMenuOpen = false">Histórico</a></li>
+    <li><a routerLink="/management/clients" routerLinkActive="active" (click)="mobileMenuOpen = false">Clientes</a></li>
+    <li><a routerLink="/management/consultants" routerLinkActive="active" (click)="mobileMenuOpen = false">Consultores</a></li>
+    
+    <!-- Sync Actions -->
+    <div class="sync-actions">
+      <button class="btn btn-sm btn-action" title="Exportar Backup" (click)="exportBackup()">Exportar</button>
+      <button class="btn btn-sm btn-action" title="Importar Backup" (click)="triggerImport()">Importar</button>
+      <input type="file" #fileInput (change)="onFileSelected($event)" accept=".json" style="display: none;">
+    </div>
   </ul>
 </nav>
 

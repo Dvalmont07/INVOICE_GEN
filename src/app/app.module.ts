@@ -1,5 +1,7 @@
-import { DEFAULT_CURRENCY_CODE,  LOCALE_ID,  NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE,  LOCALE_ID,  NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { LocalStorageClientRepository } from './services/repositories/local-stor
 import { LocalStorageConsultantRepository } from './services/repositories/local-storage-consultant.repository';
 import { InvoiceGeneratorComponent } from './invoice/invoice-generator/invoice-generator.component';
 import { InvoiceHistoryComponent } from './management/invoices/invoice-history/invoice-history.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -31,7 +34,13 @@ registerLocaleData(ptBr);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule 
+    FormsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }) 
 
   ],
   providers: [
