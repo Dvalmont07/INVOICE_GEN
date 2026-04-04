@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Consultant } from '../../../classes/consultant.class';
-import { LocalStorageConsultantRepository } from '../../../services/repositories/local-storage-consultant.repository';
+import { IndexedDbConsultantRepository } from '../../../services/repositories/indexed-db-consultant.repository';
 
 @Component({
   selector: 'app-consultant-list',
@@ -48,7 +48,7 @@ import { LocalStorageConsultantRepository } from '../../../services/repositories
 export class ConsultantListComponent implements OnInit {
   consultants: Consultant[] = [];
 
-  constructor(private consultantRepo: LocalStorageConsultantRepository) {}
+  constructor(private consultantRepo: IndexedDbConsultantRepository) {}
 
   ngOnInit(): void {
     this.loadConsultants();

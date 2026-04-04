@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Invoice } from '../../classes/invoice.class';
 import { InvoiceItemsConfigParams } from '../../classes/invoice-items-config-params.class';
 import { InvoiceItemsConfig } from '../../classes/invoice-items-config.class';
-import { LocalStorageClientRepository } from '../../services/repositories/local-storage-client.repository';
-import { LocalStorageConsultantRepository } from '../../services/repositories/local-storage-consultant.repository';
-import { LocalStorageInvoiceRepository } from '../../services/repositories/local-storage-invoice.repository';
+import { IndexedDbClientRepository } from '../../services/repositories/indexed-db-client.repository';
+import { IndexedDbConsultantRepository } from '../../services/repositories/indexed-db-consultant.repository';
+import { IndexedDbInvoiceRepository } from '../../services/repositories/indexed-db-invoice.repository';
 
 @Component({
   selector: 'app-invoice-generator',
@@ -89,9 +89,9 @@ export class InvoiceGeneratorComponent implements OnInit {
   consultants: any[] = [];
 
   constructor(
-    private clientRepo: LocalStorageClientRepository,
-    private consultantRepo: LocalStorageConsultantRepository,
-    private invoiceRepo: LocalStorageInvoiceRepository,
+    private clientRepo: IndexedDbClientRepository,
+    private consultantRepo: IndexedDbConsultantRepository,
+    private invoiceRepo: IndexedDbInvoiceRepository,
     private route: ActivatedRoute
   ) {
     const today = new Date();

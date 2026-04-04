@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Invoice } from '../../../classes/invoice.class';
-import { LocalStorageInvoiceRepository } from '../../../services/repositories/local-storage-invoice.repository';
+import { IndexedDbInvoiceRepository } from '../../../services/repositories/indexed-db-invoice.repository';
 import { Router } from '@angular/router';
 
 // Contrato do ViewModel para a View (View Model Pattern)
@@ -57,7 +57,7 @@ export class InvoiceHistoryComponent implements OnInit {
   viewModels: InvoiceViewModel[] = [];
 
   constructor(
-    private invoiceRepo: LocalStorageInvoiceRepository,
+    private invoiceRepo: IndexedDbInvoiceRepository,
     private router: Router
   ) {}
 
@@ -80,10 +80,12 @@ export class InvoiceHistoryComponent implements OnInit {
     });
 
     // Simulando parse de data limpo
+    // Formatação de data robusta
+    const dateStr = typeof invoice.id === 'string' ? invoice.id : invoice.id.toString();
     const dateObj = new Date(invoice.id);
     const formattedDate = !isNaN(dateObj.getTime())
       ? dateObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-      : invoice.id;
+      : dateStr;
 
     return {
       formattedDate: formattedDate,
@@ -100,7 +102,7 @@ export class InvoiceHistoryComponent implements OnInit {
     this.router.navigate(['/invoice'], { queryParams: { fromHistory: invoice.id } });
   }
 
-  deleteInvoice(id: string): void {
+  deleteInvoice(id: string | number): void {
     if (confirm('Deseja excluir esta fatura do histórico?')) {
       this.invoiceRepo.delete(id).subscribe(() => this.loadHistory());
     }

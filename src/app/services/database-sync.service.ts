@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
+import { IndexedDbClientRepository } from './repositories/indexed-db-client.repository';
+import { IndexedDbConsultantRepository } from './repositories/indexed-db-consultant.repository';
+import { IndexedDbInvoiceRepository } from './repositories/indexed-db-invoice.repository';
+import { forkJoin, map, Observable, of, switchMap, take } from 'rxjs';
+import { Client } from '../classes/client.class';
+import { Consultant } from '../classes/consultant.class';
+import { Invoice } from '../classes/invoice.class';
 
 export interface AppDatabaseBackup {
-  clients: any;
-  consultants: any;
-  invoices: any;
+  clients: any[];
+  consultants: any[];
+  invoices: any[];
   version: string;
   timestamp: string;
 }
@@ -12,52 +19,57 @@ export interface AppDatabaseBackup {
   providedIn: 'root'
 })
 export class DatabaseSyncService {
-  private readonly CLIENTS_KEY = 'invoice_gen_clients';
-  private readonly CONSULTANTS_KEY = 'invoice_gen_consultants';
-  private readonly INVOICES_KEY = 'invoice_gen_history';
-  private readonly CURRENT_VERSION = '1.0.0';
+  private readonly CURRENT_VERSION = '2.0.0'; // Updated version for IndexedDB
 
-  constructor() {}
+  constructor(
+    private clientRepo: IndexedDbClientRepository,
+    private consultantRepo: IndexedDbConsultantRepository,
+    private invoiceRepo: IndexedDbInvoiceRepository
+  ) {}
 
   /**
-   * Exporta os dados atuais do LocalStorage para uma string JSON
+   * Exporta os dados atuais de todos os repositórios para uma string JSON
    */
-  public exportDatabase(): string {
-    const clientsStr = localStorage.getItem(this.CLIENTS_KEY);
-    const consultantsStr = localStorage.getItem(this.CONSULTANTS_KEY);
-    const invoicesStr = localStorage.getItem(this.INVOICES_KEY);
-
-    const backup: AppDatabaseBackup = {
-      clients: clientsStr ? JSON.parse(clientsStr) : [],
-      consultants: consultantsStr ? JSON.parse(consultantsStr) : [],
-      invoices: invoicesStr ? JSON.parse(invoicesStr) : [],
-      version: this.CURRENT_VERSION,
-      timestamp: new Date().toISOString()
-    };
-
-    return JSON.stringify(backup, null, 2);
+  public exportDatabase(): Observable<string> {
+    return forkJoin({
+      clients: this.clientRepo.getAll().pipe(take(1)),
+      consultants: this.consultantRepo.getAll().pipe(take(1)),
+      invoices: this.invoiceRepo.getAll().pipe(take(1))
+    }).pipe(
+      map(({ clients, consultants, invoices }) => {
+        const backup: AppDatabaseBackup = {
+          clients: clients.map(c => c.toJSON()),
+          consultants: consultants.map(c => c.toJSON()),
+          invoices: invoices.map(i => i.toJSON()),
+          version: this.CURRENT_VERSION,
+          timestamp: new Date().toISOString()
+        };
+        return JSON.stringify(backup, null, 2);
+      })
+    );
   }
 
   /**
    * Dispara o download em tela do banco de dados completo
    */
   public downloadBackupFile(): void {
-    const backupJson = this.exportDatabase();
-    const blob = new Blob([backupJson], { type: 'application/json' });
-    const url = window.URL.createObjectURL(blob);
-    
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `invoicegen_backup_${new Date().toISOString().split('T')[0]}.json`;
-    a.click();
-    
-    window.URL.revokeObjectURL(url);
+    this.exportDatabase().subscribe(backupJson => {
+      const blob = new Blob([backupJson], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `invoicegen_backup_${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      
+      window.URL.revokeObjectURL(url);
+    });
   }
 
   /**
-   * Importa um backup JSON e mescla à base local, garantindo não ter chaves vazias.
+   * Importa um backup JSON e salva nos repositórios seguindo a separação de interesses.
    */
-  public importDatabase(backupJson: string): boolean {
+  public importDatabase(backupJson: string): Observable<boolean> {
     try {
       const backup: AppDatabaseBackup = JSON.parse(backupJson);
 
@@ -65,22 +77,23 @@ export class DatabaseSyncService {
         throw new Error('Arquivo de backup inválido ou incompatível.');
       }
 
-      if (backup.clients && backup.clients.length >= 0) {
-        localStorage.setItem(this.CLIENTS_KEY, JSON.stringify(backup.clients));
-      }
+      // We use forkJoin and switchMap to save all items one by one or in bulk if repository allowed
+      // For now, we save everything sequentially/in parallel using forkJoin
+      const clientObs = (backup.clients || []).map(c => this.clientRepo.save(Client.fromJSON(c)));
+      const consultantObs = (backup.consultants || []).map(c => this.consultantRepo.save(Consultant.fromJSON(c)));
+      const invoiceObs = (backup.invoices || []).map(i => this.invoiceRepo.save(Invoice.fromJSON(i)));
+
+      const allObs = [...clientObs, ...consultantObs, ...invoiceObs];
       
-      if (backup.consultants && backup.consultants.length >= 0) {
-        localStorage.setItem(this.CONSULTANTS_KEY, JSON.stringify(backup.consultants));
-      }
+      if (allObs.length === 0) return of(true);
 
-      if (backup.invoices && backup.invoices.length >= 0) {
-        localStorage.setItem(this.INVOICES_KEY, JSON.stringify(backup.invoices));
-      }
-
-      return true;
+      return forkJoin(allObs).pipe(
+        map(() => true),
+        take(1)
+      );
     } catch (e) {
       console.error('Erro ao importar o banco de dados', e);
-      return false;
+      return of(false);
     }
   }
 }

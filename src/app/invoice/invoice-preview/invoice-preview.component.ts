@@ -3,7 +3,7 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { Invoice } from 'src/app/classes/invoice.class';
 import { EventEmitter, Output } from '@angular/core';
-import { LocalStorageInvoiceRepository } from 'src/app/services/repositories/local-storage-invoice.repository';
+import { IndexedDbInvoiceRepository } from 'src/app/services/repositories/indexed-db-invoice.repository';
 
 @Component({
   selector: 'app-invoice-preview',
@@ -15,7 +15,7 @@ export class InvoicePreviewComponent {
   @Input() invoice: Invoice = new Invoice();
   @Output() onGenerated = new EventEmitter<void>();
 
-  constructor(private invoiceRepo: LocalStorageInvoiceRepository) { }
+  constructor(private invoiceRepo: IndexedDbInvoiceRepository) { }
 
   formatedDate = Intl.DateTimeFormat("pt-BR");
   moneyFormatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });

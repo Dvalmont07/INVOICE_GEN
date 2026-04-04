@@ -1,4 +1,5 @@
 export class Consultant {
+    private _id?: number;
     private _firstName: string = "";
     private _lastName: string = "";
     private _companyName: string = "";
@@ -6,7 +7,14 @@ export class Consultant {
     private _bankName: string = "";
     private _email: string = "";
     private _signature: string = "";
-    
+    private _active: boolean = true;
+
+    public get id(): number | undefined {
+        return this._id;
+    }
+    public set id(value: number | undefined) {
+        this._id = value;
+    }
 
     public get firstName(): string {
         return this._firstName;
@@ -53,28 +61,47 @@ export class Consultant {
     public set signature(value: string) {
         this._signature = value;
     }
+    public get active(): boolean {
+        return this._active;
+    }
+    public set active(value: boolean) {
+        this._active = value;
+    }
 
     public toJSON() {
         return {
+            id: this._id,
             firstName: this._firstName,
             lastName: this._lastName,
             companyName: this._companyName,
             pixKey: this._pixKey,
             bankName: this._bankName,
             email: this._email,
-            signature: this._signature
+            signature: this._signature,
+            active: this._active ? 1 : 0
         };
     }
 
     public static fromJSON(json: any): Consultant {
         const consultant = new Consultant();
-        consultant.firstName = json.firstName;
-        consultant.lastName = json.lastName;
+        consultant.id = json.id;
+        
+        // Robust name handling for legacy data
+        if (json.firstName) {
+            consultant.firstName = json.firstName;
+            consultant.lastName = json.lastName || "";
+        } else if (json.name) {
+            const parts = json.name.trim().split(' ');
+            consultant.firstName = parts[0];
+            consultant.lastName = parts.slice(1).join(' ');
+        }
+        
         consultant.companyName = json.companyName;
         consultant.pixKey = json.pixKey;
         consultant.bankName = json.bankName;
         consultant.email = json.email;
         consultant.signature = json.signature;
+        consultant.active = json.active === undefined || json.active === true || json.active === 1;
         return consultant;
     }
 }

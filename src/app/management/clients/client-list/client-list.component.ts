@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../../../classes/client.class';
-import { LocalStorageClientRepository } from '../../../services/repositories/local-storage-client.repository';
+import { IndexedDbClientRepository } from '../../../services/repositories/indexed-db-client.repository';
 
 interface ClientViewModel extends Client {
   formattedFee?: string;
@@ -50,7 +50,7 @@ interface ClientViewModel extends Client {
 export class ClientListComponent implements OnInit {
   clients: ClientViewModel[] = [];
 
-  constructor(private clientRepo: LocalStorageClientRepository) {}
+  constructor(private clientRepo: IndexedDbClientRepository) {}
 
   ngOnInit(): void {
     this.loadClients();

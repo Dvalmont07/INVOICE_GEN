@@ -3,7 +3,7 @@ import { Consultant } from "./consultant.class";
 import { InvoiceItems } from "./invoice-items.class";
 
 export class Invoice {
-    private _id: string = new Date().getTime().toString();
+    private _id: string | number = new Date().getTime().toString();
     private _number: number = 0;
     private _client: Client = new Client();
     private _consultant: Consultant = new Consultant();
@@ -14,11 +14,12 @@ export class Invoice {
     private _customDay: number = 0;
     private _customMonth: number = 0;
     private _customYear: number = 0;
+    private _active: boolean = true;
 
-    public get id(): string {
+    public get id(): string | number {
         return this._id;
     }
-    public set id(value: string) {
+    public set id(value: string | number) {
         this._id = value;
     }
 
@@ -93,6 +94,12 @@ export class Invoice {
     public set customYear(value: number) {
         this._customYear = value;
     }
+    public get active(): boolean {
+        return this._active;
+    }
+    public set active(value: boolean) {
+        this._active = value;
+    }
 
 
     public get total(): number {
@@ -116,7 +123,8 @@ export class Invoice {
             services: this._services.map(s => s.toJSON()),
             customDay: this._customDay,
             customMonth: this._customMonth,
-            customYear: this._customYear
+            customYear: this._customYear,
+            active: this._active ? 1 : 0
         };
     }
 
@@ -133,6 +141,7 @@ export class Invoice {
         invoice.customDay = json.customDay;
         invoice.customMonth = json.customMonth;
         invoice.customYear = json.customYear;
+        invoice.active = json.active === undefined || json.active === true || json.active === 1;
         return invoice;
     }
 }

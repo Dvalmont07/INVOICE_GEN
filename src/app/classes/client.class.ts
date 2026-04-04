@@ -1,4 +1,5 @@
 export class Client {
+    private _id?: number;
     private _name: string = "";
     private _email: string = "";
     private _companyRepresentativeName: string = "";
@@ -6,6 +7,14 @@ export class Client {
     private _previousMontlyFee: number = 0;   
     private _commission: number = 0;
     private _annualMonthlyFeeAdjustment: number = 0;
+    private _active: boolean = true;
+
+    public get id(): number | undefined {
+        return this._id;
+    }
+    public set id(value: number | undefined) {
+        this._id = value;
+    }
 
     public get annualMonthlyFeeAdjustment(): number {
         return this._annualMonthlyFeeAdjustment;
@@ -49,21 +58,30 @@ export class Client {
     public set commission(value: number) {
         this._commission = value;
     }
+    public get active(): boolean {
+        return this._active;
+    }
+    public set active(value: boolean) {
+        this._active = value;
+    }
 
     public toJSON() {
         return {
+            id: this._id,
             name: this._name,
             email: this._email,
             companyRepresentativeName: this._companyRepresentativeName,
             monthlyFee: this._montlyFee,
             previousMontlyFee: this._previousMontlyFee,
             commission: this._commission,
-            annualMonthlyFeeAdjustment: this._annualMonthlyFeeAdjustment
+            annualMonthlyFeeAdjustment: this._annualMonthlyFeeAdjustment,
+            active: this._active ? 1 : 0
         };
     }
 
     public static fromJSON(json: any): Client {
         const client = new Client();
+        client.id = json.id;
         client.name = json.name;
         client.email = json.email;
         client.companyRepresentativeName = json.companyRepresentativeName;
@@ -71,6 +89,7 @@ export class Client {
         client.previousMontlyFee = json.previousMontlyFee;
         client.commission = json.commission;
         client.annualMonthlyFeeAdjustment = json.annualMonthlyFeeAdjustment;
+        client.active = json.active === undefined || json.active === true || json.active === 1;
         return client;
     }
 }
