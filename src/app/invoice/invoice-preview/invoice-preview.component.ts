@@ -32,57 +32,73 @@ export class InvoicePreviewComponent {
   public generateInvoice() {
     let preview = document.querySelector("#preview") as HTMLElement;
     
-    // Calculate the actual dimensions
-    const width = preview.clientWidth;
-    const height = preview.scrollHeight; // Use scrollHeight to capture everything
+    // Add a temporary class to body to force desktop layout for html2canvas
+    document.body.classList.add('pdf-exporting');
 
-    const options = {
-      scale: 2, // High resolution (2 is usually enough for A4)
-      useCORS: true,
-      logging: false,
-      backgroundColor: '#ffffff',
-      width: width,
-      height: height,
-      windowWidth: width
-    };
+    // Force A4 size layout (1140px width is perfect for A4 ratio used here)
+    const originalWidth = preview.style.width;
+    const originalPosition = preview.style.position;
+    
+    preview.style.width = '1140px';
+    preview.style.position = 'absolute'; // Prevent pushing other elements
 
-    html2canvas(preview, options).then((canvas) => {
-      const imgData = canvas.toDataURL('image/jpeg', 0.95);
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      
-      const canvasWidth = canvas.width;
-      const canvasHeight = canvas.height;
-      const ratio = canvasWidth / canvasHeight;
-      
-      let imgWidth = pdfWidth;
-      let imgHeight = pdfWidth / ratio;
+    // Wait for the browser to recalculate layout
+    setTimeout(() => {
+      const width = preview.clientWidth;
+      const height = preview.scrollHeight;
 
-      // If the content is very long, it might need more than one page
-      // But for "Aproveitar espaço A4", we ensure it fills the width
-      // and we center it if it's shorter than A4
-      
-      let yPos = 0;
-      if (imgHeight < pdfHeight) {
-          // If shorter than A4, we can center it vertically or just start at top
-          // The user wants to "aproveitar o espaço", so we keep it at top
-          yPos = 0;
-      }
+      const options = {
+        scale: 2, // High resolution (2 is usually enough for A4)
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#ffffff',
+        width: 1140, // lock width
+        height: height,
+        windowWidth: 1140, // lock window width to bypass mobile media queries
+        onclone: (clonedDoc: Document) => {
+          const clonedPreview = clonedDoc.querySelector("#preview") as HTMLElement;
+          clonedPreview.style.width = '1140px';
+          clonedPreview.style.minHeight = '1612px';
+          clonedPreview.style.display = 'flex';
+          const header = clonedPreview.querySelector('header');
+          if (header) {
+            header.style.display = 'flex';
+          }
+        }
+      };
 
-      pdf.addImage(imgData, 'JPEG', 0, yPos, imgWidth, imgHeight, undefined, 'FAST');
-      
-      // If imgHeight > pdfHeight, you'd need to add pages, 
-      // but let's stick to the high-quality single page A4 optimization first.
+      html2canvas(preview, options).then((canvas) => {
+        // Restore properties immediately
+        preview.style.width = originalWidth;
+        preview.style.position = originalPosition;
+        document.body.classList.remove('pdf-exporting');
 
-      pdf.save(this.getPDFTitle());
-      
-      this.invoice.id = new Date().getTime().toString();
-      this.invoiceRepo.save(this.invoice).subscribe(() => {
-        this.onGenerated.emit();
+        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+        const ratio = canvasWidth / canvasHeight;
+        
+        // Full width A4 fitting
+        let imgWidth = pdfWidth;
+        let imgHeight = pdfWidth / ratio;
+
+        let yPos = 0;
+
+        pdf.addImage(imgData, 'JPEG', 0, yPos, imgWidth, imgHeight, undefined, 'FAST');
+        
+        pdf.save(this.getPDFTitle());
+        
+        this.invoice.id = new Date().getTime().toString();
+        this.invoiceRepo.save(this.invoice).subscribe(() => {
+          this.onGenerated.emit();
+        });
       });
-    });
+    }, 100);
   }
 
   private getPDFTitle(): string {
