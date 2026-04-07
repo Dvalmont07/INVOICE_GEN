@@ -27,18 +27,18 @@ interface InvoiceViewModel {
       <table *ngIf="viewModels.length > 0" class="data-table">
         <thead>
           <tr>
-            <th>Data</th>
-            <th>Cliente</th>
             <th>Mês Ref.</th>
+            <th>Cliente</th>
+            <th>Data de Criação</th>
             <th>Total</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of viewModels">
-            <td>{{ item.formattedDate }}</td>
-            <td>{{ item.clientName }}</td>
             <td>{{ item.referenceText }}</td>
+            <td>{{ item.clientName }}</td>
+            <td>{{ item.formattedDate }}</td>
             <td>{{ item.formattedTotal }}</td>
             <td>
               <div style="display: flex; gap: 0.5rem;">
@@ -79,13 +79,11 @@ export class InvoiceHistoryComponent implements OnInit {
       currency: 'BRL'
     });
 
-    // Simulando parse de data limpo
     // Formatação de data robusta
-    const dateStr = typeof invoice.id === 'string' ? invoice.id : invoice.id.toString();
-    const dateObj = new Date(invoice.id);
+    const dateObj = invoice.createdAt || new Date(Number(invoice.id));
     const formattedDate = !isNaN(dateObj.getTime())
-      ? dateObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
-      : dateStr;
+      ? dateObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' })
+      : (typeof invoice.id === 'string' ? invoice.id : invoice.id.toString());
 
     return {
       formattedDate: formattedDate,

@@ -15,6 +15,7 @@ export class Invoice {
     private _customMonth: number = 0;
     private _customYear: number = 0;
     private _active: boolean = true;
+    private _createdAt: Date = new Date();
 
     public get id(): string | number {
         return this._id;
@@ -101,6 +102,13 @@ export class Invoice {
         this._active = value;
     }
 
+    public get createdAt(): Date {
+        return this._createdAt;
+    }
+    public set createdAt(value: Date) {
+        this._createdAt = value;
+    }
+
 
     public get total(): number {
         let total = 0;
@@ -124,7 +132,8 @@ export class Invoice {
             customDay: this._customDay,
             customMonth: this._customMonth,
             customYear: this._customYear,
-            active: this._active ? 1 : 0
+            active: this._active ? 1 : 0,
+            createdAt: this._createdAt.toISOString()
         };
     }
 
@@ -142,6 +151,14 @@ export class Invoice {
         invoice.customMonth = json.customMonth;
         invoice.customYear = json.customYear;
         invoice.active = json.active === undefined || json.active === true || json.active === 1;
+        
+        if (json.createdAt) {
+            invoice.createdAt = new Date(json.createdAt);
+        } else if (json.id && !isNaN(Number(json.id))) {
+            // Fallback to ID if it's a timestamp
+            invoice.createdAt = new Date(Number(json.id));
+        }
+
         return invoice;
     }
 }
