@@ -95,8 +95,9 @@ export class InvoiceGeneratorComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     const today = new Date();
-    this.params.refMonth = today.getMonth() + 1;
-    this.params.refYear = today.getFullYear();
+    const currentMonth = today.getMonth(); // 0 = January
+    this.params.refMonth = currentMonth === 0 ? 12 : currentMonth;
+    this.params.refYear = currentMonth === 0 ? today.getFullYear() - 1 : today.getFullYear();
     
     // Default due date: 10th of current month
     this.invoice.dueDate = new Date(today.getFullYear(), today.getMonth(), 10);
