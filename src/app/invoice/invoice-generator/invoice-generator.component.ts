@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Invoice } from '../../classes/invoice.class';
 import { InvoiceItemsConfigParams } from '../../classes/invoice-items-config-params.class';
@@ -24,7 +24,7 @@ import { IndexedDbInvoiceRepository } from '../../services/repositories/indexed-
           <div class="generator-grid-2">
             <div class="form-group" style="margin-bottom: 0;">
               <label>Cliente</label>
-              <select [(ngModel)]="invoice.client.name" (change)="onClientSelect($event)" class="form-control">
+              <select #clientSelect [(ngModel)]="invoice.client.name" (change)="onClientSelect($event)" class="form-control">
                 <option value="">Selecione um cliente...</option>
                 <option *ngFor="let client of clients" [value]="client.name">{{ client.name }}</option>
               </select>
@@ -82,7 +82,9 @@ import { IndexedDbInvoiceRepository } from '../../services/repositories/indexed-
   `,
   styleUrls: ['../../app.component.scss', '../../management/management.css', './invoice-generator.component.scss']
 })
-export class InvoiceGeneratorComponent implements OnInit {
+export class InvoiceGeneratorComponent implements OnInit, AfterViewInit {
+  @ViewChild('clientSelect') clientSelect!: ElementRef;
+
   invoice: Invoice = new Invoice();
   params: InvoiceItemsConfigParams = new InvoiceItemsConfigParams();
   clients: any[] = [];
@@ -123,6 +125,19 @@ export class InvoiceGeneratorComponent implements OnInit {
       }
     });
   }
+
+  ngAfterViewInit() {
+    this.focusClientSelect();
+  }
+
+  private focusClientSelect() {
+    if (this.clientSelect) {
+      setTimeout(() => {
+        this.clientSelect.nativeElement.focus();
+      }, 0);
+    }
+  }
+
 
   onClientSelect(event: any) {
     const name = event.target.value;
@@ -227,6 +242,7 @@ export class InvoiceGeneratorComponent implements OnInit {
       } else {
         this.invoice.number = 100300;
       }
+      this.focusClientSelect();
     });
   }
 }
