@@ -67,7 +67,7 @@ export class InvoicePreviewComponent {
         }
       };
 
-      html2canvas(preview, options).then((canvas) => {
+      html2canvas(preview, options).then((canvas: HTMLCanvasElement) => {
         // Restore properties immediately
         preview.style.width = originalWidth;
         preview.style.position = originalPosition;
