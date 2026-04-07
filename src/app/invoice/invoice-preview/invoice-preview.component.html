@@ -19,7 +19,7 @@
           <strong>{{(invoice.referenceYear)}}</strong>
         </div>
 
-        <div class="mt-5">
+        <div class="client-section">
           <h2>{{invoice.client.name}}</h2>
           <div class="client-info"><strong>Responsável:</strong> {{invoice.client.companyRepresentativeName}}</div>
           <div *ngIf="invoice.client.email" class="client-info">{{invoice.client.email}}</div>

@@ -16,10 +16,10 @@ import { IndexedDbInvoiceRepository } from '../../services/repositories/indexed-
       </header>
 
       <section>
-        <div class="card" style="padding: 1.5rem 0; margin-bottom: 3rem;">
-          <h3 style="margin-top: 0; border-bottom: 1px solid var(--brand-border); padding-bottom: 1.25rem; margin-bottom: 2rem; font-size: 1.25rem;">
-            Configuração da Fatura
-          </h3>
+        <div class="card">
+          <header class="card-header">
+            <h3>Configuração da Fatura</h3>
+          </header>
           
           <div class="generator-grid-2">
             <div class="form-group" style="margin-bottom: 0;">

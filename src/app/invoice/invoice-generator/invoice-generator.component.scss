@@ -1,46 +1,76 @@
+.card {
+    background: var(--brand-surface);
+    border: 1px solid var(--brand-border);
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--brand-border);
+    margin-bottom: 2rem;
+    
+    h3 {
+        margin: 0 !important;
+        font-size: 1.25rem !important;
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+    }
+}
+
 .generator-grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin-bottom: 2rem;
+    padding: 0 2rem;
 }
 
 .generator-grid-4 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
-    padding: 2rem;
+    padding: 1.5rem 2rem;
     background: #F8FAFC;
-    border-radius: 12px;
-    border: 1px solid var(--brand-border);
+    border-radius: 0;
+    border: none;
+    border-top: 1px solid var(--brand-border);
+    border-bottom: 1px solid var(--brand-border);
+    margin: 1rem 0;
 }
 
 .generator-label {
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
+    color: var(--brand-slate);
 }
 
 .generator-actions {
     display: flex;
     justify-content: flex-end;
     gap: 1rem;
-    margin-top: 2rem;
+    padding: 1rem 2rem 2rem 2rem;
 }
 
 @media screen and (max-width: 768px) {
     .generator-grid-2 {
         grid-template-columns: 1fr;
         gap: 1.25rem;
+        padding: 0 1.25rem;
     }
 
     .generator-grid-4 {
         grid-template-columns: 1fr 1fr;
         padding: 1.25rem;
         gap: 1.25rem;
+        margin: 1rem 0;
     }
 
     .generator-actions {
+        padding: 1rem 1.25rem 1.5rem 1.25rem;
         justify-content: stretch;
     }
 
@@ -51,6 +81,6 @@
 
 @media screen and (max-width: 480px) {
     .generator-grid-4 {
-        grid-template-columns: 1fr; /* Stack totally on very small screens */
+        grid-template-columns: 1fr;
     }
 }
