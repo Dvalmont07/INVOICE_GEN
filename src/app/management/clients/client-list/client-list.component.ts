@@ -60,9 +60,9 @@ export class ClientListComponent implements OnInit {
     const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
     this.clientRepo.getAll().subscribe(data => {
       this.clients = data.map(client => ({
-        ...client,
+        ...client.toJSON(),
         formattedFee: formatter.format(client.monthlyFee || 0)
-      }) as Client & { formattedFee: string });
+      }) as any);
     });
   }
 
