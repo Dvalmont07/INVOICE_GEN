@@ -67,37 +67,37 @@ export class InvoicePreviewComponent {
         }
       };
 
-      html2canvas(preview, options).then((canvas: HTMLCanvasElement) => {
-        // Restore properties immediately
-        preview.style.width = originalWidth;
-        preview.style.position = originalPosition;
-        document.body.classList.remove('pdf-exporting');
+      html2canvas(preview, options)
+        .then((canvas: HTMLCanvasElement) => {
+          const imgData = canvas.toDataURL('image/jpeg', 0.95);
+          const pdf = new jsPDF('p', 'mm', 'a4');
 
-        const imgData = canvas.toDataURL('image/jpeg', 0.95);
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        
-        const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-        const ratio = canvasWidth / canvasHeight;
-        
-        // Full width A4 fitting
-        let imgWidth = pdfWidth;
-        let imgHeight = pdfWidth / ratio;
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
 
-        let yPos = 0;
+          const canvasWidth = canvas.width;
+          const canvasHeight = canvas.height;
+          const ratio = canvasWidth / canvasHeight;
 
-        pdf.addImage(imgData, 'JPEG', 0, yPos, imgWidth, imgHeight, undefined, 'FAST');
-        
-        pdf.save(this.getPDFTitle());
-        
-        this.invoice.id = new Date().getTime().toString();
-        this.invoiceRepo.save(this.invoice).subscribe(() => {
-          this.onGenerated.emit();
+          // Full width A4 fitting
+          let imgWidth = pdfWidth;
+          let imgHeight = pdfWidth / ratio;
+
+          pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight, undefined, 'FAST');
+
+          pdf.save(this.getPDFTitle());
+
+          this.invoice.id = new Date().getTime().toString();
+          this.invoiceRepo.save(this.invoice).subscribe(() => {
+            this.onGenerated.emit();
+          });
+        })
+        .finally(() => {
+          // Always restore styles, even on error
+          preview.style.width = originalWidth;
+          preview.style.position = originalPosition;
+          document.body.classList.remove('pdf-exporting');
         });
-      });
     }, 100);
   }
 
