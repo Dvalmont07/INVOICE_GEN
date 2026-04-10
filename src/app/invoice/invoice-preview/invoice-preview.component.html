@@ -44,9 +44,9 @@
                   <small>* {{service.observation}}</small>
                 </div>
               </td>
-              <td class="text-center" [class.highlight-green]="service.description.includes('Valor abatido')">{{service.quantity}}</td>
-              <td class="text-end" [class.highlight-green]="service.description.includes('Valor abatido')">{{formatMoeda(service.price)}}</td>
-              <td class="text-end" [class.highlight-green]="service.description.includes('Valor abatido')">{{formatMoeda(service.total)}}</td>
+              <td class="text-center" [class.highlight-green]="service.description.includes('Valor abatido')" [class.highlight-red]="service.description.includes('Valor em aberto')">{{service.quantity}}</td>
+              <td class="text-end" [class.highlight-green]="service.description.includes('Valor abatido')" [class.highlight-red]="service.description.includes('Valor em aberto')">{{formatMoeda(service.price)}}</td>
+              <td class="text-end" [class.highlight-green]="service.description.includes('Valor abatido')" [class.highlight-red]="service.description.includes('Valor em aberto')">{{formatMoeda(service.total)}}</td>
             </tr>
           </tbody>
         </table>
