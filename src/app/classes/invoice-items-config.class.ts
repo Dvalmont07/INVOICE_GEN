@@ -51,6 +51,11 @@ export class InvoiceItemsConfig {
         if (this._params.deduction > 0) {
             services.push(new InvoiceItems(`Valor abatido`, 1, -(this._params.deduction)));
         }
+
+        if (this._params.customItems && this._params.customItems.length > 0) {
+            services.push(...this._params.customItems);
+        }
+
         return services;
     }
 }

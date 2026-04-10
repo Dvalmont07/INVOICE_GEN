@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Invoice } from '../../classes/invoice.class';
 import { InvoiceItemsConfigParams } from '../../classes/invoice-items-config-params.class';
 import { InvoiceItemsConfig } from '../../classes/invoice-items-config.class';
+import { InvoiceItems } from '../../classes/invoice-items.class';
 import { IndexedDbClientRepository } from '../../services/repositories/indexed-db-client.repository';
 import { IndexedDbConsultantRepository } from '../../services/repositories/indexed-db-consultant.repository';
 import { IndexedDbInvoiceRepository } from '../../services/repositories/indexed-db-invoice.repository';
@@ -72,6 +73,53 @@ import { IndexedDbInvoiceRepository } from '../../services/repositories/indexed-
           <div class="generator-actions">
             <button (click)="calculateInvoice()" class="btn btn-secondary">Recalcular</button>
           </div>
+
+          <div class="custom-items-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1.5rem;">
+            <header class="card-header" style="padding-left: 0; margin-bottom: 1rem;">
+              <h3 style="font-size: 1.1rem;">Itens Adicionais</h3>
+            </header>
+            
+            <div class="generator-grid-2" style="grid-template-columns: 2fr 1fr 1fr auto; align-items: flex-end; gap: 10px;">
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="generator-label">Descrição</label>
+                <input type="text" [(ngModel)]="newCustomItem.description" class="form-control" placeholder="Ex: Hora extra...">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="generator-label">Quantidade</label>
+                <input type="number" [(ngModel)]="newCustomItem.quantity" class="form-control">
+              </div>
+              <div class="form-group" style="margin-bottom: 0;">
+                <label class="generator-label">Valor Unit. (R$)</label>
+                <input type="number" [(ngModel)]="newCustomItem.price" class="form-control">
+              </div>
+              <button (click)="addCustomItem()" class="btn btn-primary" style="height: 38px; padding: 0 15px;">Add</button>
+            </div>
+
+            <div *ngIf="params.customItems.length > 0" class="custom-items-list" style="margin-top: 1rem;">
+              <table class="table" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                  <tr style="text-align: left; border-bottom: 1px solid #eee;">
+                    <th style="padding: 8px;">Descrição</th>
+                    <th style="padding: 8px; text-align: center;">Qtd</th>
+                    <th style="padding: 8px; text-align: right;">Unitário</th>
+                    <th style="padding: 8px; text-align: right;">Total</th>
+                    <th style="padding: 8px;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of params.customItems; let i = index" style="border-bottom: 1px solid #f9f9f9;">
+                    <td style="padding: 8px;">{{ item.description }}</td>
+                    <td style="padding: 8px; text-align: center;">{{ item.quantity }}</td>
+                    <td style="padding: 8px; text-align: right;">{{ item.price | currency:'BRL' }}</td>
+                    <td style="padding: 8px; text-align: right;">{{ item.total | currency:'BRL' }}</td>
+                    <td style="padding: 8px; text-align: right;">
+                      <button (click)="removeCustomItem(i)" class="btn btn-danger" style="padding: 2px 8px; font-size: 0.8rem;">Remover</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
         <div style="margin-top: 3rem;">
@@ -89,6 +137,8 @@ export class InvoiceGeneratorComponent implements OnInit, AfterViewInit {
   params: InvoiceItemsConfigParams = new InvoiceItemsConfigParams();
   clients: any[] = [];
   consultants: any[] = [];
+
+  newCustomItem: InvoiceItems = new InvoiceItems('', 1, 0);
 
   constructor(
     private clientRepo: IndexedDbClientRepository,
@@ -232,6 +282,32 @@ export class InvoiceGeneratorComponent implements OnInit, AfterViewInit {
     } else if (value && value.target && value.target.value) {
       this.invoice.dueDate = new Date(value.target.value + 'T00:00:00');
     }
+  }
+
+  addCustomItem() {
+    if (!this.newCustomItem.description || this.newCustomItem.price <= 0) {
+      alert('Descrição e preço são obrigatórios para itens customizados!');
+      return;
+    }
+
+    this.params.customItems.push(new InvoiceItems(
+      this.newCustomItem.description,
+      this.newCustomItem.quantity,
+      this.newCustomItem.price
+    ));
+
+    // Reset form
+    this.newCustomItem = new InvoiceItems('', 1, 0);
+    
+    // Auto-recalculate
+    if (this.invoice.client.name) {
+      this.calculateInvoice();
+    }
+  }
+
+  removeCustomItem(index: number) {
+    this.params.customItems.splice(index, 1);
+    this.calculateInvoice();
   }
 
   public updateNextInvoiceNumber() {

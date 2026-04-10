@@ -1,3 +1,5 @@
+import { InvoiceItems } from "./invoice-items.class";
+
 export class InvoiceItemsConfigParams {
     private _refMonth: number = 0;
     private _refYear: number = 0;
@@ -9,6 +11,7 @@ export class InvoiceItemsConfigParams {
     private _annualMonthlyFeeAdjustment: number = 0;
     private _previousMontlyFee: number = 0;   
     private _deduction: number = 0;
+    private _customItems: InvoiceItems[] = [];
    
     public get deduction(): number {
         return this._deduction;
@@ -78,6 +81,13 @@ export class InvoiceItemsConfigParams {
         this._creditCardFees = value;
     }
 
+    public get customItems(): InvoiceItems[] {
+        return this._customItems;
+    }
+    public set customItems(value: InvoiceItems[]) {
+        this._customItems = value;
+    }
+
     public toJSON() {
         return {
             refMonth: this._refMonth,
@@ -89,7 +99,8 @@ export class InvoiceItemsConfigParams {
             creditCardFees: this._creditCardFees,
             annualMonthlyFeeAdjustment: this._annualMonthlyFeeAdjustment,
             previousMontlyFee: this._previousMontlyFee,
-            deduction: this._deduction
+            deduction: this._deduction,
+            customItems: this._customItems.map(item => item.toJSON())
         };
     }
 
@@ -105,6 +116,9 @@ export class InvoiceItemsConfigParams {
         params.annualMonthlyFeeAdjustment = json.annualMonthlyFeeAdjustment;
         params.previousMontlyFee = json.previousMontlyFee;
         params.deduction = json.deduction;
+        if (json.customItems) {
+            params.customItems = json.customItems.map((item: any) => InvoiceItems.fromJSON(item));
+        }
         return params;
     }
 }
