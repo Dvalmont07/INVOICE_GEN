@@ -26,6 +26,11 @@
         </div>
       </div>
 
+      <div class="form-group form-group--flush form-group--credited">
+        <label class="generator-label generator-label--credited">Creditado (R$)</label>
+        <input type="number" [(ngModel)]="params.creditedAmount" (ngModelChange)="calculateInvoice()" class="form-control form-control--credited">
+      </div>
+
       <div class="generator-grid-4">
         <div class="form-group form-group--flush">
           <label class="generator-label">Mês Ref.</label>
@@ -39,10 +44,7 @@
           <label class="generator-label">Vencimento</label>
           <input type="date" [ngModel]="formattedDueDate" (ngModelChange)="onDueDateChange($event)" class="form-control">
         </div>
-        <div class="form-group form-group--flush">
-          <label class="generator-label">Creditado (R$)</label>
-          <input type="number" [(ngModel)]="params.creditedAmount" (ngModelChange)="calculateInvoice()" class="form-control">
-        </div>
+
         <div class="form-group form-group--flush">
           <label class="generator-label">Pendências (R$)</label>
           <input type="number" [(ngModel)]="params.lastMontyPendencies" (ngModelChange)="calculateInvoice()" class="form-control">
