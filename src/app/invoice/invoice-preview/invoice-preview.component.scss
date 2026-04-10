@@ -115,6 +115,11 @@ main {
                         padding: 1.5rem 1rem;
                         vertical-align: top;
                         border-bottom: 1px solid var(--brand-border);
+
+                        &.text-end, &.text-center {
+                            white-space: nowrap;
+                            font-variant-numeric: tabular-nums;
+                        }
                     }
                 }
                 font-size: 1.05rem;
@@ -130,6 +135,10 @@ main {
                     margin-top: 0.5rem;
                     font-style: italic;
                 }
+
+                .highlight-green {
+                    color: #4dbca9 !important;
+                }
             }
         }
 
@@ -139,6 +148,8 @@ main {
             text-align: end;
             margin-top: 2rem;
             color: #2d3436;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
             
             strong {
                 font-family: Impact, "Arial Narrow Bold", sans-serif;
