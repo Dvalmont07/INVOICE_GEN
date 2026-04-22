@@ -265,13 +265,72 @@ main {
 @media screen and (max-width: 768px) {
     main {
         display: block;
+        padding: 0;
+
         #preview {
             display: block;
             width: 100vw;
+            padding: 2rem; /* Reduce padding on mobile */
+            min-height: auto;
+
             header {
                 display: block;
+                margin-bottom: 3rem;
+
+                h1 {
+                    font-size: 2.5rem; /* Scale down titles for mobile */
+                }
+
+                #preview-invoice-data {
+                    text-align: left;
+                    font-size: 1rem;
+                    margin-top: 1rem;
+                }
+            }
+
+            .main-content {
+                h2 {
+                    font-size: 2rem;
+                }
                 
+                .client-info, 
+                .reference-period {
+                    font-size: 1rem;
+                }
+            }
+
+            table {
+                font-size: 0.95rem;
+                thead th {
+                    font-size: 0.8rem;
+                }
+            }
+
+            .total-value {
+                font-size: 2rem;
+                text-align: left;
+                
+                strong {
+                    margin-right: 0.5rem;
+                }
+            }
+
+            footer {
+                .invoice-details {
+                    h3 { font-size: 1.5rem; }
+                    strong, div { font-size: 1rem; }
+                }
+
+                #signature-sec {
+                    .thanks-msg h4 { font-size: 1.8rem; }
+                }
             }
         }
+    }
+
+    .btn-generate {
+        width: calc(100% - 4rem);
+        margin: 2rem;
+        font-size: 1.1rem;
     }
 }

@@ -202,4 +202,17 @@ h2 {
 
   /* Simula headers na frente do td usando um texto antes dele se tentarmos forçar, mas 
      para simplicidade o flex-between já lida bem visualmente. Podemos adicionar data-labels nos componentes no futuro. */
+  
+  .btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+  }
+
+  .data-table td {
+    font-size: 1.05rem;
+  }
 }
