@@ -140,13 +140,20 @@ export class InvoiceGeneratorComponent implements OnInit, AfterViewInit {
       this.invoice.referenceMonth = this.params.refMonth;
       this.invoice.referenceYear = this.params.refYear;
       
+      // Auto-populate custom filename with the current month/year (month following the reference month)
+      const nextMonth = this.params.refMonth === 12 ? 1 : this.params.refMonth + 1;
+      const nextYear = this.params.refMonth === 12 ? this.params.refYear + 1 : this.params.refYear;
+      const fileMonth = nextMonth.toString().padStart(2, '0');
+      
+      this.invoice.customFileName = `${this.invoice.client.name} - Nota ${this.invoice.number} - ${nextYear}${fileMonth}`;
+
       const config = new InvoiceItemsConfig(this.params);
       this.invoice.services = config.services;
       
       // Auto-update due date to 10th if it's still default or month changed
       const currentDue = this.invoice.dueDate;
-      if (currentDue.getDate() === 10 || currentDue.getMonth() !== (this.params.refMonth - 1)) {
-          this.invoice.dueDate = new Date(this.params.refYear, this.params.refMonth - 1, 10);
+      if (currentDue.getDate() === 10 || currentDue.getMonth() !== (this.params.refMonth)) {
+          this.invoice.dueDate = new Date(this.params.refYear, this.params.refMonth, 10);
       }
 
       console.log('Invoice items calculated', this.invoice.services);
@@ -200,6 +207,9 @@ export class InvoiceGeneratorComponent implements OnInit, AfterViewInit {
         this.invoice.number = Math.max(maxNumber + 1, 100300);
       } else {
         this.invoice.number = 100300;
+      }
+      if (this.invoice.client.name) {
+        this.calculateInvoice();
       }
       this.focusClientSelect();
     });

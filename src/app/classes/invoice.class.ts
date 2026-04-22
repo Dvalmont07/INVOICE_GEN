@@ -16,6 +16,7 @@ export class Invoice {
     private _customYear: number = 0;
     private _active: boolean = true;
     private _createdAt: Date = new Date();
+    private _customFileName: string = "";
 
     public get id(): string | number {
         return this._id;
@@ -109,6 +110,13 @@ export class Invoice {
         this._createdAt = value;
     }
 
+    public get customFileName(): string {
+        return this._customFileName;
+    }
+    public set customFileName(value: string) {
+        this._customFileName = value;
+    }
+
 
     public get total(): number {
         let total = 0;
@@ -132,6 +140,7 @@ export class Invoice {
             customDay: this._customDay,
             customMonth: this._customMonth,
             customYear: this._customYear,
+            customFileName: this._customFileName,
             active: this._active ? 1 : 0,
             createdAt: this._createdAt.toISOString()
         };
@@ -150,6 +159,7 @@ export class Invoice {
         invoice.customDay = json.customDay;
         invoice.customMonth = json.customMonth;
         invoice.customYear = json.customYear;
+        invoice.customFileName = json.customFileName || "";
         invoice.active = json.active === undefined || json.active === true || json.active === 1;
         
         if (json.createdAt) {

@@ -102,6 +102,14 @@ export class InvoicePreviewComponent {
   }
 
   private getPDFTitle(): string {
+    if (this.invoice.customFileName && this.invoice.customFileName.trim()) {
+      let name = this.invoice.customFileName.trim();
+      if (!name.toLowerCase().endsWith('.pdf')) {
+        name += '.pdf';
+      }
+      return name;
+    }
+    
     return `${this.invoice.client.name} - Nota ${this.invoice.number} - ${this.invoice.dueDate.getFullYear()}${(this.invoice.dueDate.getMonth() + 1).toString().padStart(2, '0')}.pdf`;
   }
 }
