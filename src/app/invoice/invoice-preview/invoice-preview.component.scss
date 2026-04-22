@@ -2,7 +2,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f8f9fa;
     padding: 2rem 0;
 
     #preview {
@@ -43,7 +42,7 @@ main {
                 font-size: 1.25rem;
                 line-height: 1.6;
                 color: #2d3436;
-                
+
                 .consultant-name {
                     font-size: 1.5rem;
                     font-weight: 500;
@@ -61,7 +60,7 @@ main {
         .main-content {
             flex-grow: 1;
             padding: 0 1rem;
-            
+
             .reference-period {
                 font-size: 1.1rem;
                 color: #636e72;
@@ -85,7 +84,7 @@ main {
                 font-size: 1.1rem;
                 color: #636e72;
                 margin-bottom: 0.5rem;
-                
+
                 strong {
                     color: #2d3436;
                 }
@@ -97,7 +96,7 @@ main {
             border-collapse: collapse;
             margin-top: 2.5rem;
             margin-bottom: 2rem;
-            
+
             thead {
                 th {
                     padding: 1.25rem 1rem;
@@ -116,12 +115,14 @@ main {
                         vertical-align: top;
                         border-bottom: 1px solid var(--brand-border);
 
-                        &.text-end, &.text-center {
+                        &.text-end,
+                        &.text-center {
                             white-space: nowrap;
                             font-variant-numeric: tabular-nums;
                         }
                     }
                 }
+
                 font-size: 1.05rem;
 
                 .service-desc {
@@ -154,7 +155,7 @@ main {
             color: #2d3436;
             white-space: nowrap;
             font-variant-numeric: tabular-nums;
-            
+
             strong {
                 font-family: Impact, "Arial Narrow Bold", sans-serif;
                 color: #2d3436;
@@ -170,6 +171,7 @@ main {
 
             .invoice-details {
                 margin-bottom: 6rem;
+
                 h3 {
                     font-family: Impact, "Arial Narrow Bold", sans-serif;
                     font-size: 2rem;
@@ -177,7 +179,7 @@ main {
                     margin-bottom: 1rem;
                     font-weight: 400;
                 }
-                
+
                 strong {
                     display: block;
                     font-size: 1.1rem;
@@ -190,6 +192,7 @@ main {
                     font-size: 1.1rem;
                     margin-bottom: 0.5rem;
                     color: #636e72;
+
                     strong {
                         color: #2d3436;
                         width: 60px;
@@ -208,6 +211,7 @@ main {
                         font-weight: 400;
                     }
                 }
+
                 .signature-box {
                     text-align: center;
                     width: 320px;
@@ -249,13 +253,13 @@ main {
         border: none;
         box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
         margin: 2rem 0;
-        
+
         &:hover {
             background-color: #219150;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
         }
-        
+
         &:active {
             transform: translateY(0);
         }
@@ -270,7 +274,8 @@ main {
         #preview {
             display: block;
             width: 100vw;
-            padding: 2rem; /* Reduce padding on mobile */
+            padding: 2rem;
+            /* Reduce padding on mobile */
             min-height: auto;
 
             header {
@@ -278,7 +283,8 @@ main {
                 margin-bottom: 3rem;
 
                 h1 {
-                    font-size: 2.5rem; /* Scale down titles for mobile */
+                    font-size: 2.5rem;
+                    /* Scale down titles for mobile */
                 }
 
                 #preview-invoice-data {
@@ -292,8 +298,8 @@ main {
                 h2 {
                     font-size: 2rem;
                 }
-                
-                .client-info, 
+
+                .client-info,
                 .reference-period {
                     font-size: 1rem;
                 }
@@ -301,6 +307,7 @@ main {
 
             table {
                 font-size: 0.95rem;
+
                 thead th {
                     font-size: 0.8rem;
                 }
@@ -309,7 +316,7 @@ main {
             .total-value {
                 font-size: 2rem;
                 text-align: left;
-                
+
                 strong {
                     margin-right: 0.5rem;
                 }
@@ -317,12 +324,20 @@ main {
 
             footer {
                 .invoice-details {
-                    h3 { font-size: 1.5rem; }
-                    strong, div { font-size: 1rem; }
+                    h3 {
+                        font-size: 1.5rem;
+                    }
+
+                    strong,
+                    div {
+                        font-size: 1rem;
+                    }
                 }
 
                 #signature-sec {
-                    .thanks-msg h4 { font-size: 1.8rem; }
+                    .thanks-msg h4 {
+                        font-size: 1.8rem;
+                    }
                 }
             }
         }
