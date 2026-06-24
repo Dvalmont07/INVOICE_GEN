@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(d:\\Projetos\\Chatwoot + N8N + Ollama (Llama 3)/**)",
+      "Bash(docker-compose *)"
+    ]
+  },
+  "$version": 4
+}
